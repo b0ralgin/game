@@ -100,6 +100,8 @@
 			children = (
 				E99258931892CA2C008DBD65 /* GameScene.h */,
 				E99258941892CA2C008DBD65 /* GameScene.m */,
+				E992589C1892D6FD008DBD65 /* Button.h */,
+				E992589D1892D6FD008DBD65 /* Button.m */,
 				E992585C1892BBF8008DBD65 /* Game */,
 				E99258831892BBF8008DBD65 /* GameTests */,
 				E99258531892BBF8008DBD65 /* Frameworks */,
@@ -285,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7CE80461892C89B003E41BE /* Girl.m in Sources */,
+				E992589E1892D6FD008DBD65 /* Button.m in Sources */,
 				E99258731892BBF8008DBD65 /* MyScene.m in Sources */,
 				EAA9EDE31892CFAF00D198A5 /* Enemy.m in Sources */,
 				E99258701892BBF8008DBD65 /* ViewController.m in Sources */,

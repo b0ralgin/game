@@ -1,5 +1,5 @@
 //
-//  GameScene.h
+//  Button.h
 //  Game
 //
 //  Created by Akira Yamaoka on 24.01.14.
@@ -7,10 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-#import "Girl.h"
 
-@interface GameScene : SKScene{
-    
-}
+@interface Button : SKScene
 
 @end
