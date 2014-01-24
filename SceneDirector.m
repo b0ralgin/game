@@ -7,7 +7,23 @@
 //
 
 #import "SceneDirector.h"
+#import "ViewController.h"
 
-@implementation SceneDirector
+@implementation SceneDirector{
+    ViewController *_viewController;
+}
+static SceneDirector *instance = nil;
+
++(SceneDirector *) shared{
+    if(instance == nil){
+        instance = [[SceneDirector alloc] init];
+    }
+    return instance;
+}
+
+
+-(void)setViewController: (ViewController *) viewController{
+    _viewController=viewController;
+}
 
 @end

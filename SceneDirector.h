@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+@class ViewController;
 
 @interface SceneDirector : NSObject
-
++(SceneDirector *) shared;
+-(void)setViewController: (ViewController *) viewController;
 @end
