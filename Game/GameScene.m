@@ -11,6 +11,9 @@
 static NSString *const leftButtonFilename = @"left_button.png";
 static NSString *const rightButtonFilename = @"right_button.png";
 static NSString *const jumpButtonFilename = @"jump_button.png";
+
+
+
 @implementation GameScene{
     Girl *_girl;
     
@@ -24,6 +27,9 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 -(instancetype)initWithSize:(CGSize)size
 {
     if(( self = [super initWithSize:size] )){
+        
+        self.physicsWorld.gravity = CGVectorMake(0, -3);
+        
         [self initRoomBound];
         [self initButtons];
         [self initEnemy];
