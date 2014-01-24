@@ -21,7 +21,9 @@ static NSTimeInterval const animationDelay = 0.05;
 static float const moveSpeed = 1;
 static float const jumpPower = 5;
 
-typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE, MOVING_FLY_STATE, MOVING_FALL_STATE} GirlStateType;
+typedef enum {GROUND_STATE, FLY_STATE, FALL_STATE} GirlJumpStateType;
+typedef enum {STAND_STATE, MOVE_STATE} GirlMoveStateType;
+typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 
 @implementation Girl {
     NSMutableArray* darkStand;
@@ -34,15 +36,20 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE, MOVING_FLY_STATE, 
     NSMutableArray* lightFall;
     
     SKSpriteNode* lightGirl;
+    SKSpriteNode* weapon;
     
-    GirlStateType curState;
+    GirlJumpStateType jumpState;
+    GirlMoveStateType moveState;
+    GirlAttackStateType attackState;
 }
 
 - (instancetype)init {
     self = [super initWithImageNamed:girlDarkStand[0]];
     
     if (self != nil) {
-        curState = STAND_STATE;
+        jumpState = GROUND_STATE;
+        moveState = STAND_STATE;
+        attackState = PASSIVE_STATE;
         
         lightGirl = [SKSpriteNode spriteNodeWithImageNamed:girlLightStand[0]];
         
@@ -103,66 +110,21 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE, MOVING_FLY_STATE, 
 }
 
 - (void)moveLeft {
-    switch (curState) {
-        case FALL_STATE:
-            curState = MOVING_FALL_STATE;
-            break;
-            
-        case FLY_STATE:
-            curState = MOVING_FLY_STATE;
-            break;
-            
-        case STAND_STATE:
-            curState = MOVE_STATE;
-            break;
-            
-        default:
-            break;
-    }
+    moveState = MOVE_STATE;
     
     self.xScale = -1;
     [self startAnimation];
 }
 
 - (void)moveRight {
-    switch (curState) {
-        case FALL_STATE:
-            curState = MOVING_FALL_STATE;
-            break;
-            
-        case FLY_STATE:
-            curState = MOVING_FLY_STATE;
-            break;
-            
-        case STAND_STATE:
-            curState = MOVE_STATE;
-            break;
-            
-        default:
-            break;
-    }
+    moveState = MOVE_STATE;
     
     self.xScale = 1;
     [self startAnimation];
 }
 
 - (void)stopMoving {
-    switch (curState) {
-        case MOVING_FALL_STATE:
-            curState = FALL_STATE;
-            break;
-            
-        case MOVING_FLY_STATE:
-            curState = FLY_STATE;
-            break;
-            
-        case MOVE_STATE:
-            curState = STAND_STATE;
-            break;
-            
-        default:
-            break;
-    }
+    moveState = STAND_STATE;
     
     [self startAnimation];
 }
@@ -171,27 +133,34 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE, MOVING_FLY_STATE, 
     NSArray* darkTexList = nil;
     NSArray* lightTexList = nil;
     
-    switch (curState) {
+    switch (jumpState) {
         case STAND_STATE:
-            darkTexList = darkStand;
-            lightTexList = lightStand;
-            break;
+            if (moveState == STAND_STATE && attackState == PASSIVE_STATE) {
+                darkTexList = darkStand;
+                lightTexList = lightStand;
+            }
             
-        case MOVE_STATE:
-            darkTexList = darkMove;
-            lightTexList = lightMove;
+            if (moveState == MOVE_STATE && attackState == PASSIVE_STATE) {
+                darkTexList = darkMove;
+                lightTexList = lightMove;
+            }
+            
             break;
             
         case FLY_STATE:
-        case MOVING_FLY_STATE:
-            darkTexList = darkFly;
-            lightTexList = lightFly;
+            if (attackState == PASSIVE_STATE) {
+                darkTexList = darkFly;
+                lightTexList = lightFly;
+            }
+            
             break;
             
         case FALL_STATE:
-        case MOVING_FALL_STATE:
-            darkTexList = darkFall;
-            lightTexList = lightFall;
+            if (attackState == PASSIVE_STATE) {
+                darkTexList = darkFall;
+                lightTexList = lightFall;
+            }
+            
             break;
     }
     
@@ -209,37 +178,23 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE, MOVING_FLY_STATE, 
 }
 
 - (void)update:(NSTimeInterval)dt {
-    if (curState == MOVE_STATE || curState == MOVING_FALL_STATE || curState == MOVING_FLY_STATE) {
+    if (moveState == MOVE_STATE) {
         [self.physicsBody applyImpulse:CGVectorMake(self.xScale * moveSpeed * dt, 0)];
     }
     
     lightGirl.position = self.position;
     
-    switch (curState) {
+    switch (jumpState) {
         case FALL_STATE:
             if (self.physicsBody.velocity.dy == 0) {
-                curState = STAND_STATE;
+                jumpState = GROUND_STATE;
                 [self startAnimation];
             }
             break;
             
         case FLY_STATE:
             if (self.physicsBody.velocity.dy <= 0) {
-                curState = FALL_STATE;
-                [self startAnimation];
-            }
-            break;
-            
-        case MOVING_FALL_STATE:
-            if (self.physicsBody.velocity.dy == 0) {
-                curState = MOVE_STATE;
-                [self startAnimation];
-            }
-            break;
-            
-        case MOVING_FLY_STATE:
-            if (self.physicsBody.velocity.dy <= 0) {
-                curState = MOVING_FALL_STATE;
+                jumpState = FALL_STATE;
                 [self startAnimation];
             }
             break;
@@ -255,7 +210,7 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE, MOVING_FLY_STATE, 
     }
     
     [self.physicsBody applyImpulse:CGVectorMake(0, jumpPower)];
-    curState = (curState == STAND_STATE ? FLY_STATE : MOVING_FLY_STATE);
+    jumpState = FLY_STATE;
 }
 
 - (void)setAdditionalSpriteParent:(SKNode*)parentNode {
@@ -265,13 +220,25 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE, MOVING_FLY_STATE, 
 
 - (void)startOpenDoorAnimation {
     self.xScale = 1;
-    curState = STAND_STATE;
+    moveState = STAND_STATE;
     
     
 }
 
 - (BOOL)isStand {
-    return (self.physicsBody.velocity.dy == 0 && (curState == STAND_STATE || curState == MOVE_STATE));
+    return (self.physicsBody.velocity.dy == 0 && jumpState == GROUND_STATE);
+}
+
+- (void)setWeaponContactBitMask:(uint32_t)mask {
+    weapon.physicsBody.contactTestBitMask = mask;
+}
+
+- (void)setWeaponCategoryBitMask:(uint32_t)mask {
+    
+}
+
+- (void)setWeaponCollisionBitMask:(uint32_t)mask {
+    weapon.physicsBody.collisionBitMask = mask;
 }
 
 @end
