@@ -7,15 +7,15 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "GameObject.h"
 
-@interface Girl : SKSpriteNode
+@interface Girl : GameObject
 
 - (void)moveLeft;
 - (void)moveRight;
 - (void)stopMoving;
 - (void)update:(NSTimeInterval)dt;
 - (void)jump;
-- (void)setAdditionalSpriteParent:(SKNode*)parentNode;
 - (void)startOpenDoorAnimation;
 - (void)setWeaponContactBitMask:(uint32_t)mask;
 - (void)setWeaponCategoryBitMask:(uint32_t)mask;
