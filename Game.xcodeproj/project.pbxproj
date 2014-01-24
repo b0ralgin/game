@@ -107,6 +107,7 @@
 		E99258C618930C92008DBD65 /* bedroom2@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom2@2x~ipad.png"; sourceTree = "<group>"; };
 		E99258C718930C92008DBD65 /* bedroom3@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom3@2x~ipad.png"; sourceTree = "<group>"; };
 		E99258C818930C92008DBD65 /* bedroom4@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom4@2x~ipad.png"; sourceTree = "<group>"; };
+		E99258CD18931F6E008DBD65 /* GirlMovedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GirlMovedDelegate.h; path = ../GirlMovedDelegate.h; sourceTree = "<group>"; };
 		EAA9EDE11892CFAF00D198A5 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		EAA9EDE21892CFAF00D198A5 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = enemyImages.atlas; path = enemyImages/enemyImages.atlas; sourceTree = "<group>"; };
@@ -174,6 +175,7 @@
 				EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */,
 				E99258651892BBF8008DBD65 /* AppDelegate.h */,
 				E99258661892BBF8008DBD65 /* AppDelegate.m */,
+				E99258CD18931F6E008DBD65 /* GirlMovedDelegate.h */,
 				E99258681892BBF8008DBD65 /* Main_iPhone.storyboard */,
 				E992586B1892BBF8008DBD65 /* Main_iPad.storyboard */,
 				E992586E1892BBF8008DBD65 /* ViewController.h */,

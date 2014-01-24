@@ -363,8 +363,11 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 }
 
 - (void)setPosition:(CGPoint)position {
+    float lastX = self.position.x;
     weapon.position = CGPointMake(self.position.x + self.xScale * weaponOffset.dx, self.position.y + weaponOffset.dy);
     [super setPosition:position];
+    float currentX = self.position.x;
+    [_girlMovedDelegate girlMoveByX:currentX - lastX];
 }
 
 @end

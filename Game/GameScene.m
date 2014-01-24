@@ -56,6 +56,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     _girl = [[Girl alloc] init];
     _girl.position = CGPointMake(CGRectGetMidX(self.frame), 400);
     _girl.zPosition = 1000;
+    _girl.girlMovedDelegate = self;
     [_girl setParent:_backWall];
 }
 
@@ -156,4 +157,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     /* Called before each frame is rendered */
 }
 
+-(void)girlMoveByX:(float)offsetX{
+    self.position = CGPointMake(self.position.x - offsetX, self.position.y);
+}
 @end
