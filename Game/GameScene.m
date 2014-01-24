@@ -18,7 +18,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     Button *_rightButton;
     Button *_jumpButton;
     
-    SKSpriteNode *_pressedButton;
+    Button *_pressedButton;
 }
 
 -(instancetype)initWithSize:(CGSize)size
@@ -51,6 +51,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     _jumpButton = [Button spriteNodeWithImageNamed:jumpButtonFilename];
     _jumpButton.position = CGPointMake(1800, 100);
     [self addChild:_jumpButton];
+     _rightButton.tag = 3;
 }
 
 -(void)initRoomBound{
@@ -109,7 +110,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         if(_pressedButton != nil){
-            
+            if(_pressedButton.ta)
         }
     }
 }
