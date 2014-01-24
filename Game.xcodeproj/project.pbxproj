@@ -40,6 +40,11 @@
 		E99258B61892DFED008DBD65 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA9EDE21892CFAF00D198A5 /* Enemy.m */; };
 		E99258BD1892F3CC008DBD65 /* SceneDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258BC1892F3CC008DBD65 /* SceneDirector.m */; };
 		E99258C01892FA77008DBD65 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258BF1892FA77008DBD65 /* MenuScene.m */; };
+		E99258C318930797008DBD65 /* BedroomBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258C218930797008DBD65 /* BedroomBackground.m */; };
+		E99258C918930C92008DBD65 /* bedroom1@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258C518930C92008DBD65 /* bedroom1@2x~ipad.png */; };
+		E99258CA18930C92008DBD65 /* bedroom2@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258C618930C92008DBD65 /* bedroom2@2x~ipad.png */; };
+		E99258CB18930C92008DBD65 /* bedroom3@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258C718930C92008DBD65 /* bedroom3@2x~ipad.png */; };
+		E99258CC18930C92008DBD65 /* bedroom4@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258C818930C92008DBD65 /* bedroom4@2x~ipad.png */; };
 		EAA9EDE71892E85E00D198A5 /* enemyImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */; };
 		EAA9EDE81892EBE700D198A5 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258B81892E3CA008DBD65 /* Button.m */; };
 /* End PBXBuildFile section */
@@ -96,6 +101,12 @@
 		E99258BC1892F3CC008DBD65 /* SceneDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SceneDirector.m; path = ../SceneDirector.m; sourceTree = "<group>"; };
 		E99258BE1892FA77008DBD65 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
 		E99258BF1892FA77008DBD65 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
+		E99258C118930797008DBD65 /* BedroomBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BedroomBackground.h; sourceTree = "<group>"; };
+		E99258C218930797008DBD65 /* BedroomBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BedroomBackground.m; sourceTree = "<group>"; };
+		E99258C518930C92008DBD65 /* bedroom1@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom1@2x~ipad.png"; sourceTree = "<group>"; };
+		E99258C618930C92008DBD65 /* bedroom2@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom2@2x~ipad.png"; sourceTree = "<group>"; };
+		E99258C718930C92008DBD65 /* bedroom3@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom3@2x~ipad.png"; sourceTree = "<group>"; };
+		E99258C818930C92008DBD65 /* bedroom4@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom4@2x~ipad.png"; sourceTree = "<group>"; };
 		EAA9EDE11892CFAF00D198A5 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		EAA9EDE21892CFAF00D198A5 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = enemyImages.atlas; path = enemyImages/enemyImages.atlas; sourceTree = "<group>"; };
@@ -190,7 +201,10 @@
 				E99258BC1892F3CC008DBD65 /* SceneDirector.m */,
 				E99258BE1892FA77008DBD65 /* MenuScene.h */,
 				E99258BF1892FA77008DBD65 /* MenuScene.m */,
+				E99258C418930C92008DBD65 /* bedRoom */,
 				E992585D1892BBF8008DBD65 /* Supporting Files */,
+				E99258C118930797008DBD65 /* BedroomBackground.h */,
+				E99258C218930797008DBD65 /* BedroomBackground.m */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -222,6 +236,17 @@
 				E99258861892BBF8008DBD65 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		E99258C418930C92008DBD65 /* bedRoom */ = {
+			isa = PBXGroup;
+			children = (
+				E99258C518930C92008DBD65 /* bedroom1@2x~ipad.png */,
+				E99258C618930C92008DBD65 /* bedroom2@2x~ipad.png */,
+				E99258C718930C92008DBD65 /* bedroom3@2x~ipad.png */,
+				E99258C818930C92008DBD65 /* bedroom4@2x~ipad.png */,
+			);
+			path = bedRoom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -304,10 +329,14 @@
 				E99258AB1892DD7C008DBD65 /* jump_button.png in Resources */,
 				E99258991892CBE7008DBD65 /* (null) in Resources */,
 				E99258AD1892DD7C008DBD65 /* left_button.png in Resources */,
+				E99258C918930C92008DBD65 /* bedroom1@2x~ipad.png in Resources */,
 				A7CE80481892EC70003E41BE /* girl.png in Resources */,
+				E99258CC18930C92008DBD65 /* bedroom4@2x~ipad.png in Resources */,
+				E99258CA18930C92008DBD65 /* bedroom2@2x~ipad.png in Resources */,
 				E99258771892BBF8008DBD65 /* Images.xcassets in Resources */,
 				E992586D1892BBF8008DBD65 /* Main_iPad.storyboard in Resources */,
 				E992589B1892CBE7008DBD65 /* (null) in Resources */,
+				E99258CB18930C92008DBD65 /* bedroom3@2x~ipad.png in Resources */,
 				E99258AC1892DD7C008DBD65 /* right_button.png in Resources */,
 				EAA9EDE71892E85E00D198A5 /* enemyImages.atlas in Resources */,
 				E992586A1892BBF8008DBD65 /* Main_iPhone.storyboard in Resources */,
@@ -338,6 +367,7 @@
 				A7CE804B189301EC003E41BE /* GameObject.m in Sources */,
 				E99258AA1892DD7C008DBD65 /* GameScene.m in Sources */,
 				E992589E1892D6FD008DBD65 /* (null) in Sources */,
+				E99258C318930797008DBD65 /* BedroomBackground.m in Sources */,
 				E99258731892BBF8008DBD65 /* MyScene.m in Sources */,
 				E99258701892BBF8008DBD65 /* ViewController.m in Sources */,
 				E99258671892BBF8008DBD65 /* AppDelegate.m in Sources */,

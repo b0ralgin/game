@@ -23,8 +23,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     
     Button *_pressedButton;
     
-    
-    BOOL _isTurnLampOn;
+    BOOL _isLightOn;
 }
 
 -(instancetype)initWithSize:(CGSize)size
@@ -44,6 +43,13 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
         self.physicsWorld.contactDelegate = self;
     }
     return self;
+}
+
+
+-(void)initBackground{
+    BedroomBackground *background = [BedroomBackground node];
+    [self addChild:background];
+    background.zPosition = -1;
 }
 
 -(void)initGirl

@@ -20,7 +20,7 @@ static NSString* const girlLightMove[] = {@"girl.png"};
 static NSString* const girlLightFly[] = {@"girl.png"};
 static NSString* const girlLightFall[] = {@"girl.png"};
 
-static NSString* const activeWeapon[] = {@"Active weapon.png"};
+static NSString* const activeWeapon[] = {@"girl.png"};
 
 static NSString* const darkStandAnimationName = @"Dark stand";
 static NSString* const darkMoveAnimationName = @"Dark stand";
@@ -31,7 +31,7 @@ static NSString* const lightMoveAnimationName = @"Dark stand";
 static NSString* const lightFlyAnimationName = @"Dark stand";
 static NSString* const lightFallAnimationName = @"Dark stand";
 
-static CGVector const weaponOffset;
+static CGPoint const weaponOffset = {60, -40};
 
 static NSTimeInterval const animationDelay = 0.05;
 static float const moveSpeed = 15000;
@@ -61,17 +61,18 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     self = [super initWithImageNamed:girlDarkStand[0]];
     
     if (self != nil) {
-        self.size = CGSizeMake(100, 100);
+        self.size = CGSizeMake(150, 150);
         
         jumpState = GROUND_STATE;
         moveState = STAND_STATE;
         attackState = PASSIVE_STATE;
         
+        allowAttack = YES;
         recorder = nil;
         lastTime = 0;
         
         [self initTextures];
-        //[self initWeapon];
+        [self initWeapon];
         
         SKPhysicsBody* girlBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
         self.physicsBody = girlBody;
@@ -141,8 +142,10 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 
 - (void)initWeapon {
     weapon = [SKSpriteNode spriteNodeWithImageNamed:activeWeapon[0]];
+    weapon.size = CGSizeMake(100, 30);
     weapon.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:weapon.size];
     weapon.physicsBody.dynamic = NO;
+    weapon.position = weaponOffset;
     
     [self addChild:weapon];
     
@@ -155,6 +158,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     weaponAnimation = [SKAction repeatActionForever:weaponAnimation];
     [weapon runAction:weaponAnimation];
     
+    attackState = ATTACK_STATE;
     [self endAttack];
 }
 
@@ -220,6 +224,8 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     NSTimeInterval time = dt - lastTime;
     lastTime = dt;
     
+    weapon.position = weaponOffset;
+    
     if (moveState == MOVE_STATE) {
         [self.physicsBody applyImpulse:CGVectorMake(self.xScale * moveSpeed * time, 0)];
     }
@@ -261,7 +267,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         
         double avaragePowerForChannel = pow(10, (0.05 * [recorder averagePowerForChannel:0]));
         
-        if (avaragePowerForChannel > 0.1) {
+        if (avaragePowerForChannel > 0.045) {
             [self beginAttack];
         }
         else {
@@ -303,7 +309,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 }
 
 - (void)beginAttack {
-    if (attackState == ATTACK_STATE && allowAttack) {
+    if (attackState == ATTACK_STATE || !allowAttack) {
         return;
     }
     
@@ -360,13 +366,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 
 - (void)setXScale:(CGFloat)xScale {
     lightCopy.xScale = xScale;
-    weapon.xScale = xScale;
     [super setXScale:xScale];
-}
-
-- (void)setPosition:(CGPoint)position {
-    weapon.position = CGPointMake(self.position.x + self.xScale * weaponOffset.dx, self.position.y + weaponOffset.dy);
-    [super setPosition:position];
 }
 
 @end
