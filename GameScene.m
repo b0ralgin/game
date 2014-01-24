@@ -7,17 +7,40 @@
 //
 
 #import "GameScene.h"
-
+static NSString *const leftButtonFilename = @"left_button.png";
+static NSString *const rightButtonFilename = @"right_button.png";
+static NSString *const jumpButtonFilename = @"jump_button.png";
 @implementation GameScene{
-
+    Girl *_girl;
+    
+    SKSpriteNode *_leftButton;
+    SKSpriteNode *_rightButton;
+    SKSpriteNode *_jumpButton;
 }
+
 -(instancetype)initWithSize:(CGSize)size
 {
     if(( self = [super initWithSize:size] )){
         [self initRoomBound];
+        [self initButtons];
     }
     return self;
 }
+
+-(void)initButtons{
+    _leftButton = [SKSpriteNode spriteNodeWithImageNamed:leftButtonFilename];
+    _leftButton.position = CGPointMake(100, 100);
+    [self addChild:_leftButton];
+    
+    _rightButton = [SKSpriteNode spriteNodeWithImageNamed:rightButtonFilename];
+    _rightButton.position = CGPointMake(200, 100);
+    [self addChild:_rightButton];
+    
+    _jumpButton = [SKSpriteNode spriteNodeWithImageNamed:jumpButtonFilename];
+    _jumpButton.position = CGPointMake(1900, 100);
+    [self addChild:_jumpButton];
+}
+
 -(void)initRoomBound{
      SKSpriteNode *floor = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:10] size:CGSizeMake(self.size.width, 1)];
     floor.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
@@ -42,7 +65,5 @@
     rightWall.physicsBody.dynamic = NO;
     rightWall.position = CGPointMake(self.size.width,self.size.height/2);
     [self addChild:rightWall];
-    
-    
 }
 @end

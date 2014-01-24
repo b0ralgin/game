@@ -30,6 +30,7 @@
 		E99258991892CBE7008DBD65 /* jump_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258961892CBE7008DBD65 /* jump_button.png */; };
 		E992589A1892CBE7008DBD65 /* left_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258971892CBE7008DBD65 /* left_button.png */; };
 		E992589B1892CBE7008DBD65 /* right_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258981892CBE7008DBD65 /* right_button.png */; };
+		E992589E1892D6FD008DBD65 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = E992589D1892D6FD008DBD65 /* Button.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,8 @@
 		E99258961892CBE7008DBD65 /* jump_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump_button.png; sourceTree = "<group>"; };
 		E99258971892CBE7008DBD65 /* left_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_button.png; sourceTree = "<group>"; };
 		E99258981892CBE7008DBD65 /* right_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_button.png; sourceTree = "<group>"; };
+		E992589C1892D6FD008DBD65 /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Button.h; path = Game/Button.h; sourceTree = "<group>"; };
+		E992589D1892D6FD008DBD65 /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Button.m; path = Game/Button.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 			children = (
 				E99258931892CA2C008DBD65 /* GameScene.h */,
 				E99258941892CA2C008DBD65 /* GameScene.m */,
+				E992589C1892D6FD008DBD65 /* Button.h */,
+				E992589D1892D6FD008DBD65 /* Button.m */,
 				E992585C1892BBF8008DBD65 /* Game */,
 				E99258831892BBF8008DBD65 /* GameTests */,
 				E99258531892BBF8008DBD65 /* Frameworks */,
@@ -289,6 +294,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A7CE80461892C89B003E41BE /* Girl.m in Sources */,
+				E992589E1892D6FD008DBD65 /* Button.m in Sources */,
 				E99258731892BBF8008DBD65 /* MyScene.m in Sources */,
 				E99258701892BBF8008DBD65 /* ViewController.m in Sources */,
 				E99258951892CA2C008DBD65 /* GameScene.m in Sources */,
