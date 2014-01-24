@@ -24,10 +24,10 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 -(instancetype)initWithSize:(CGSize)size
 {
     if(( self = [super initWithSize:size] )){
-        //[self initRoomBound];
+        [self initRoomBound];
         [self initButtons];
         [self initEnemy];
-        //[self initGirl];
+        [self initGirl];
         
         SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         
@@ -44,6 +44,8 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 -(void)initGirl
 {
     _girl = [[Girl alloc] init];
+    _girl.position = CGPointMake(CGRectGetMidX(self.frame),
+                                 CGRectGetMidY(self.frame));
     [self addChild:_girl];
 }
 
@@ -131,16 +133,15 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        _pressedButton = [self nodeAtPoint:location];
         
         if(_pressedButton != nil){
             if(_pressedButton.tag == 1)
             {
-                [_girl moveLeft];
+                
             }
             if(_pressedButton.tag == 2)
             {
-                [_girl moveRight];
+                
             }
             if(_pressedButton.tag == 3)
             {
@@ -155,7 +156,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        _pressedButton = [self nodeAtPoint:location];
+        
         if(_pressedButton != nil){
             if(_pressedButton.tag == 1)
             {
