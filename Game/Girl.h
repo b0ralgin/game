@@ -16,7 +16,6 @@
 - (void)stopMoving;
 - (void)update:(NSTimeInterval)dt;
 - (void)jump;
-- (void)setAdditionalSpriteParent:(SKNode*)parentNode;
 - (void)startOpenDoorAnimation;
 - (void)setWeaponContactBitMask:(uint32_t)mask;
 - (void)setWeaponCategoryBitMask:(uint32_t)mask;
