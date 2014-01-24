@@ -15,8 +15,6 @@
     NSArray* enemyFrames;
 }
 - (id)init:(NSString *)type health:(int)health damage:(int)damage {
-    self = [super init];
-    if (self) {
     frames = [NSMutableArray array];
     enemyFrames = [NSArray array];
     SKTextureAtlas* enemyAnimatedAtlas = [SKTextureAtlas atlasNamed:@"enemyImages"];
@@ -28,10 +26,8 @@
     }
     enemyFrames = frames;
     SKTexture* firstFrame = enemyFrames[0];
-    self.texture = firstFrame;
-    }
+    self = [super initWithTexture:firstFrame];
     return self;
-    
 }
 -(void) damage:(int)hit {
     

@@ -24,7 +24,7 @@ static NSString* const activeWeapon[] = {@"Active weapon.png"};
 static CGVector const weaponOffset;
 
 static NSTimeInterval const animationDelay = 0.05;
-static float const moveSpeed = 1;
+static float const moveSpeed = 4000;
 static float const jumpPower = 5;
 
 typedef enum {GROUND_STATE, FLY_STATE, FALL_STATE} GirlJumpStateType;
@@ -52,6 +52,8 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     
     AVAudioRecorder *recorder;
     BOOL allowAttack;
+    
+    NSTimeInterval lastTime;
 }
 
 - (instancetype)init {
@@ -63,6 +65,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         attackState = PASSIVE_STATE;
         
         recorder = nil;
+        lastTime = 0;
         
         lightGirl = [SKSpriteNode spriteNodeWithImageNamed:girlLightStand[0]];
         
@@ -214,8 +217,17 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 }
 
 - (void)update:(NSTimeInterval)dt {
+    if (lastTime == 0) {
+        lastTime = dt;
+        return;
+    }
+    
+    NSTimeInterval time = dt - lastTime;
+    lastTime = dt;
+    
     if (moveState == MOVE_STATE) {
-        [self.physicsBody applyImpulse:CGVectorMake(self.xScale * moveSpeed * dt, 0)];
+        NSLog(@"%f", self.xScale * moveSpeed * time);
+        [self.physicsBody applyImpulse:CGVectorMake(self.xScale * moveSpeed * time, 0)];
     }
     
     lightGirl.position = self.position;
