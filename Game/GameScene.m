@@ -44,7 +44,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 -(void)initGirl
 {
     _girl = [[Girl alloc] init];
-    
+    [self addChild:_girl];
 }
 
 -(void) initEnemy{
@@ -134,11 +134,11 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
         if(_pressedButton != nil){
             if(_pressedButton.tag == 1)
             {
-                
+                [_girl moveLeft];
             }
             if(_pressedButton.tag == 2)
             {
-                
+                [_girl moveRight];
             }
             if(_pressedButton.tag == 3)
             {
