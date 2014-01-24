@@ -27,8 +27,15 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
         [self initRoomBound];
         [self initButtons];
         [self initEnemy];
+        [self initGirl];
     }
     return self;
+}
+
+-(void)initGirl
+{
+    _girl = [[Girl alloc] init];
+    
 }
 
 -(void) initEnemy{
@@ -90,14 +97,18 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
         if(_pressedButton == nil)
         {
             if(CGRectContainsPoint(_leftButton.frame, location)){
+                
                 _pressedButton = _leftButton;
+                [_girl moveLeft];
                 
             }
             else if(CGRectContainsPoint(_rightButton.frame, location)){
                 _pressedButton = _rightButton;
+                [_girl moveRight];
             }
             else if(CGRectContainsPoint(_jumpButton.frame, location)){
                 _pressedButton = _jumpButton;
+                [_girl jump];
             }
         }
      
@@ -110,7 +121,18 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         if(_pressedButton != nil){
-            if(_pressedButton.ta)
+            if(_pressedButton.tag == 1)
+            {
+                
+            }
+            if(_pressedButton.tag == 2)
+            {
+                
+            }
+            if(_pressedButton.tag == 3)
+            {
+                
+            }
         }
     }
 }
@@ -120,11 +142,28 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        
+        if(_pressedButton != nil){
+            if(_pressedButton.tag == 1)
+            {
+                [_girl stopMoving];
+                _pressedButton = nil;
+            }
+            if(_pressedButton.tag == 2)
+            {
+                [_girl stopMoving];
+                 _pressedButton = nil;
+            }
+            if(_pressedButton.tag == 3)
+            {
+             
+                 _pressedButton = nil;
+            }
+        }
     }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
+    [_girl update:currentTime];
     /* Called before each frame is rendered */
 }
 
