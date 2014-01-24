@@ -11,6 +11,9 @@
 static NSString *const leftButtonFilename = @"left_button.png";
 static NSString *const rightButtonFilename = @"right_button.png";
 static NSString *const jumpButtonFilename = @"jump_button.png";
+
+
+
 @implementation GameScene{
     Girl *_girl;
     
@@ -24,10 +27,13 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 -(instancetype)initWithSize:(CGSize)size
 {
     if(( self = [super initWithSize:size] )){
-        //[self initRoomBound];
+        
+        self.physicsWorld.gravity = CGVectorMake(0, -3);
+        
+        [self initRoomBound];
         [self initButtons];
         [self initEnemy];
-        //[self initGirl];
+        [self initGirl];
         
         SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
         
@@ -44,6 +50,8 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 -(void)initGirl
 {
     _girl = [[Girl alloc] init];
+    _girl.position = CGPointMake(CGRectGetMidX(self.frame),
+                                 CGRectGetMidY(self.frame));
     [self addChild:_girl];
 }
 
@@ -103,26 +111,17 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        
-        
-        if(_pressedButton == nil)
-        {
-            if(CGRectContainsPoint(_leftButton.frame, location)){
-                
-                _pressedButton = _leftButton;
-                [_girl moveLeft];
-                
-            }
-            else if(CGRectContainsPoint(_rightButton.frame, location)){
-                _pressedButton = _rightButton;
-                [_girl moveRight];
-            }
-            else if(CGRectContainsPoint(_jumpButton.frame, location)){
-                _pressedButton = _jumpButton;
-                [_girl jump];
-            }
+        if ([[self nodesAtPoint:location] containsObject:_leftButton]) {
+            [_girl moveLeft];
         }
-     
+        
+        if ([[self nodesAtPoint:location] containsObject:_rightButton]) {
+            [_girl moveRight];
+        }
+        
+        if ([[self nodesAtPoint:location] containsObject:_jumpButton]) {
+            [_girl jump];
+        }
     }
 }
 
@@ -131,47 +130,20 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        _pressedButton = [self nodeAtPoint:location];
-        
-        if(_pressedButton != nil){
-            if(_pressedButton.tag == 1)
-            {
-                [_girl moveLeft];
-            }
-            if(_pressedButton.tag == 2)
-            {
-                [_girl moveRight];
-            }
-            if(_pressedButton.tag == 3)
-            {
-                
-            }
-        }
     }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    
+    [_girl stopMoving];
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        _pressedButton = [self nodeAtPoint:location];
-        if(_pressedButton != nil){
-            if(_pressedButton.tag == 1)
-            {
-                [_girl stopMoving];
-                _pressedButton = nil;
-            }
-            if(_pressedButton.tag == 2)
-            {
-                [_girl stopMoving];
-                 _pressedButton = nil;
-            }
-            if(_pressedButton.tag == 3)
-            {
-             
-                 _pressedButton = nil;
-            }
+        if ([[self nodesAtPoint:location] containsObject:_leftButton]) {
+            [_girl stopMoving];
+        }
+        
+        if ([[self nodesAtPoint:location] containsObject:_rightButton]) {
+            [_girl stopMoving];
         }
     }
 }
