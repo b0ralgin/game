@@ -10,14 +10,14 @@
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 
-static NSString* const girlDarkStand[] = {@"Girl dark stand 1.png"};
-static NSString* const girlDarkMove[] = {@"Girl dark move 1.png"};
-static NSString* const girlDarkFly[] = {@"Girl dark fly 1.png"};
-static NSString* const girlDarkFall[] = {@"Girl dark fall 1.png"};
-static NSString* const girlLightStand[] = {@"Girl light stand 1.png"};
-static NSString* const girlLightMove[] = {@"Girl light move 1.png"};
-static NSString* const girlLightFly[] = {@"Girl light fly 1.png"};
-static NSString* const girlLightFall[] = {@"Girl light fall 1.png"};
+static NSString* const girlDarkStand[] = {@"girl.png"};
+static NSString* const girlDarkMove[] = {@"girl.png"};
+static NSString* const girlDarkFly[] = {@"girl.png"};
+static NSString* const girlDarkFall[] = {@"girl.png"};
+static NSString* const girlLightStand[] = {@"girl.png"};
+static NSString* const girlLightMove[] = {@"girl.png"};
+static NSString* const girlLightFly[] = {@"girl.png"};
+static NSString* const girlLightFall[] = {@"girl.png"};
 
 static NSString* const activeWeapon[] = {@"Active weapon.png"};
 

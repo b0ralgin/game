@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A7CE80461892C89B003E41BE /* Girl.m in Sources */ = {isa = PBXBuildFile; fileRef = A7CE80451892C89B003E41BE /* Girl.m */; };
+		A7CE80481892EC70003E41BE /* girl.png in Resources */ = {isa = PBXBuildFile; fileRef = A7CE80471892EC70003E41BE /* girl.png */; };
 		E99258551892BBF8008DBD65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99258541892BBF8008DBD65 /* Foundation.framework */; };
 		E99258571892BBF8008DBD65 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99258561892BBF8008DBD65 /* CoreGraphics.framework */; };
 		E99258591892BBF8008DBD65 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99258581892BBF8008DBD65 /* UIKit.framework */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		A7CE80441892C89B003E41BE /* Girl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Girl.h; sourceTree = "<group>"; };
 		A7CE80451892C89B003E41BE /* Girl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Girl.m; sourceTree = "<group>"; };
+		A7CE80471892EC70003E41BE /* girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = girl.png; sourceTree = "<group>"; };
 		E99258511892BBF8008DBD65 /* Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99258541892BBF8008DBD65 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E99258561892BBF8008DBD65 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -162,6 +164,7 @@
 				E99258A71892DD7C008DBD65 /* jump_button.png */,
 				E99258A81892DD7C008DBD65 /* left_button.png */,
 				E99258A91892DD7C008DBD65 /* right_button.png */,
+				A7CE80471892EC70003E41BE /* girl.png */,
 				E99258761892BBF8008DBD65 /* Images.xcassets */,
 				EAA9EDE11892CFAF00D198A5 /* Enemy.h */,
 				EAA9EDE21892CFAF00D198A5 /* Enemy.m */,
@@ -279,6 +282,7 @@
 				E99258AB1892DD7C008DBD65 /* jump_button.png in Resources */,
 				E99258991892CBE7008DBD65 /* (null) in Resources */,
 				E99258AD1892DD7C008DBD65 /* right_button.png in Resources */,
+				A7CE80481892EC70003E41BE /* girl.png in Resources */,
 				E99258771892BBF8008DBD65 /* Images.xcassets in Resources */,
 				E992586D1892BBF8008DBD65 /* Main_iPad.storyboard in Resources */,
 				E992589B1892CBE7008DBD65 /* (null) in Resources */,
