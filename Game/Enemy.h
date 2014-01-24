@@ -12,6 +12,7 @@
 {
 }
 @property (assign,nonatomic) int damage;
+@property (assign,nonatomic) int speed;
 -(void) lightOn;
 -(id) init:(NSString*) type health:(int) health damage:(int) damage;
 -(void) damage:(int) hit;
