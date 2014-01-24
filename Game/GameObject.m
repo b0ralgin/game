@@ -26,12 +26,27 @@ static NSTimeInterval const animationDelay = 0.05;
     return self;
 }
 
+- (instancetype)initWithTexture:(SKTexture *)texture {
+    self = [super initWithTexture:texture];
+    
+    if (self != nil) {
+        lightCopy = [SKSpriteNode spriteNodeWithTexture:texture];
+        animationDictionary = [NSMutableDictionary new];
+    }
+    
+    return self;
+}
+
 - (void)addAnimation:(NSArray*)animationList ByName:(NSString*)animationName {
     [animationDictionary setObject:animationList forKey:animationName];
 }
 
 - (void)startAnimation:(NSString*)animationName {
     NSArray* animationList = [animationDictionary objectForKey:animationName];
+    if (animationList == nil) {
+        return;
+    }
+    
     SKAction* animation = [SKAction repeatActionForever:[SKAction animateWithTextures:animationList timePerFrame:animationDelay]];
     [self removeAllActions];
     [self runAction:animation];
@@ -39,6 +54,10 @@ static NSTimeInterval const animationDelay = 0.05;
 
 - (void)startLightAnimation:(NSString*)animationName {
     NSArray* animationList = [animationDictionary objectForKey:animationName];
+    if (animationList == nil) {
+        return;
+    }
+    
     SKAction* animation = [SKAction repeatActionForever:[SKAction animateWithTextures:animationList timePerFrame:animationDelay]];
     [lightCopy removeAllActions];
     [lightCopy runAction:animation];
@@ -46,7 +65,7 @@ static NSTimeInterval const animationDelay = 0.05;
 
 - (void)setParent:(SKNode *)parent {
     [parent addChild:self];
-    [[parent scene] addChild:lightCopy];
+    //[[parent scene] addChild:lightCopy];
 }
 
 - (void)setLightTexture:(SKTexture *)texture {
