@@ -14,11 +14,12 @@
 - (void)moveLeft;
 - (void)moveRight;
 - (void)stopMoving;
-- (void)update:(NSTimeInterval)dt;
 - (void)jump;
 - (void)startOpenDoorAnimation;
 - (void)setWeaponContactBitMask:(uint32_t)mask;
 - (void)setWeaponCategoryBitMask:(uint32_t)mask;
 - (void)setWeaponCollisionBitMask:(uint32_t)mask;
+- (void)stopAttack;
+- (void)resumeAttack;
 
 @end

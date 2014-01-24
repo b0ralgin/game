@@ -243,6 +243,10 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
                 [self startAnimation];
             }
             
+            if (self.physicsBody.velocity.dy > 0) {
+                self.physicsBody.velocity = CGVectorMake(self.physicsBody.velocity.dx, 0);
+            }
+            
             break;
             
         case GROUND_STATE:
@@ -259,9 +263,6 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         [recorder updateMeters];
         
         //double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
-        
-        //double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
-        //float lowPassResults = peakPowerForChannel;
         
         double avaragePowerForChannel = pow(10, (0.05 * [recorder averagePowerForChannel:0]));
         
@@ -360,6 +361,17 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     else {
         NSLog(@"audio error - %@", [error description]);
     }
+}
+
+- (void)stopAttack {
+    [self endAttack];
+    allowAttack = NO;
+    [recorder stop];
+}
+
+- (void)resumeAttack {
+    allowAttack = YES;
+    [recorder record];
 }
 
 - (void)setXScale:(CGFloat)xScale {
