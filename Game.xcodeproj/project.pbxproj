@@ -37,6 +37,7 @@
 		E99258AD1892DD7C008DBD65 /* right_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258A91892DD7C008DBD65 /* right_button.png */; };
 		E99258B61892DFED008DBD65 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA9EDE21892CFAF00D198A5 /* Enemy.m */; };
 		EAA9EDE71892E85E00D198A5 /* enemyImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */; };
+		EAA9EDE81892EBE700D198A5 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258B81892E3CA008DBD65 /* Button.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,10 +82,6 @@
 		E99258A71892DD7C008DBD65 /* jump_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump_button.png; sourceTree = "<group>"; };
 		E99258A81892DD7C008DBD65 /* left_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_button.png; sourceTree = "<group>"; };
 		E99258A91892DD7C008DBD65 /* right_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_button.png; sourceTree = "<group>"; };
-		E99258AE1892DF19008DBD65 /* enemy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy1.png; sourceTree = "<group>"; };
-		E99258AF1892DF19008DBD65 /* enemy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy2.png; sourceTree = "<group>"; };
-		E99258B01892DF19008DBD65 /* enemy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy3.png; sourceTree = "<group>"; };
-		E99258B11892DF19008DBD65 /* enemy4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy4.png; sourceTree = "<group>"; };
 		E99258B71892E3CA008DBD65 /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Button.h; sourceTree = "<group>"; };
 		E99258B81892E3CA008DBD65 /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Button.m; sourceTree = "<group>"; };
 		EAA9EDE11892CFAF00D198A5 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
@@ -313,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EAA9EDE81892EBE700D198A5 /* Button.m in Sources */,
 				E99258B61892DFED008DBD65 /* Enemy.m in Sources */,
 				A7CE80461892C89B003E41BE /* Girl.m in Sources */,
 				E99258AA1892DD7C008DBD65 /* GameScene.m in Sources */,
@@ -320,7 +318,6 @@
 				E99258731892BBF8008DBD65 /* MyScene.m in Sources */,
 				E99258701892BBF8008DBD65 /* ViewController.m in Sources */,
 				E99258671892BBF8008DBD65 /* AppDelegate.m in Sources */,
-				E99258B91892E3CA008DBD65 /* Button.m in Sources */,
 				E99258A11892DA33008DBD65 /* (null) in Sources */,
 				E99258631892BBF8008DBD65 /* main.m in Sources */,
 			);
