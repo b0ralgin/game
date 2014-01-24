@@ -16,5 +16,6 @@
 -(void) lightOn;
 -(id) init:(NSString*) type health:(int) health damage:(int) damage;
 -(void) damage:(int) hit;
+-(void) move;
 
 @end

@@ -59,6 +59,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     Enemy *enemy = [[Enemy alloc] init:@"enemy" health:1 damage:1];
     [self addChild:enemy];
     enemy.position = CGPointMake(500,500);
+    [enemy move];
 }
 
 -(void)initButtons{

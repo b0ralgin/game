@@ -11,5 +11,6 @@
 
 static const uint32_t CandyColisionBM = 0x0 << 0;
 static const uint32_t NonTouchTrapColisionBM = 0x0 << 0;
-
+static const uint32_t EnemyColBM = 0b;
+static const uint32_t ColBM = 0b0001;
 #endif
