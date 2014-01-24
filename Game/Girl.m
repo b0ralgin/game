@@ -21,7 +21,7 @@ static NSTimeInterval const animationDelay = 0.05;
 static float const moveSpeed = 1;
 static float const jumpPower = 5;
 
-typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE} GirlStateType;
+typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE, MOVING_FLY_STATE, MOVING_FALL_STATE} GirlStateType;
 
 @implementation Girl {
     NSMutableArray* darkStand;
@@ -35,14 +35,14 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE} GirlStateType;
     
     SKSpriteNode* lightGirl;
     
-    BOOL isMoving;
+    GirlStateType curState;
 }
 
 - (instancetype)init {
     self = [super initWithImageNamed:girlDarkStand[0]];
     
     if (self != nil) {
-        isMoving = NO;
+        curState = STAND_STATE;
         
         lightGirl = [SKSpriteNode spriteNodeWithImageNamed:girlLightStand[0]];
         
@@ -54,7 +54,7 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE} GirlStateType;
         girlBody.allowsRotation = NO;
         girlBody.dynamic = YES;
         
-        [self stopMoving];
+        [self startAnimation];
     }
     
     return self;
@@ -103,28 +103,100 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE} GirlStateType;
 }
 
 - (void)moveLeft {
-    isMoving = YES;
-    self.xScale = -1;
+    switch (curState) {
+        case FALL_STATE:
+            curState = MOVING_FALL_STATE;
+            break;
+            
+        case FLY_STATE:
+            curState = MOVING_FLY_STATE;
+            break;
+            
+        case STAND_STATE:
+            curState = MOVE_STATE;
+            break;
+            
+        default:
+            break;
+    }
     
-    [self startAnimation:darkMove AndLight:lightMove];
+    self.xScale = -1;
+    [self startAnimation];
 }
 
 - (void)moveRight {
-    isMoving = YES;
-    self.xScale = 1;
+    switch (curState) {
+        case FALL_STATE:
+            curState = MOVING_FALL_STATE;
+            break;
+            
+        case FLY_STATE:
+            curState = MOVING_FLY_STATE;
+            break;
+            
+        case STAND_STATE:
+            curState = MOVE_STATE;
+            break;
+            
+        default:
+            break;
+    }
     
-    [self startAnimation:darkMove AndLight:lightMove];
+    self.xScale = 1;
+    [self startAnimation];
 }
 
 - (void)stopMoving {
-    isMoving = NO;
+    switch (curState) {
+        case MOVING_FALL_STATE:
+            curState = FALL_STATE;
+            break;
+            
+        case MOVING_FLY_STATE:
+            curState = FLY_STATE;
+            break;
+            
+        case MOVE_STATE:
+            curState = STAND_STATE;
+            break;
+            
+        default:
+            break;
+    }
     
-    [self startAnimation:darkStand AndLight:lightStand];
+    [self startAnimation];
 }
 
-- (void)startAnimation:(NSArray*)darkTextureList AndLight:(NSArray*)lightTextureList {
-    SKAction* darkAnimation = [SKAction animateWithTextures:darkTextureList timePerFrame:animationDelay];
-    SKAction* lightAnimation = [SKAction animateWithTextures:lightTextureList timePerFrame:animationDelay];
+- (void)startAnimation {
+    NSArray* darkTexList = nil;
+    NSArray* lightTexList = nil;
+    
+    switch (curState) {
+        case STAND_STATE:
+            darkTexList = darkStand;
+            lightTexList = lightStand;
+            break;
+            
+        case MOVE_STATE:
+            darkTexList = darkMove;
+            lightTexList = lightMove;
+            break;
+            
+        case FLY_STATE:
+        case MOVING_FLY_STATE:
+            darkTexList = darkFly;
+            lightTexList = lightFly;
+            break;
+            
+        case FALL_STATE:
+        case MOVING_FALL_STATE:
+            darkTexList = darkFall;
+            lightTexList = lightFall;
+            break;
+    }
+    
+    SKAction* darkAnimation = [SKAction animateWithTextures:darkTexList timePerFrame:animationDelay];
+    SKAction* lightAnimation = [SKAction animateWithTextures:lightTexList timePerFrame:animationDelay];
     
     darkAnimation = [SKAction repeatActionForever:darkAnimation];
     lightAnimation = [SKAction repeatActionForever:lightAnimation];
@@ -137,11 +209,44 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE} GirlStateType;
 }
 
 - (void)update:(NSTimeInterval)dt {
-    if (isMoving) {
+    if (curState == MOVE_STATE || curState == MOVING_FALL_STATE || curState == MOVING_FLY_STATE) {
         [self.physicsBody applyImpulse:CGVectorMake(self.xScale * moveSpeed * dt, 0)];
     }
     
     lightGirl.position = self.position;
+    
+    switch (curState) {
+        case FALL_STATE:
+            if (self.physicsBody.velocity.dy == 0) {
+                curState = STAND_STATE;
+                [self startAnimation];
+            }
+            break;
+            
+        case FLY_STATE:
+            if (self.physicsBody.velocity.dy <= 0) {
+                curState = FALL_STATE;
+                [self startAnimation];
+            }
+            break;
+            
+        case MOVING_FALL_STATE:
+            if (self.physicsBody.velocity.dy == 0) {
+                curState = MOVE_STATE;
+                [self startAnimation];
+            }
+            break;
+            
+        case MOVING_FLY_STATE:
+            if (self.physicsBody.velocity.dy <= 0) {
+                curState = MOVING_FALL_STATE;
+                [self startAnimation];
+            }
+            break;
+            
+        default:
+            break;
+    }
 }
 
 - (void)jump {
@@ -150,6 +255,7 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE} GirlStateType;
     }
     
     [self.physicsBody applyImpulse:CGVectorMake(0, jumpPower)];
+    curState = (curState == STAND_STATE ? FLY_STATE : MOVING_FLY_STATE);
 }
 
 - (void)setAdditionalSpriteParent:(SKNode*)parentNode {
@@ -159,13 +265,13 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE} GirlStateType;
 
 - (void)startOpenDoorAnimation {
     self.xScale = 1;
-    isMoving = NO;
+    curState = STAND_STATE;
     
     
 }
 
 - (BOOL)isStand {
-    return (self.physicsBody.velocity.dy == 0);
+    return (self.physicsBody.velocity.dy == 0 && (curState == STAND_STATE || curState == MOVE_STATE));
 }
 
 @end
