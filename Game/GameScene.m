@@ -131,6 +131,8 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
+        _pressedButton = [self nodeAtPoint:location];
+        
         if(_pressedButton != nil){
             if(_pressedButton.tag == 1)
             {
@@ -153,6 +155,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
+        _pressedButton = [self nodeAtPoint:location];
         if(_pressedButton != nil){
             if(_pressedButton.tag == 1)
             {
