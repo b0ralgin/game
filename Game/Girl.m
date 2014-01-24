@@ -13,13 +13,13 @@ static NSString* const girlDarkMove[] = {@"Girl dark move 1.png"};
 static NSString* const girlLightStand[] = {@"Girl light stand 1.png"};
 static NSString* const girlLightMove[] = {@"Girl light move 1.png"};
 
+static NSTimeInterval const animationDelay = 0.05;
+
 @implementation Girl {
     NSMutableArray* darkStand;
     NSMutableArray* darkMove;
     NSMutableArray* lightStand;
     NSMutableArray* lightMove;
-    
-    BOOL rightLook;
     
     SKSpriteNode* lightGirl;
 }
@@ -32,7 +32,12 @@ static NSString* const girlLightMove[] = {@"Girl light move 1.png"};
         
         [self initTextures];
         
-        rightLook = YES;
+        SKTexture* tex = [darkStand firstObject];
+        SKPhysicsBody* girlBody = [SKPhysicsBody bodyWithRectangleOfSize:tex.size];
+        self.physicsBody = girlBody;
+        girlBody.allowsRotation = NO;
+        girlBody.dynamic = YES;
+        
         [self stopMoving];
     }
     
@@ -62,15 +67,33 @@ static NSString* const girlLightMove[] = {@"Girl light move 1.png"};
 }
 
 - (void)moveLeft {
+    self.xScale = -1;
     
+    [self startAnimation:darkMove AndLight:lightMove];
 }
 
 - (void)moveRight {
+    self.xScale = 1;
     
+    [self startAnimation:darkMove AndLight:lightMove];
 }
 
 - (void)stopMoving {
+    [self startAnimation:darkStand AndLight:lightStand];
+}
+
+- (void)startAnimation:(NSArray*)darkTextureList AndLight:(NSArray*)lightTextureList {
+    SKAction* darkAnimation = [SKAction animateWithTextures:darkTextureList timePerFrame:animationDelay];
+    SKAction* lightAnimation = [SKAction animateWithTextures:lightTextureList timePerFrame:animationDelay];
     
+    darkAnimation = [SKAction repeatActionForever:darkAnimation];
+    lightAnimation = [SKAction repeatActionForever:lightAnimation];
+    
+    [self removeAllActions];
+    [self runAction:darkAnimation];
+    
+    [lightGirl removeAllActions];
+    [lightGirl runAction:lightAnimation];
 }
 
 - (void)update:(NSTimeInterval)dt {
