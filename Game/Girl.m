@@ -7,6 +7,7 @@
 //
 
 #import "Girl.h"
+#import "Mask.h"
 #import <AudioToolbox/AudioToolbox.h>
 #import <AVFoundation/AVFoundation.h>
 
@@ -74,6 +75,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         
         SKPhysicsBody* girlBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
         self.physicsBody = girlBody;
+        self.physicsBody.contactTestBitMask = kContactGirl;
         girlBody.allowsRotation = NO;
         girlBody.dynamic = YES;
         girlBody.friction = 1.0;

@@ -11,7 +11,7 @@
 #import "Button.h"
 #import "Mask.h"
 
-@interface GameScene : SKScene{
+@interface GameScene : SKScene<SKPhysicsContactDelegate>{
     
 }
 

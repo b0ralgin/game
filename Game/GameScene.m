@@ -38,8 +38,10 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
         
         [self initRoomBound];
         [self initButtons];
-        //[self initEnemy];
+        [self initEnemy];
+        [self initBox];
         [self initGirl];
+        self.physicsWorld.contactDelegate = self;
     }
     return self;
 }
@@ -55,8 +57,12 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 -(void) initEnemy{
     Enemy *enemy = [[Enemy alloc] init:@"enemy" health:1 damage:1];
     [self addChild:enemy];
-    enemy.position = CGPointMake(500,500);
+    enemy.position = CGPointMake(CGRectGetMidX(self.frame),500);
     [enemy move];
+}
+-(void) initBox {
+    SKSpriteNode* box = [[SKSpriteNode alloc] initWithImageNamed:@"left-button.png"];
+    //box.physicsBody.
 }
 
 -(void)initButtons{
@@ -144,9 +150,18 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     }
 }
 
+
 -(void)update:(CFTimeInterval)currentTime {
     [_girl update:currentTime];
     /* Called before each frame is rendered */
 }
+
+- (void)didBeginContact:(SKPhysicsContact *)contact {
+    NSLog(@"%d",(contact.bodyA.contactTestBitMask & contact.bodyB.contactTestBitMask));
+    if ((contact.bodyA.contactTestBitMask & contact.bodyB.contactTestBitMask)== 0b10001) {
+        NSLog(@"damage");
+    }
+}
+
 
 @end

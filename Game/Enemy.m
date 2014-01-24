@@ -7,6 +7,7 @@
 //
 
 #import "Enemy.h"
+#import "Mask.h"
 const int kAnimationFrames=6;
 @implementation Enemy
 {
@@ -36,7 +37,8 @@ const int kAnimationFrames=6;
     self = [super initWithTexture:firstFrame];
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
     self.physicsBody.dynamic = YES;
-    
+    self.physicsBody.contactTestBitMask = kContactEnemy;
+    self.physicsBody.usesPreciseCollisionDetection = YES;
     return self;
 }
 -(void) damage:(int)hit {
