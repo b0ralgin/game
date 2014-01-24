@@ -11,6 +11,9 @@
 static NSString *const leftButtonFilename = @"left_button.png";
 static NSString *const rightButtonFilename = @"right_button.png";
 static NSString *const jumpButtonFilename = @"jump_button.png";
+
+
+
 @implementation GameScene{
     Girl *_girl;
     
