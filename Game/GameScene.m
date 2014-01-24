@@ -7,6 +7,7 @@
 //
 
 #import "GameScene.h"
+#import "Enemy.h"
 static NSString *const leftButtonFilename = @"left_button.png";
 static NSString *const rightButtonFilename = @"right_button.png";
 static NSString *const jumpButtonFilename = @"jump_button.png";
@@ -16,6 +17,8 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     SKSpriteNode *_leftButton;
     SKSpriteNode *_rightButton;
     SKSpriteNode *_jumpButton;
+    
+    SKSpriteNode *_pressedButton;
 }
 
 -(instancetype)initWithSize:(CGSize)size
@@ -23,8 +26,15 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     if(( self = [super initWithSize:size] )){
         [self initRoomBound];
         [self initButtons];
+        [self initEnemy];
     }
     return self;
+}
+
+-(void) initEnemy{
+    Enemy *enemy = [[Enemy alloc] init:@"enemy" health:1 damage:1];
+    [self addChild:enemy];
+    enemy.position = CGPointMake(500,500);
 }
 
 -(void)initButtons{
@@ -66,4 +76,37 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     rightWall.position = CGPointMake(self.size.width,self.size.height/2);
     [self addChild:rightWall];
 }
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    /* Called when a touch begins */
+    
+    for (UITouch *touch in touches) {
+        CGPoint location = [touch locationInNode:self];
+        
+        
+    }
+}
+
+-(void)touchesMoved:(NSSet *)touches withEvent:(UIEvent *)event {
+    /* Called when a touch begins */
+    
+    for (UITouch *touch in touches) {
+        CGPoint location = [touch locationInNode:self];
+        
+    }
+}
+
+-(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    /* Called when a touch begins */
+    
+    for (UITouch *touch in touches) {
+        CGPoint location = [touch locationInNode:self];
+        
+    }
+}
+
+-(void)update:(CFTimeInterval)currentTime {
+    /* Called before each frame is rendered */
+}
+
 @end
