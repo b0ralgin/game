@@ -32,5 +32,4 @@
 -(void) damage:(int)hit {
     
 }
--(void) 
 @end
