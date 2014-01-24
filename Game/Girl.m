@@ -7,6 +7,8 @@
 //
 
 #import "Girl.h"
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
 
 static NSString* const girlDarkStand[] = {@"Girl dark stand 1.png"};
 static NSString* const girlDarkMove[] = {@"Girl dark move 1.png"};
@@ -47,6 +49,9 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     GirlAttackStateType attackState;
     
     uint32_t weaponCategoryMask;
+    
+    AVAudioRecorder *recorder;
+    BOOL allowAttack;
 }
 
 - (instancetype)init {
@@ -56,6 +61,8 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         jumpState = GROUND_STATE;
         moveState = STAND_STATE;
         attackState = PASSIVE_STATE;
+        
+        recorder = nil;
         
         lightGirl = [SKSpriteNode spriteNodeWithImageNamed:girlLightStand[0]];
         
@@ -69,6 +76,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         girlBody.dynamic = YES;
         
         [self startAnimation];
+        [self startAudioRec];
     }
     
     return self;
@@ -188,6 +196,10 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
             break;
     }
     
+    if (darkTexList == nil || lightTexList == nil) {
+        return;
+    }
+    
     SKAction* darkAnimation = [SKAction animateWithTextures:darkTexList timePerFrame:animationDelay];
     SKAction* lightAnimation = [SKAction animateWithTextures:lightTexList timePerFrame:animationDelay];
     
@@ -218,6 +230,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
             
             break;
             
+        case GROUND_STATE:
         case FLY_STATE:
             if (self.physicsBody.velocity.dy <= 0) {
                 jumpState = FALL_STATE;
@@ -225,9 +238,24 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
             }
             
             break;
-            
-        default:
-            break;
+    }
+    
+    if (recorder != nil) {
+        [recorder updateMeters];
+        
+        //double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
+        
+        //double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
+        //float lowPassResults = peakPowerForChannel;
+        
+        double avaragePowerForChannel = pow(10, (0.05 * [recorder averagePowerForChannel:0]));
+        
+        if (avaragePowerForChannel > 0.1) {
+            [self beginAttack];
+        }
+        else {
+            [self endAttack];
+        }
     }
 }
 
@@ -269,6 +297,10 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 }
 
 - (void)beginAttack {
+    if (attackState == ATTACK_STATE && allowAttack) {
+        return;
+    }
+    
     attackState = ATTACK_STATE;
     
     weapon.physicsBody.categoryBitMask = weaponCategoryMask;
@@ -278,12 +310,45 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 }
 
 - (void)endAttack {
+    if (attackState == PASSIVE_STATE) {
+        return;
+    }
+    
     attackState = PASSIVE_STATE;
     
     weapon.physicsBody.categoryBitMask = 0;
     weapon.hidden = YES;
     
     [self startAnimation];
+}
+
+-(void)startAudioRec {
+    allowAttack = YES;
+    
+    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
+    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
+    [audioSession setActive:YES error:nil];
+    
+    NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
+    
+	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
+							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
+							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
+							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
+							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
+							  nil];
+    
+	NSError *error;
+    
+	recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
+    
+	if (recorder) {
+		[recorder prepareToRecord];
+		recorder.meteringEnabled = YES;
+		[recorder record];
+	}
+    
+    NSLog(@"audio error - %@", [error description]);
 }
 
 @end
