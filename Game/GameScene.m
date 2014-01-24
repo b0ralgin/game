@@ -105,26 +105,17 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        
-        
-        if(_pressedButton == nil)
-        {
-            if(CGRectContainsPoint(_leftButton.frame, location)){
-                
-                _pressedButton = _leftButton;
-                [_girl moveLeft];
-                
-            }
-            else if(CGRectContainsPoint(_rightButton.frame, location)){
-                _pressedButton = _rightButton;
-                [_girl moveRight];
-            }
-            else if(CGRectContainsPoint(_jumpButton.frame, location)){
-                _pressedButton = _jumpButton;
-                [_girl jump];
-            }
+        if ([[self nodesAtPoint:location] containsObject:_leftButton]) {
+            [_girl moveLeft];
         }
-     
+        
+        if ([[self nodesAtPoint:location] containsObject:_rightButton]) {
+            [_girl moveRight];
+        }
+        
+        if ([[self nodesAtPoint:location] containsObject:_jumpButton]) {
+            [_girl jump];
+        }
     }
 }
 
@@ -133,46 +124,20 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        
-        if(_pressedButton != nil){
-            if(_pressedButton.tag == 1)
-            {
-                
-            }
-            if(_pressedButton.tag == 2)
-            {
-                
-            }
-            if(_pressedButton.tag == 3)
-            {
-                
-            }
-        }
     }
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    
+    [_girl stopMoving];
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
+        if ([[self nodesAtPoint:location] containsObject:_leftButton]) {
+            [_girl stopMoving];
+        }
         
-        if(_pressedButton != nil){
-            if(_pressedButton.tag == 1)
-            {
-                [_girl stopMoving];
-                _pressedButton = nil;
-            }
-            if(_pressedButton.tag == 2)
-            {
-                [_girl stopMoving];
-                 _pressedButton = nil;
-            }
-            if(_pressedButton.tag == 3)
-            {
-             
-                 _pressedButton = nil;
-            }
+        if ([[self nodesAtPoint:location] containsObject:_rightButton]) {
+            [_girl stopMoving];
         }
     }
 }
