@@ -23,8 +23,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     
     Button *_pressedButton;
     
-    
-    BOOL _isTurnLampOn;
+    BOOL _isLightOn;
 }
 
 -(instancetype)initWithSize:(CGSize)size
@@ -40,8 +39,16 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
         [self initButtons];
         //[self initEnemy];
         [self initGirl];
+        [self initBackground];
     }
     return self;
+}
+
+
+-(void)initBackground{
+    BedroomBackground *background = [BedroomBackground node];
+    [self addChild:background];
+    background.zPosition = -1;
 }
 
 -(void)initGirl
@@ -56,6 +63,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     Enemy *enemy = [[Enemy alloc] init:@"enemy" health:1 damage:1];
     [self addChild:enemy];
     enemy.position = CGPointMake(500,500);
+    [enemy move];
 }
 
 -(void)initButtons{
