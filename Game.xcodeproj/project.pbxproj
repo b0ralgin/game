@@ -26,11 +26,11 @@
 		E99258801892BBF8008DBD65 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99258581892BBF8008DBD65 /* UIKit.framework */; };
 		E99258881892BBF8008DBD65 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E99258861892BBF8008DBD65 /* InfoPlist.strings */; };
 		E992588A1892BBF8008DBD65 /* GameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258891892BBF8008DBD65 /* GameTests.m */; };
-		E99258951892CA2C008DBD65 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258941892CA2C008DBD65 /* GameScene.m */; };
 		E99258991892CBE7008DBD65 /* jump_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258961892CBE7008DBD65 /* jump_button.png */; };
 		E992589A1892CBE7008DBD65 /* left_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258971892CBE7008DBD65 /* left_button.png */; };
 		E992589B1892CBE7008DBD65 /* right_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258981892CBE7008DBD65 /* right_button.png */; };
 		E992589E1892D6FD008DBD65 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = E992589D1892D6FD008DBD65 /* Button.m */; };
+		E99258A11892DA33008DBD65 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258A01892DA33008DBD65 /* GameScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,10 +102,6 @@
 		E99258481892BBF8008DBD65 = {
 			isa = PBXGroup;
 			children = (
-				E99258931892CA2C008DBD65 /* GameScene.h */,
-				E99258941892CA2C008DBD65 /* GameScene.m */,
-				E992589C1892D6FD008DBD65 /* Button.h */,
-				E992589D1892D6FD008DBD65 /* Button.m */,
 				E992585C1892BBF8008DBD65 /* Game */,
 				E99258831892BBF8008DBD65 /* GameTests */,
 				E99258531892BBF8008DBD65 /* Frameworks */,
@@ -137,10 +133,14 @@
 		E992585C1892BBF8008DBD65 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				E992589C1892D6FD008DBD65 /* Button.h */,
+				E992589D1892D6FD008DBD65 /* Button.m */,
+				E992589F1892DA22008DBD65 /* GameScene.h */,
 				E99258651892BBF8008DBD65 /* AppDelegate.h */,
 				E99258661892BBF8008DBD65 /* AppDelegate.m */,
 				E99258681892BBF8008DBD65 /* Main_iPhone.storyboard */,
 				E992586B1892BBF8008DBD65 /* Main_iPad.storyboard */,
+				E99258A01892DA33008DBD65 /* GameScene.m */,
 				E992586E1892BBF8008DBD65 /* ViewController.h */,
 				E992586F1892BBF8008DBD65 /* ViewController.m */,
 				E99258711892BBF8008DBD65 /* MyScene.h */,
@@ -295,8 +295,8 @@
 				E99258731892BBF8008DBD65 /* MyScene.m in Sources */,
 				EAA9EDE31892CFAF00D198A5 /* Enemy.m in Sources */,
 				E99258701892BBF8008DBD65 /* ViewController.m in Sources */,
-				E99258951892CA2C008DBD65 /* GameScene.m in Sources */,
 				E99258671892BBF8008DBD65 /* AppDelegate.m in Sources */,
+				E99258A11892DA33008DBD65 /* GameScene.m in Sources */,
 				E99258631892BBF8008DBD65 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
