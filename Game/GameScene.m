@@ -39,8 +39,16 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
         [self initButtons];
         //[self initEnemy];
         [self initGirl];
+        [self initBackground];
     }
     return self;
+}
+
+
+-(void)initBackground{
+    BedroomBackground *background = [BedroomBackground node];
+    [self addChild:background];
+    background.zPosition = -1;
 }
 
 -(void)initGirl

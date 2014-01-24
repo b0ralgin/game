@@ -10,6 +10,7 @@
 #import "Girl.h"
 #import "Button.h"
 #import "Mask.h"
+#import "BedroomBackground.h"
 
 @interface GameScene : SKScene{
     
