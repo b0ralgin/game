@@ -27,13 +27,16 @@ const int kAnimationFrames=6;
         SKTexture *enemy = [enemyAnimatedAtlas textureNamed:textureName];
         [frames addObject:enemy];
     }
-    for (int i=0; i<kAnimationFrames-3; i++) {
+    for (int i=0; i<=kAnimationFrames-3; i++) {
         [actionFrames addObject:frames[i]];
     }
     deadFrame = frames[kAnimationFrames-2];
     ligthFrame = frames[kAnimationFrames-1];
     SKTexture* firstFrame = frames[0];
     self = [super initWithTexture:firstFrame];
+    self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
+    self.physicsBody.dynamic = YES;
+    
     return self;
 }
 -(void) damage:(int)hit {
@@ -44,7 +47,7 @@ const int kAnimationFrames=6;
     }
 }
 -(void) move {
-    [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:frames timePerFrame:0.1 resize:NO restore:YES]] withKey:@"walkingEnemy" ];
+    [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:actionFrames timePerFrame:0.5 resize:NO restore:YES]] withKey:@"walkingEnemy" ];
 }
 -(void) lightOn {
     [self removeAllActions];

@@ -48,15 +48,14 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     _girl = [[Girl alloc] init];
     _girl.position = CGPointMake(CGRectGetMidX(self.frame), 400);
     _girl.zPosition = 1000;
-    [_backWall addChild:_girl];
-    
-    [_girl setAdditionalSpriteParent:self];
+    [_girl setParent:_backWall];
 }
 
 -(void) initEnemy{
     Enemy *enemy = [[Enemy alloc] init:@"enemy" health:1 damage:1];
     [self addChild:enemy];
     enemy.position = CGPointMake(500,500);
+    [enemy move];
 }
 
 -(void)initButtons{
