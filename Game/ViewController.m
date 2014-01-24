@@ -9,7 +9,9 @@
 #import "ViewController.h"
 #import "MyScene.h"
 
-@implementation ViewController
+@implementation ViewController{
+    NSMutableArray *gameLevelList;
+}
 
 - (void)viewDidLoad
 {
@@ -34,8 +36,15 @@
         
         // Present the scene.
         [skView presentScene:scene];
+        
     }
 }
+
+
+-(void)initGameLevels{
+    gameLevelList = [NSMutableArray new];
+}
+
 
 - (BOOL)shouldAutorotate
 {
@@ -52,5 +61,9 @@
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
 }
-
+-(void)runLevel:(int)levelNumber{
+    SKView * skView = (SKView *)self.view;
+    GameScene *nextLevel = gameLevelList[levelNumber];
+    [skView presentScene:nextLevel];
+}
 @end
