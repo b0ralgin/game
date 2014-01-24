@@ -25,6 +25,10 @@
 		E99258801892BBF8008DBD65 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99258581892BBF8008DBD65 /* UIKit.framework */; };
 		E99258881892BBF8008DBD65 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E99258861892BBF8008DBD65 /* InfoPlist.strings */; };
 		E992588A1892BBF8008DBD65 /* GameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258891892BBF8008DBD65 /* GameTests.m */; };
+		E99258951892CA2C008DBD65 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258941892CA2C008DBD65 /* GameScene.m */; };
+		E99258991892CBE7008DBD65 /* jump_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258961892CBE7008DBD65 /* jump_button.png */; };
+		E992589A1892CBE7008DBD65 /* left_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258971892CBE7008DBD65 /* left_button.png */; };
+		E992589B1892CBE7008DBD65 /* right_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258981892CBE7008DBD65 /* right_button.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +66,11 @@
 		E99258851892BBF8008DBD65 /* GameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GameTests-Info.plist"; sourceTree = "<group>"; };
 		E99258871892BBF8008DBD65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E99258891892BBF8008DBD65 /* GameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameTests.m; sourceTree = "<group>"; };
+		E99258931892CA2C008DBD65 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		E99258941892CA2C008DBD65 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
+		E99258961892CBE7008DBD65 /* jump_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump_button.png; sourceTree = "<group>"; };
+		E99258971892CBE7008DBD65 /* left_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_button.png; sourceTree = "<group>"; };
+		E99258981892CBE7008DBD65 /* right_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_button.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,6 +101,8 @@
 		E99258481892BBF8008DBD65 = {
 			isa = PBXGroup;
 			children = (
+				E99258931892CA2C008DBD65 /* GameScene.h */,
+				E99258941892CA2C008DBD65 /* GameScene.m */,
 				E992585C1892BBF8008DBD65 /* Game */,
 				E99258831892BBF8008DBD65 /* GameTests */,
 				E99258531892BBF8008DBD65 /* Frameworks */,
@@ -132,6 +143,9 @@
 				E99258711892BBF8008DBD65 /* MyScene.h */,
 				E99258721892BBF8008DBD65 /* MyScene.m */,
 				E99258741892BBF8008DBD65 /* Spaceship.png */,
+				E99258961892CBE7008DBD65 /* jump_button.png */,
+				E99258971892CBE7008DBD65 /* left_button.png */,
+				E99258981892CBE7008DBD65 /* right_button.png */,
 				E99258761892BBF8008DBD65 /* Images.xcassets */,
 				E992585D1892BBF8008DBD65 /* Supporting Files */,
 			);
@@ -244,9 +258,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E99258751892BBF8008DBD65 /* Spaceship.png in Resources */,
+				E99258991892CBE7008DBD65 /* jump_button.png in Resources */,
 				E99258771892BBF8008DBD65 /* Images.xcassets in Resources */,
 				E992586D1892BBF8008DBD65 /* Main_iPad.storyboard in Resources */,
+				E992589B1892CBE7008DBD65 /* right_button.png in Resources */,
 				E992586A1892BBF8008DBD65 /* Main_iPhone.storyboard in Resources */,
+				E992589A1892CBE7008DBD65 /* left_button.png in Resources */,
 				E99258611892BBF8008DBD65 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +285,7 @@
 			files = (
 				E99258731892BBF8008DBD65 /* MyScene.m in Sources */,
 				E99258701892BBF8008DBD65 /* ViewController.m in Sources */,
+				E99258951892CA2C008DBD65 /* GameScene.m in Sources */,
 				E99258671892BBF8008DBD65 /* AppDelegate.m in Sources */,
 				E99258631892BBF8008DBD65 /* main.m in Sources */,
 			);
