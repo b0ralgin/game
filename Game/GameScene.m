@@ -8,41 +8,38 @@
 
 #import "GameScene.h"
 #import "Enemy.h"
+
 static NSString *const leftButtonFilename = @"left_button.png";
 static NSString *const rightButtonFilename = @"right_button.png";
 static NSString *const jumpButtonFilename = @"jump_button.png";
 
-
-
 @implementation GameScene{
-    Girl *_girl;
+    SKCropNode* _backWall;
+    Girl* _girl;
     
     Button *_leftButton;
     Button *_rightButton;
     Button *_jumpButton;
     
     Button *_pressedButton;
+    
+    
+    BOOL _isTurnLampOn;
 }
 
 -(instancetype)initWithSize:(CGSize)size
 {
     if(( self = [super initWithSize:size] )){
         
-        self.physicsWorld.gravity = CGVectorMake(0, -3);
+        self.physicsWorld.gravity = CGVectorMake(0, -5);
+        
+        _backWall = [SKCropNode new];
+        [self addChild:_backWall];
         
         [self initRoomBound];
         [self initButtons];
-        [self initEnemy];
+        //[self initEnemy];
         [self initGirl];
-        
-        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
-        
-        myLabel.text = @"Hello, World!";
-        myLabel.fontSize = 30;
-        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
-                                       CGRectGetMidY(self.frame));
-        
-        [self addChild:myLabel];
     }
     return self;
 }
@@ -50,9 +47,11 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 -(void)initGirl
 {
     _girl = [[Girl alloc] init];
-    _girl.position = CGPointMake(CGRectGetMidX(self.frame),
-                                 CGRectGetMidY(self.frame));
-    [self addChild:_girl];
+    _girl.position = CGPointMake(CGRectGetMidX(self.frame), 400);
+    _girl.zPosition = 1000;
+    [_backWall addChild:_girl];
+    
+    [_girl setAdditionalSpriteParent:self];
 }
 
 -(void) initEnemy{
@@ -63,7 +62,6 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 }
 
 -(void)initButtons{
-    NSLog(@"gdsfgf");
     _leftButton = [Button spriteNodeWithImageNamed:leftButtonFilename];
       [self addChild:_leftButton];
     _leftButton.position = CGPointMake(100, 100);
@@ -82,26 +80,26 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 }
 
 -(void)initRoomBound{
-     SKSpriteNode *floor = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:10] size:CGSizeMake(self.size.width, 4)];
+     SKSpriteNode *floor = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(self.size.width, 4)];
     floor.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
     floor.physicsBody.dynamic = NO;
     floor.position = CGPointMake(self.size.width/2, 0);
     [self addChild:floor];
     
-    SKSpriteNode *ceiling = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:10] size:CGSizeMake(self.size.width, 4)];
-    ceiling.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
+    SKSpriteNode *ceiling = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(self.size.width, 4)];
+    ceiling.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:ceiling.size];
     ceiling.physicsBody.dynamic = NO;
     ceiling.position = CGPointMake(self.size.width/2, self.size.height);
     [self addChild:ceiling];
     
-    SKSpriteNode *leftWall = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:10] size:CGSizeMake(4, self.size.height)];
-    leftWall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
+    SKSpriteNode *leftWall = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(4, self.size.height)];
+    leftWall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:leftWall.size];
     leftWall.physicsBody.dynamic = NO;
     leftWall.position = CGPointMake(0,self.size.height/2);
     [self addChild:leftWall];
     
-    SKSpriteNode *rightWall = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:10] size:CGSizeMake(4, self.size.height)];
-    rightWall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
+    SKSpriteNode *rightWall = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(4, self.size.height)];
+    rightWall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rightWall.size];
     rightWall.physicsBody.dynamic = NO;
     rightWall.position = CGPointMake(self.size.width,self.size.height/2);
     [self addChild:rightWall];
@@ -136,7 +134,6 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     /* Called when a touch begins */
-    [_girl stopMoving];
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
         if ([[self nodesAtPoint:location] containsObject:_leftButton]) {
