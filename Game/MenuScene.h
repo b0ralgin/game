@@ -7,7 +7,7 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
-
+#import "SceneDirector.h"
 @interface MenuScene : SKScene
 
 @end

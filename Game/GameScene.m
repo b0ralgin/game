@@ -22,6 +22,9 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     Button *_jumpButton;
     
     Button *_pressedButton;
+    
+    
+    BOOL _isTurnLampOn;
 }
 
 -(instancetype)initWithSize:(CGSize)size

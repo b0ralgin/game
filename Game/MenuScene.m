@@ -9,5 +9,11 @@
 #import "MenuScene.h"
 
 @implementation MenuScene
-
+-(instancetype)initWithSize:(CGSize)size{
+    if(( self = [super initWithSize:size] ))
+    {
+        
+    }
+    return self;
+}
 @end

@@ -10,6 +10,7 @@
 #import <SpriteKit/SpriteKit.h>
 #import "GameScene.h"
 #import "SceneDirector.h"
+#import "MenuScene.h"
 @interface ViewController : UIViewController
 -(void)runLevel:(int)levelNumber;
 @end
