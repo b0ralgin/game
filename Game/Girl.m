@@ -24,8 +24,8 @@ static NSString* const activeWeapon[] = {@"Active weapon.png"};
 static CGVector const weaponOffset;
 
 static NSTimeInterval const animationDelay = 0.05;
-static float const moveSpeed = 4000;
-static float const jumpPower = 5;
+static float const moveSpeed = 30000;
+static float const jumpPower = 7500;
 
 typedef enum {GROUND_STATE, FLY_STATE, FALL_STATE} GirlJumpStateType;
 typedef enum {STAND_STATE, MOVE_STATE} GirlMoveStateType;
@@ -77,6 +77,8 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         self.physicsBody = girlBody;
         girlBody.allowsRotation = NO;
         girlBody.dynamic = YES;
+        girlBody.friction = 1.0;
+        girlBody.mass = 30;
         
         [self startAnimation];
         [self startAudioRec];
@@ -273,7 +275,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 
 - (void)jump {
     if (![self isStand]) {
-        return;
+        //return;
     }
     
     [self.physicsBody applyImpulse:CGVectorMake(0, jumpPower)];
