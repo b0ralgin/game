@@ -12,4 +12,5 @@
 @interface SceneDirector : NSObject
 +(SceneDirector *) shared;
 -(void)setViewController: (ViewController *) viewController;
+-(void)runNextLevel;
 @end

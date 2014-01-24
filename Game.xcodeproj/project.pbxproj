@@ -38,6 +38,7 @@
 		E99258AD1892DD7C008DBD65 /* left_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258A91892DD7C008DBD65 /* left_button.png */; };
 		E99258B61892DFED008DBD65 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA9EDE21892CFAF00D198A5 /* Enemy.m */; };
 		E99258BD1892F3CC008DBD65 /* SceneDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258BC1892F3CC008DBD65 /* SceneDirector.m */; };
+		E99258C01892FA77008DBD65 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258BF1892FA77008DBD65 /* MenuScene.m */; };
 		EAA9EDE71892E85E00D198A5 /* enemyImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */; };
 		EAA9EDE81892EBE700D198A5 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258B81892E3CA008DBD65 /* Button.m */; };
 /* End PBXBuildFile section */
@@ -90,6 +91,8 @@
 		E99258BA1892F285008DBD65 /* Mask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mask.h; sourceTree = "<group>"; };
 		E99258BB1892F3CC008DBD65 /* SceneDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneDirector.h; path = ../SceneDirector.h; sourceTree = "<group>"; };
 		E99258BC1892F3CC008DBD65 /* SceneDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SceneDirector.m; path = ../SceneDirector.m; sourceTree = "<group>"; };
+		E99258BE1892FA77008DBD65 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
+		E99258BF1892FA77008DBD65 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
 		EAA9EDE11892CFAF00D198A5 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		EAA9EDE21892CFAF00D198A5 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = enemyImages.atlas; path = enemyImages/enemyImages.atlas; sourceTree = "<group>"; };
@@ -180,6 +183,8 @@
 				E99258BA1892F285008DBD65 /* Mask.h */,
 				E99258BB1892F3CC008DBD65 /* SceneDirector.h */,
 				E99258BC1892F3CC008DBD65 /* SceneDirector.m */,
+				E99258BE1892FA77008DBD65 /* MenuScene.h */,
+				E99258BF1892FA77008DBD65 /* MenuScene.m */,
 				E992585D1892BBF8008DBD65 /* Supporting Files */,
 			);
 			path = Game;
@@ -330,6 +335,7 @@
 				E99258731892BBF8008DBD65 /* MyScene.m in Sources */,
 				E99258701892BBF8008DBD65 /* ViewController.m in Sources */,
 				E99258671892BBF8008DBD65 /* AppDelegate.m in Sources */,
+				E99258C01892FA77008DBD65 /* MenuScene.m in Sources */,
 				E99258A11892DA33008DBD65 /* (null) in Sources */,
 				E99258631892BBF8008DBD65 /* main.m in Sources */,
 			);

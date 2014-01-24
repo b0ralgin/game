@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
 #import "GameScene.h"
-
+#import "SceneDirector.h"
 @interface ViewController : UIViewController
-
+-(void)runLevel:(int)levelNumber;
 @end
