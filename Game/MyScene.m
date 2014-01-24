@@ -24,6 +24,8 @@
                                        CGRectGetMidY(self.frame));
         
         [self addChild:myLabel];
+        
+        //add some code for check git
     }
     return self;
 }
