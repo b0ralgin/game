@@ -37,7 +37,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     [self addChild:_rightButton];
     
     _jumpButton = [SKSpriteNode spriteNodeWithImageNamed:jumpButtonFilename];
-    _jumpButton.position = CGPointMake(1900, 100);
+    _jumpButton.position = CGPointMake(1800, 100);
     [self addChild:_jumpButton];
 }
 
