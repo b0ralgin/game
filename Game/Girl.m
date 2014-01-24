@@ -14,20 +14,26 @@ static NSString* const girlLightStand[] = {@"Girl light stand 1.png"};
 static NSString* const girlLightMove[] = {@"Girl light move 1.png"};
 
 static NSTimeInterval const animationDelay = 0.05;
+static float const moveSpeed = 1;
+static float const jumpPower = 5;
 
 @implementation Girl {
     NSMutableArray* darkStand;
     NSMutableArray* darkMove;
     NSMutableArray* lightStand;
     NSMutableArray* lightMove;
-    NSString* a;
+    
     SKSpriteNode* lightGirl;
+    
+    BOOL isMoving;
 }
 
 - (instancetype)init {
     self = [super initWithImageNamed:girlDarkStand[0]];
     
     if (self != nil) {
+        isMoving = NO;
+        
         lightGirl = [SKSpriteNode spriteNodeWithImageNamed:girlLightStand[0]];
         
         [self initTextures];
@@ -67,18 +73,22 @@ static NSTimeInterval const animationDelay = 0.05;
 }
 
 - (void)moveLeft {
+    isMoving = YES;
     self.xScale = -1;
     
     [self startAnimation:darkMove AndLight:lightMove];
 }
 
 - (void)moveRight {
+    isMoving = YES;
     self.xScale = 1;
     
     [self startAnimation:darkMove AndLight:lightMove];
 }
 
 - (void)stopMoving {
+    isMoving = NO;
+    
     [self startAnimation:darkStand AndLight:lightStand];
 }
 
@@ -97,12 +107,19 @@ static NSTimeInterval const animationDelay = 0.05;
 }
 
 - (void)update:(NSTimeInterval)dt {
+    if (isMoving) {
+        [self.physicsBody applyImpulse:CGVectorMake(self.xScale * moveSpeed * dt, 0)];
+    }
     
     lightGirl.position = self.position;
 }
 
 - (void)jump {
+    if (![self isStand]) {
+        return;
+    }
     
+    [self.physicsBody applyImpulse:CGVectorMake(0, jumpPower)];
 }
 
 - (void)setAdditionalSpriteParent:(SKNode*)parentNode {
@@ -111,7 +128,14 @@ static NSTimeInterval const animationDelay = 0.05;
 }
 
 - (void)startOpenDoorAnimation {
+    self.xScale = 1;
+    isMoving = NO;
     
+    
+}
+
+- (BOOL)isStand {
+    return (self.physicsBody.velocity.dy == 0);
 }
 
 @end
