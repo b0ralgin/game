@@ -17,6 +17,10 @@ static NSString* const girlLightMove[] = {@"Girl light move 1.png"};
 static NSString* const girlLightFly[] = {@"Girl light fly 1.png"};
 static NSString* const girlLightFall[] = {@"Girl light fall 1.png"};
 
+static NSString* const activeWeapon[] = {@"Active weapon.png"};
+
+static CGVector const weaponOffset;
+
 static NSTimeInterval const animationDelay = 0.05;
 static float const moveSpeed = 1;
 static float const jumpPower = 5;
@@ -41,6 +45,8 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     GirlJumpStateType jumpState;
     GirlMoveStateType moveState;
     GirlAttackStateType attackState;
+    
+    uint32_t weaponCategoryMask;
 }
 
 - (instancetype)init {
@@ -54,6 +60,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         lightGirl = [SKSpriteNode spriteNodeWithImageNamed:girlLightStand[0]];
         
         [self initTextures];
+        [self initWeapon];
         
         SKTexture* tex = [darkStand firstObject];
         SKPhysicsBody* girlBody = [SKPhysicsBody bodyWithRectangleOfSize:tex.size];
@@ -107,6 +114,13 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     for (ushort i = 0; i < 1; i++) {
         [lightFall addObject:[SKTexture textureWithImageNamed:girlLightFall[i]]];
     }
+}
+
+- (void)initWeapon {
+    weapon = [SKSpriteNode spriteNodeWithImageNamed:activeWeapon[0]];
+    weapon.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:weapon.size];
+    
+    [self endAttack];
 }
 
 - (void)moveLeft {
@@ -183,6 +197,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     }
     
     lightGirl.position = self.position;
+    weapon.position = CGPointMake(self.position.x + weaponOffset.dx, self.position.y + weaponOffset.dy);
     
     switch (jumpState) {
         case FALL_STATE:
@@ -190,6 +205,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
                 jumpState = GROUND_STATE;
                 [self startAnimation];
             }
+            
             break;
             
         case FLY_STATE:
@@ -197,6 +213,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
                 jumpState = FALL_STATE;
                 [self startAnimation];
             }
+            
             break;
             
         default:
@@ -234,11 +251,29 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 }
 
 - (void)setWeaponCategoryBitMask:(uint32_t)mask {
-    
+    weaponCategoryMask = mask;
 }
 
 - (void)setWeaponCollisionBitMask:(uint32_t)mask {
     weapon.physicsBody.collisionBitMask = mask;
+}
+
+- (void)beginAttack {
+    attackState = ATTACK_STATE;
+    
+    weapon.physicsBody.categoryBitMask = weaponCategoryMask;
+    weapon.hidden = NO;
+    
+    [self startAnimation];
+}
+
+- (void)endAttack {
+    attackState = PASSIVE_STATE;
+    
+    weapon.physicsBody.categoryBitMask = 0;
+    weapon.hidden = YES;
+    
+    [self startAnimation];
 }
 
 @end
