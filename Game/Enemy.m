@@ -10,24 +10,24 @@
 
 @implementation Enemy
 {
-    int _health,_damage,int _speed;
-    NSMutableArray* _frames;
-    NSArray* _enemyFrames;
+    int _health,_damage, _speed;
+    NSMutableArray* frames;
+    NSArray* enemyFrames;
 }
 - (id)init:(NSString *)type health:(int)health damage:(int)damage {
     self = [super init];
     if (self) {
-    _frames = [NSMutableArray array];
-    _enemyFrames = [NSMutableArray array];
+    frames = [NSMutableArray array];
+    enemyFrames = [NSArray array];
     SKTextureAtlas* enemyAnimatedAtlas = [SKTextureAtlas atlasNamed:@"enemyImages"];
     for (int i=1; i< 5; i++) {
         NSLog(@"%@%d",type,i);
         NSString* textureName = [NSString stringWithFormat:@"%@%d",type,i];
         SKTexture *enemy = [enemyAnimatedAtlas textureNamed:textureName];
-        [_frames addObject:enemy];
+        [frames addObject:enemy];
     }
-        _enemyFrames = _frames;
-    SKTexture* firstFrame = _enemyFrames[0];
+    enemyFrames = frames;
+    SKTexture* firstFrame = enemyFrames[0];
     self.texture = firstFrame;
     }
     return self;
