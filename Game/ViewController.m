@@ -26,6 +26,7 @@
     
     // Present the scene.
     [skView presentScene:scene];
+    hjfgdjdghjdf
 }
 
 - (BOOL)shouldAutorotate
