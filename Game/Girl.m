@@ -24,7 +24,8 @@ static NSString* const activeWeapon[] = {@"Active weapon.png"};
 static CGVector const weaponOffset;
 
 static NSTimeInterval const animationDelay = 0.05;
-static float const moveSpeed = 30000;
+static float const moveSpeed = 15000;
+static float const maxSpeed = 150;
 static float const jumpPower = 7500;
 
 typedef enum {GROUND_STATE, FLY_STATE, FALL_STATE} GirlJumpStateType;
@@ -60,6 +61,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     self = [super initWithImageNamed:girlDarkStand[0]];
     
     if (self != nil) {
+        self.size = CGSizeMake(100, 100);
         jumpState = GROUND_STATE;
         moveState = STAND_STATE;
         attackState = PASSIVE_STATE;
@@ -70,14 +72,14 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         lightGirl = [SKSpriteNode spriteNodeWithImageNamed:girlLightStand[0]];
         
         [self initTextures];
-        [self initWeapon];
+        //[self initWeapon];
         
-        SKTexture* tex = [darkStand firstObject];
-        SKPhysicsBody* girlBody = [SKPhysicsBody bodyWithRectangleOfSize:tex.size];
+        SKPhysicsBody* girlBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
         self.physicsBody = girlBody;
         girlBody.allowsRotation = NO;
         girlBody.dynamic = YES;
         girlBody.friction = 1.0;
+        girlBody.restitution = 0.0;
         girlBody.mass = 30;
         
         [self startAnimation];
@@ -228,12 +230,19 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     lastTime = dt;
     
     if (moveState == MOVE_STATE) {
-        NSLog(@"%f", self.xScale * moveSpeed * time);
         [self.physicsBody applyImpulse:CGVectorMake(self.xScale * moveSpeed * time, 0)];
     }
     
     lightGirl.position = self.position;
     weapon.position = CGPointMake(self.position.x + weaponOffset.dx, self.position.y + weaponOffset.dy);
+    
+    if (self.physicsBody.velocity.dx > maxSpeed) {
+        self.physicsBody.velocity = CGVectorMake(maxSpeed, self.physicsBody.velocity.dy);
+    }
+    
+    if (self.physicsBody.velocity.dx < -maxSpeed) {
+        self.physicsBody.velocity = CGVectorMake(-maxSpeed, self.physicsBody.velocity.dy);
+    }
     
     switch (jumpState) {
         case FALL_STATE:
@@ -246,7 +255,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
             
         case GROUND_STATE:
         case FLY_STATE:
-            if (self.physicsBody.velocity.dy <= 0) {
+            if (self.physicsBody.velocity.dy < 0) {
                 jumpState = FALL_STATE;
                 [self startAnimation];
             }
@@ -275,7 +284,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 
 - (void)jump {
     if (![self isStand]) {
-        //return;
+        return;
     }
     
     [self.physicsBody applyImpulse:CGVectorMake(0, jumpPower)];
@@ -361,8 +370,9 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 		recorder.meteringEnabled = YES;
 		[recorder record];
 	}
-    
-    NSLog(@"audio error - %@", [error description]);
+    else {
+        NSLog(@"audio error - %@", [error description]);
+    }
 }
 
 @end
