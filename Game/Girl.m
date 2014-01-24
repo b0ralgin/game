@@ -10,18 +10,28 @@
 
 static NSString* const girlDarkStand[] = {@"Girl dark stand 1.png"};
 static NSString* const girlDarkMove[] = {@"Girl dark move 1.png"};
+static NSString* const girlDarkFly[] = {@"Girl dark fly 1.png"};
+static NSString* const girlDarkFall[] = {@"Girl dark fall 1.png"};
 static NSString* const girlLightStand[] = {@"Girl light stand 1.png"};
 static NSString* const girlLightMove[] = {@"Girl light move 1.png"};
+static NSString* const girlLightFly[] = {@"Girl light fly 1.png"};
+static NSString* const girlLightFall[] = {@"Girl light fall 1.png"};
 
 static NSTimeInterval const animationDelay = 0.05;
 static float const moveSpeed = 1;
 static float const jumpPower = 5;
 
+typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE} GirlStateType;
+
 @implementation Girl {
     NSMutableArray* darkStand;
     NSMutableArray* darkMove;
+    NSMutableArray* darkFly;
+    NSMutableArray* darkFall;
     NSMutableArray* lightStand;
     NSMutableArray* lightMove;
+    NSMutableArray* lightFly;
+    NSMutableArray* lightFall;
     
     SKSpriteNode* lightGirl;
     
@@ -61,6 +71,16 @@ static float const jumpPower = 5;
         [darkMove addObject:[SKTexture textureWithImageNamed:girlDarkMove[i]]];
     }
     
+    darkFly = [NSMutableArray new];
+    for (ushort i = 0; i < 1; i++) {
+        [darkFly addObject:[SKTexture textureWithImageNamed:girlDarkFly[i]]];
+    }
+    
+    darkFall = [NSMutableArray new];
+    for (ushort i = 0; i < 1; i++) {
+        [darkFall addObject:[SKTexture textureWithImageNamed:girlDarkFall[i]]];
+    }
+    
     lightStand = [NSMutableArray new];
     for (ushort i = 0; i < 1; i++) {
         [lightStand addObject:[SKTexture textureWithImageNamed:girlLightStand[i]]];
@@ -69,6 +89,16 @@ static float const jumpPower = 5;
     lightMove = [NSMutableArray new];
     for (ushort i = 0; i < 1; i++) {
         [lightMove addObject:[SKTexture textureWithImageNamed:girlLightMove[i]]];
+    }
+    
+    lightFly = [NSMutableArray new];
+    for (ushort i = 0; i < 1; i++) {
+        [lightFly addObject:[SKTexture textureWithImageNamed:girlLightFly[i]]];
+    }
+    
+    lightFall = [NSMutableArray new];
+    for (ushort i = 0; i < 1; i++) {
+        [lightFall addObject:[SKTexture textureWithImageNamed:girlLightFall[i]]];
     }
 }
 
