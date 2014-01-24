@@ -7,8 +7,9 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import "GameObject.h"
 
-@interface Girl : SKSpriteNode
+@interface Girl : GameObject
 
 - (void)moveLeft;
 - (void)moveRight;

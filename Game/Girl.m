@@ -42,7 +42,6 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     NSMutableArray* lightFly;
     NSMutableArray* lightFall;
     
-    SKSpriteNode* lightGirl;
     SKSpriteNode* weapon;
     
     GirlJumpStateType jumpState;
@@ -68,9 +67,6 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         
         recorder = nil;
         lastTime = 0;
-        
-        lightGirl = [SKSpriteNode spriteNodeWithImageNamed:girlLightStand[0]];
-        lightGirl.zPosition = -1;
         
         [self initTextures];
         //[self initWeapon];
