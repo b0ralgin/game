@@ -26,7 +26,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     if(( self = [super initWithSize:size] )){
         //[self initRoomBound];
         [self initButtons];
-        //[self initEnemy];
+        [self initEnemy];
         //[self initGirl];
         
         SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
@@ -58,8 +58,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     _leftButton = [Button spriteNodeWithImageNamed:leftButtonFilename];
       [self addChild:_leftButton];
     _leftButton.position = CGPointMake(100, 100);
-  
-    _leftButton.zPosition = 11000;
+ 
     _leftButton.tag = 1;
     
     _rightButton = [Button spriteNodeWithImageNamed:rightButtonFilename];
