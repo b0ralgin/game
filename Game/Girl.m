@@ -20,7 +20,7 @@ static NSTimeInterval const animationDelay = 0.05;
     NSMutableArray* darkMove;
     NSMutableArray* lightStand;
     NSMutableArray* lightMove;
-    
+    NSString* a;
     SKSpriteNode* lightGirl;
 }
 
