@@ -35,11 +35,8 @@
 		E99258AB1892DD7C008DBD65 /* jump_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258A71892DD7C008DBD65 /* jump_button.png */; };
 		E99258AC1892DD7C008DBD65 /* left_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258A81892DD7C008DBD65 /* left_button.png */; };
 		E99258AD1892DD7C008DBD65 /* right_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258A91892DD7C008DBD65 /* right_button.png */; };
-		E99258B21892DF19008DBD65 /* enemy1.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258AE1892DF19008DBD65 /* enemy1.png */; };
-		E99258B31892DF19008DBD65 /* enemy2.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258AF1892DF19008DBD65 /* enemy2.png */; };
-		E99258B41892DF19008DBD65 /* enemy3.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258B01892DF19008DBD65 /* enemy3.png */; };
-		E99258B51892DF19008DBD65 /* enemy4.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258B11892DF19008DBD65 /* enemy4.png */; };
 		E99258B61892DFED008DBD65 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA9EDE21892CFAF00D198A5 /* Enemy.m */; };
+		EAA9EDE51892E40900D198A5 /* enemyImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EAA9EDE41892E40900D198A5 /* enemyImages.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,12 +81,9 @@
 		E99258A71892DD7C008DBD65 /* jump_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump_button.png; sourceTree = "<group>"; };
 		E99258A81892DD7C008DBD65 /* left_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_button.png; sourceTree = "<group>"; };
 		E99258A91892DD7C008DBD65 /* right_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_button.png; sourceTree = "<group>"; };
-		E99258AE1892DF19008DBD65 /* enemy1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy1.png; sourceTree = "<group>"; };
-		E99258AF1892DF19008DBD65 /* enemy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy2.png; sourceTree = "<group>"; };
-		E99258B01892DF19008DBD65 /* enemy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy3.png; sourceTree = "<group>"; };
-		E99258B11892DF19008DBD65 /* enemy4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy4.png; sourceTree = "<group>"; };
 		EAA9EDE11892CFAF00D198A5 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		EAA9EDE21892CFAF00D198A5 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
+		EAA9EDE41892E40900D198A5 /* enemyImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = enemyImages.atlas; path = enemyImages/enemyImages.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +145,7 @@
 		E992585C1892BBF8008DBD65 /* Game */ = {
 			isa = PBXGroup;
 			children = (
+				EAA9EDE41892E40900D198A5 /* enemyImages.atlas */,
 				E99258651892BBF8008DBD65 /* AppDelegate.h */,
 				E99258661892BBF8008DBD65 /* AppDelegate.m */,
 				E99258681892BBF8008DBD65 /* Main_iPhone.storyboard */,
@@ -167,10 +162,6 @@
 				E99258A71892DD7C008DBD65 /* jump_button.png */,
 				E99258A81892DD7C008DBD65 /* left_button.png */,
 				E99258A91892DD7C008DBD65 /* right_button.png */,
-				E99258AE1892DF19008DBD65 /* enemy1.png */,
-				E99258AF1892DF19008DBD65 /* enemy2.png */,
-				E99258B01892DF19008DBD65 /* enemy3.png */,
-				E99258B11892DF19008DBD65 /* enemy4.png */,
 				E99258761892BBF8008DBD65 /* Images.xcassets */,
 				EAA9EDE11892CFAF00D198A5 /* Enemy.h */,
 				EAA9EDE21892CFAF00D198A5 /* Enemy.m */,
@@ -285,17 +276,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				E99258751892BBF8008DBD65 /* Spaceship.png in Resources */,
-				E99258B51892DF19008DBD65 /* enemy4.png in Resources */,
 				E99258AB1892DD7C008DBD65 /* jump_button.png in Resources */,
-				E99258B41892DF19008DBD65 /* enemy3.png in Resources */,
-				E99258B31892DF19008DBD65 /* enemy2.png in Resources */,
 				E99258991892CBE7008DBD65 /* (null) in Resources */,
 				E99258AD1892DD7C008DBD65 /* right_button.png in Resources */,
-				E99258B21892DF19008DBD65 /* enemy1.png in Resources */,
 				E99258771892BBF8008DBD65 /* Images.xcassets in Resources */,
 				E992586D1892BBF8008DBD65 /* Main_iPad.storyboard in Resources */,
 				E992589B1892CBE7008DBD65 /* (null) in Resources */,
 				E99258AC1892DD7C008DBD65 /* left_button.png in Resources */,
+				EAA9EDE51892E40900D198A5 /* enemyImages.atlas in Resources */,
 				E992586A1892BBF8008DBD65 /* Main_iPhone.storyboard in Resources */,
 				E992589A1892CBE7008DBD65 /* (null) in Resources */,
 				E99258611892BBF8008DBD65 /* InfoPlist.strings in Resources */,
