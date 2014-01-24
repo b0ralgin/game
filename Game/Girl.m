@@ -119,6 +119,16 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 - (void)initWeapon {
     weapon = [SKSpriteNode spriteNodeWithImageNamed:activeWeapon[0]];
     weapon.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:weapon.size];
+    weapon.physicsBody.dynamic = NO;
+    
+    NSMutableArray* weaponAnimationList = [NSMutableArray new];
+    for (ushort i = 0; i < 1; i++) {
+        [weaponAnimationList addObject:[SKTexture textureWithImageNamed:activeWeapon[i]]];
+    }
+    
+    SKAction* weaponAnimation = [SKAction animateWithTextures:weaponAnimationList timePerFrame:animationDelay];
+    weaponAnimation = [SKAction repeatActionForever:weaponAnimation];
+    [weapon runAction:weaponAnimation];
     
     [self endAttack];
 }
