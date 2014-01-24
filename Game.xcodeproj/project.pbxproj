@@ -40,6 +40,7 @@
 		E99258B41892DF19008DBD65 /* enemy3.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258B01892DF19008DBD65 /* enemy3.png */; };
 		E99258B51892DF19008DBD65 /* enemy4.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258B11892DF19008DBD65 /* enemy4.png */; };
 		E99258B61892DFED008DBD65 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA9EDE21892CFAF00D198A5 /* Enemy.m */; };
+		E99258B91892E3CA008DBD65 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258B81892E3CA008DBD65 /* Button.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +89,8 @@
 		E99258AF1892DF19008DBD65 /* enemy2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy2.png; sourceTree = "<group>"; };
 		E99258B01892DF19008DBD65 /* enemy3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy3.png; sourceTree = "<group>"; };
 		E99258B11892DF19008DBD65 /* enemy4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = enemy4.png; sourceTree = "<group>"; };
+		E99258B71892E3CA008DBD65 /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Button.h; sourceTree = "<group>"; };
+		E99258B81892E3CA008DBD65 /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Button.m; sourceTree = "<group>"; };
 		EAA9EDE11892CFAF00D198A5 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		EAA9EDE21892CFAF00D198A5 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -174,6 +177,8 @@
 				E99258761892BBF8008DBD65 /* Images.xcassets */,
 				EAA9EDE11892CFAF00D198A5 /* Enemy.h */,
 				EAA9EDE21892CFAF00D198A5 /* Enemy.m */,
+				E99258B71892E3CA008DBD65 /* Button.h */,
+				E99258B81892E3CA008DBD65 /* Button.m */,
 				E992585D1892BBF8008DBD65 /* Supporting Files */,
 			);
 			path = Game;
@@ -324,6 +329,7 @@
 				E99258731892BBF8008DBD65 /* MyScene.m in Sources */,
 				E99258701892BBF8008DBD65 /* ViewController.m in Sources */,
 				E99258671892BBF8008DBD65 /* AppDelegate.m in Sources */,
+				E99258B91892E3CA008DBD65 /* Button.m in Sources */,
 				E99258A11892DA33008DBD65 /* (null) in Sources */,
 				E99258631892BBF8008DBD65 /* main.m in Sources */,
 			);
