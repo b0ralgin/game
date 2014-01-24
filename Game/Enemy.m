@@ -12,7 +12,7 @@
 {
     int _health,_damage;
     NSMutableArray* _frames;
-    NSMutableArray* _enemyFrames;
+    NSArray* _enemyFrames;
 }
 - (id)init:(NSString *)type health:(int)health damage:(int)damage {
     self = [super init];
