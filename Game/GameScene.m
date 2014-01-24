@@ -14,21 +14,37 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 @implementation GameScene{
     Girl *_girl;
     
-    SKSpriteNode *_leftButton;
-    SKSpriteNode *_rightButton;
-    SKSpriteNode *_jumpButton;
+    Button *_leftButton;
+    Button *_rightButton;
+    Button *_jumpButton;
     
-    SKSpriteNode *_pressedButton;
+    Button *_pressedButton;
 }
 
 -(instancetype)initWithSize:(CGSize)size
 {
     if(( self = [super initWithSize:size] )){
-        [self initRoomBound];
+        //[self initRoomBound];
         [self initButtons];
         [self initEnemy];
+        //[self initGirl];
+        
+        SKLabelNode *myLabel = [SKLabelNode labelNodeWithFontNamed:@"Chalkduster"];
+        
+        myLabel.text = @"Hello, World!";
+        myLabel.fontSize = 30;
+        myLabel.position = CGPointMake(CGRectGetMidX(self.frame),
+                                       CGRectGetMidY(self.frame));
+        
+        [self addChild:myLabel];
     }
     return self;
+}
+
+-(void)initGirl
+{
+    _girl = [[Girl alloc] init];
+    
 }
 
 -(void) initEnemy{
@@ -38,39 +54,44 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 }
 
 -(void)initButtons{
-    _leftButton = [SKSpriteNode spriteNodeWithImageNamed:leftButtonFilename];
+    NSLog(@"gdsfgf");
+    _leftButton = [Button spriteNodeWithImageNamed:leftButtonFilename];
+      [self addChild:_leftButton];
     _leftButton.position = CGPointMake(100, 100);
-    [self addChild:_leftButton];
+ 
+    _leftButton.tag = 1;
     
-    _rightButton = [SKSpriteNode spriteNodeWithImageNamed:rightButtonFilename];
-    _rightButton.position = CGPointMake(200, 100);
+    _rightButton = [Button spriteNodeWithImageNamed:rightButtonFilename];
+    _rightButton.position = CGPointMake(220, 100);
     [self addChild:_rightButton];
+    _rightButton.tag = 2;
     
-    _jumpButton = [SKSpriteNode spriteNodeWithImageNamed:jumpButtonFilename];
-    _jumpButton.position = CGPointMake(1800, 100);
+    _jumpButton = [Button spriteNodeWithImageNamed:jumpButtonFilename];
+    _jumpButton.position = CGPointMake(900, 100);
     [self addChild:_jumpButton];
+     _rightButton.tag = 3;
 }
 
 -(void)initRoomBound{
-     SKSpriteNode *floor = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:10] size:CGSizeMake(self.size.width, 1)];
+     SKSpriteNode *floor = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:10] size:CGSizeMake(self.size.width, 4)];
     floor.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
     floor.physicsBody.dynamic = NO;
     floor.position = CGPointMake(self.size.width/2, 0);
     [self addChild:floor];
     
-    SKSpriteNode *ceiling = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:10] size:CGSizeMake(self.size.width, 1)];
+    SKSpriteNode *ceiling = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:10] size:CGSizeMake(self.size.width, 4)];
     ceiling.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
     ceiling.physicsBody.dynamic = NO;
     ceiling.position = CGPointMake(self.size.width/2, self.size.height);
     [self addChild:ceiling];
     
-    SKSpriteNode *leftWall = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:10] size:CGSizeMake(1, self.size.height)];
+    SKSpriteNode *leftWall = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:10] size:CGSizeMake(4, self.size.height)];
     leftWall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
     leftWall.physicsBody.dynamic = NO;
     leftWall.position = CGPointMake(0,self.size.height/2);
     [self addChild:leftWall];
     
-    SKSpriteNode *rightWall = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:10] size:CGSizeMake(1, self.size.height)];
+    SKSpriteNode *rightWall = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:10] size:CGSizeMake(4, self.size.height)];
     rightWall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
     rightWall.physicsBody.dynamic = NO;
     rightWall.position = CGPointMake(self.size.width,self.size.height/2);
@@ -84,6 +105,24 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
         CGPoint location = [touch locationInNode:self];
         
         
+        if(_pressedButton == nil)
+        {
+            if(CGRectContainsPoint(_leftButton.frame, location)){
+                
+                _pressedButton = _leftButton;
+                [_girl moveLeft];
+                
+            }
+            else if(CGRectContainsPoint(_rightButton.frame, location)){
+                _pressedButton = _rightButton;
+                [_girl moveRight];
+            }
+            else if(CGRectContainsPoint(_jumpButton.frame, location)){
+                _pressedButton = _jumpButton;
+                [_girl jump];
+            }
+        }
+     
     }
 }
 
@@ -92,7 +131,20 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        
+        if(_pressedButton != nil){
+            if(_pressedButton.tag == 1)
+            {
+                
+            }
+            if(_pressedButton.tag == 2)
+            {
+                
+            }
+            if(_pressedButton.tag == 3)
+            {
+                
+            }
+        }
     }
 }
 
@@ -101,11 +153,28 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     
     for (UITouch *touch in touches) {
         CGPoint location = [touch locationInNode:self];
-        
+        if(_pressedButton != nil){
+            if(_pressedButton.tag == 1)
+            {
+                [_girl stopMoving];
+                _pressedButton = nil;
+            }
+            if(_pressedButton.tag == 2)
+            {
+                [_girl stopMoving];
+                 _pressedButton = nil;
+            }
+            if(_pressedButton.tag == 3)
+            {
+             
+                 _pressedButton = nil;
+            }
+        }
     }
 }
 
 -(void)update:(CFTimeInterval)currentTime {
+    [_girl update:currentTime];
     /* Called before each frame is rendered */
 }
 

@@ -8,7 +8,7 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "Girl.h"
-
+#import "Button.h"
 
 @interface GameScene : SKScene{
     
