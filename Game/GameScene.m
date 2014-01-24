@@ -16,6 +16,8 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     SKSpriteNode *_leftButton;
     SKSpriteNode *_rightButton;
     SKSpriteNode *_jumpButton;
+    
+    SKSpriteNode *_pressedButton;
 }
 
 -(instancetype)initWithSize:(CGSize)size
@@ -66,4 +68,27 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     rightWall.position = CGPointMake(self.size.width,self.size.height/2);
     [self addChild:rightWall];
 }
+
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    /* Called when a touch begins */
+    
+    for (UITouch *touch in touches) {
+        CGPoint location = [touch locationInNode:self];
+        
+        SKSpriteNode *sprite = [SKSpriteNode spriteNodeWithImageNamed:@"Spaceship"];
+        
+        sprite.position = location;
+        
+        SKAction *action = [SKAction rotateByAngle:M_PI duration:1];
+        
+        [sprite runAction:[SKAction repeatActionForever:action]];
+        
+        [self addChild:sprite];
+    }
+}
+
+-(void)update:(CFTimeInterval)currentTime {
+    /* Called before each frame is rendered */
+}
+
 @end
