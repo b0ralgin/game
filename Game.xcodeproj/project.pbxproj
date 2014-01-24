@@ -25,6 +25,7 @@
 		E99258801892BBF8008DBD65 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99258581892BBF8008DBD65 /* UIKit.framework */; };
 		E99258881892BBF8008DBD65 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E99258861892BBF8008DBD65 /* InfoPlist.strings */; };
 		E992588A1892BBF8008DBD65 /* GameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258891892BBF8008DBD65 /* GameTests.m */; };
+		EAA9EDE31892CFAF00D198A5 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA9EDE21892CFAF00D198A5 /* Enemy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,8 @@
 		E99258851892BBF8008DBD65 /* GameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GameTests-Info.plist"; sourceTree = "<group>"; };
 		E99258871892BBF8008DBD65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E99258891892BBF8008DBD65 /* GameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameTests.m; sourceTree = "<group>"; };
+		EAA9EDE11892CFAF00D198A5 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		EAA9EDE21892CFAF00D198A5 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +137,8 @@
 				E99258741892BBF8008DBD65 /* Spaceship.png */,
 				E99258761892BBF8008DBD65 /* Images.xcassets */,
 				E992585D1892BBF8008DBD65 /* Supporting Files */,
+				EAA9EDE11892CFAF00D198A5 /* Enemy.h */,
+				EAA9EDE21892CFAF00D198A5 /* Enemy.m */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -267,6 +272,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E99258731892BBF8008DBD65 /* MyScene.m in Sources */,
+				EAA9EDE31892CFAF00D198A5 /* Enemy.m in Sources */,
 				E99258701892BBF8008DBD65 /* ViewController.m in Sources */,
 				E99258671892BBF8008DBD65 /* AppDelegate.m in Sources */,
 				E99258631892BBF8008DBD65 /* main.m in Sources */,
@@ -490,6 +496,7 @@
 				E992588F1892BBF8008DBD65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E99258901892BBF8008DBD65 /* Build configuration list for PBXNativeTarget "GameTests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +505,7 @@
 				E99258921892BBF8008DBD65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
