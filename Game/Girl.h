@@ -17,5 +17,8 @@
 - (void)jump;
 - (void)setAdditionalSpriteParent:(SKNode*)parentNode;
 - (void)startOpenDoorAnimation;
+- (void)setWeaponContactBitMask:(uint32_t)mask;
+- (void)setWeaponCategoryBitMask:(uint32_t)mask;
+- (void)setWeaponCollisionBitMask:(uint32_t)mask;
 
 @end
