@@ -14,7 +14,8 @@ static NSString *const rightButtonFilename = @"right_button.png";
 static NSString *const jumpButtonFilename = @"jump_button.png";
 
 @implementation GameScene{
-    Girl *_girl;
+    SKCropNode* _backWall;
+    Girl* _girl;
     
     Button *_leftButton;
     Button *_rightButton;
@@ -29,6 +30,9 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
         
         self.physicsWorld.gravity = CGVectorMake(0, -5);
         
+        _backWall = [SKCropNode new];
+        [self addChild:_backWall];
+        
         [self initRoomBound];
         [self initButtons];
         //[self initEnemy];
@@ -41,7 +45,10 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 {
     _girl = [[Girl alloc] init];
     _girl.position = CGPointMake(CGRectGetMidX(self.frame), 400);
-    [self addChild:_girl];
+    _girl.zPosition = 1000;
+    [_backWall addChild:_girl];
+    
+    [_girl setAdditionalSpriteParent:self];
 }
 
 -(void) initEnemy{

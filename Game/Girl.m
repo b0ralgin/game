@@ -70,6 +70,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         lastTime = 0;
         
         lightGirl = [SKSpriteNode spriteNodeWithImageNamed:girlLightStand[0]];
+        lightGirl.zPosition = -1;
         
         [self initTextures];
         //[self initWeapon];
@@ -135,6 +136,8 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     weapon = [SKSpriteNode spriteNodeWithImageNamed:activeWeapon[0]];
     weapon.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:weapon.size];
     weapon.physicsBody.dynamic = NO;
+    
+    [self addChild:weapon];
     
     NSMutableArray* weaponAnimationList = [NSMutableArray new];
     for (ushort i = 0; i < 1; i++) {
@@ -232,9 +235,6 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     if (moveState == MOVE_STATE) {
         [self.physicsBody applyImpulse:CGVectorMake(self.xScale * moveSpeed * time, 0)];
     }
-    
-    lightGirl.position = self.position;
-    weapon.position = CGPointMake(self.position.x + weaponOffset.dx, self.position.y + weaponOffset.dy);
     
     if (self.physicsBody.velocity.dx > maxSpeed) {
         self.physicsBody.velocity = CGVectorMake(maxSpeed, self.physicsBody.velocity.dy);
@@ -373,6 +373,18 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     else {
         NSLog(@"audio error - %@", [error description]);
     }
+}
+
+- (void)setXScale:(CGFloat)xScale {
+    lightGirl.xScale = xScale;
+    weapon.xScale = xScale;
+    [super setXScale:xScale];
+}
+
+- (void)setPosition:(CGPoint)position {
+    lightGirl.position = position;
+    weapon.position = CGPointMake(self.position.x + self.xScale * weaponOffset.dx, self.position.y + weaponOffset.dy);
+    [super setPosition:position];
 }
 
 @end
