@@ -8,9 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A7CE80461892C89B003E41BE /* Girl.m in Sources */ = {isa = PBXBuildFile; fileRef = A7CE80451892C89B003E41BE /* Girl.m */; };
-		A7CE80481892EC70003E41BE /* girl.png in Resources */ = {isa = PBXBuildFile; fileRef = A7CE80471892EC70003E41BE /* girl.png */; };
-		A7CE804B189301EC003E41BE /* GameObject.m in Sources */ = {isa = PBXBuildFile; fileRef = A7CE804A189301EC003E41BE /* GameObject.m */; };
-		A7CE805118935603003E41BE /* SimplePhysic.m in Sources */ = {isa = PBXBuildFile; fileRef = A7CE805018935603003E41BE /* SimplePhysic.m */; };
 		E99258551892BBF8008DBD65 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99258541892BBF8008DBD65 /* Foundation.framework */; };
 		E99258571892BBF8008DBD65 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99258561892BBF8008DBD65 /* CoreGraphics.framework */; };
 		E99258591892BBF8008DBD65 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99258581892BBF8008DBD65 /* UIKit.framework */; };
@@ -29,27 +26,11 @@
 		E99258801892BBF8008DBD65 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E99258581892BBF8008DBD65 /* UIKit.framework */; };
 		E99258881892BBF8008DBD65 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = E99258861892BBF8008DBD65 /* InfoPlist.strings */; };
 		E992588A1892BBF8008DBD65 /* GameTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258891892BBF8008DBD65 /* GameTests.m */; };
-		E99258991892CBE7008DBD65 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		E992589A1892CBE7008DBD65 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		E992589B1892CBE7008DBD65 /* (null) in Resources */ = {isa = PBXBuildFile; };
-		E992589E1892D6FD008DBD65 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		E99258A11892DA33008DBD65 /* (null) in Sources */ = {isa = PBXBuildFile; };
-		E99258AA1892DD7C008DBD65 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258A61892DD7C008DBD65 /* GameScene.m */; };
-		E99258AB1892DD7C008DBD65 /* jump_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258A71892DD7C008DBD65 /* jump_button.png */; };
-		E99258AC1892DD7C008DBD65 /* right_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258A81892DD7C008DBD65 /* right_button.png */; };
-		E99258AD1892DD7C008DBD65 /* left_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258A91892DD7C008DBD65 /* left_button.png */; };
-		E99258B61892DFED008DBD65 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = EAA9EDE21892CFAF00D198A5 /* Enemy.m */; };
-		E99258BD1892F3CC008DBD65 /* SceneDirector.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258BC1892F3CC008DBD65 /* SceneDirector.m */; };
-		E99258C01892FA77008DBD65 /* MenuScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258BF1892FA77008DBD65 /* MenuScene.m */; };
-		E99258C318930797008DBD65 /* BedroomBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258C218930797008DBD65 /* BedroomBackground.m */; };
-		E99258C918930C92008DBD65 /* bedroom1@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258C518930C92008DBD65 /* bedroom1@2x~ipad.png */; };
-		E99258CA18930C92008DBD65 /* bedroom2@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258C618930C92008DBD65 /* bedroom2@2x~ipad.png */; };
-		E99258CB18930C92008DBD65 /* bedroom3@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258C718930C92008DBD65 /* bedroom3@2x~ipad.png */; };
-		E99258CC18930C92008DBD65 /* bedroom4@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258C818930C92008DBD65 /* bedroom4@2x~ipad.png */; };
-		EAA9EDE71892E85E00D198A5 /* enemyImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */; };
-		EAA9EDE81892EBE700D198A5 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258B81892E3CA008DBD65 /* Button.m */; };
-		EAA9EDF41893491200D198A5 /* tvStandImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EAA9EDF31893491200D198A5 /* tvStandImages.atlas */; };
-		EAA9EDFC1893575700D198A5 /* tvWalkImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EAA9EDFB1893575700D198A5 /* tvWalkImages.atlas */; };
+		E99258991892CBE7008DBD65 /* jump_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258961892CBE7008DBD65 /* jump_button.png */; };
+		E992589A1892CBE7008DBD65 /* left_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258971892CBE7008DBD65 /* left_button.png */; };
+		E992589B1892CBE7008DBD65 /* right_button.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258981892CBE7008DBD65 /* right_button.png */; };
+		E992589E1892D6FD008DBD65 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = E992589D1892D6FD008DBD65 /* Button.m */; };
+		E99258A11892DA33008DBD65 /* GameScene.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258A01892DA33008DBD65 /* GameScene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,13 +46,6 @@
 /* Begin PBXFileReference section */
 		A7CE80441892C89B003E41BE /* Girl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Girl.h; sourceTree = "<group>"; };
 		A7CE80451892C89B003E41BE /* Girl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Girl.m; sourceTree = "<group>"; };
-		A7CE80471892EC70003E41BE /* girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = girl.png; sourceTree = "<group>"; };
-		A7CE8049189301EC003E41BE /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
-		A7CE804A189301EC003E41BE /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
-		A7CE804F18935603003E41BE /* SimplePhysic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimplePhysic.h; sourceTree = "<group>"; };
-		A7CE805018935603003E41BE /* SimplePhysic.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimplePhysic.m; sourceTree = "<group>"; };
-		E973BE2418934BB000758B87 /* GirlMovedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GirlMovedDelegate.h; sourceTree = "<group>"; };
-		E973BE281893635100758B87 /* SimplePhysicContactDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = SimplePhysicContactDelegate.h; path = ../SimplePhysicContactDelegate.h; sourceTree = "<group>"; };
 		E99258511892BBF8008DBD65 /* Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99258541892BBF8008DBD65 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E99258561892BBF8008DBD65 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -96,29 +70,13 @@
 		E99258851892BBF8008DBD65 /* GameTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GameTests-Info.plist"; sourceTree = "<group>"; };
 		E99258871892BBF8008DBD65 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		E99258891892BBF8008DBD65 /* GameTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameTests.m; sourceTree = "<group>"; };
-		E99258A51892DD7C008DBD65 /* GameScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
-		E99258A61892DD7C008DBD65 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
-		E99258A71892DD7C008DBD65 /* jump_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump_button.png; sourceTree = "<group>"; };
-		E99258A81892DD7C008DBD65 /* right_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_button.png; sourceTree = "<group>"; };
-		E99258A91892DD7C008DBD65 /* left_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_button.png; sourceTree = "<group>"; };
-		E99258B71892E3CA008DBD65 /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Button.h; sourceTree = "<group>"; };
-		E99258B81892E3CA008DBD65 /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Button.m; sourceTree = "<group>"; };
-		E99258BA1892F285008DBD65 /* Mask.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Mask.h; sourceTree = "<group>"; };
-		E99258BB1892F3CC008DBD65 /* SceneDirector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SceneDirector.h; path = ../SceneDirector.h; sourceTree = "<group>"; };
-		E99258BC1892F3CC008DBD65 /* SceneDirector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SceneDirector.m; path = ../SceneDirector.m; sourceTree = "<group>"; };
-		E99258BE1892FA77008DBD65 /* MenuScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuScene.h; sourceTree = "<group>"; };
-		E99258BF1892FA77008DBD65 /* MenuScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuScene.m; sourceTree = "<group>"; };
-		E99258C118930797008DBD65 /* BedroomBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BedroomBackground.h; sourceTree = "<group>"; };
-		E99258C218930797008DBD65 /* BedroomBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BedroomBackground.m; sourceTree = "<group>"; };
-		E99258C518930C92008DBD65 /* bedroom1@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom1@2x~ipad.png"; sourceTree = "<group>"; };
-		E99258C618930C92008DBD65 /* bedroom2@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom2@2x~ipad.png"; sourceTree = "<group>"; };
-		E99258C718930C92008DBD65 /* bedroom3@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom3@2x~ipad.png"; sourceTree = "<group>"; };
-		E99258C818930C92008DBD65 /* bedroom4@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom4@2x~ipad.png"; sourceTree = "<group>"; };
-		EAA9EDE11892CFAF00D198A5 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
-		EAA9EDE21892CFAF00D198A5 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
-		EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = enemyImages.atlas; path = enemyImages/enemyImages.atlas; sourceTree = "<group>"; };
-		EAA9EDF31893491200D198A5 /* tvStandImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = tvStandImages.atlas; sourceTree = "<group>"; };
-		EAA9EDFB1893575700D198A5 /* tvWalkImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = tvWalkImages.atlas; sourceTree = "<group>"; };
+		E99258961892CBE7008DBD65 /* jump_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = jump_button.png; sourceTree = "<group>"; };
+		E99258971892CBE7008DBD65 /* left_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = left_button.png; sourceTree = "<group>"; };
+		E99258981892CBE7008DBD65 /* right_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = right_button.png; sourceTree = "<group>"; };
+		E992589C1892D6FD008DBD65 /* Button.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Button.h; sourceTree = "<group>"; };
+		E992589D1892D6FD008DBD65 /* Button.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Button.m; sourceTree = "<group>"; };
+		E992589F1892DA22008DBD65 /* GameScene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameScene.h; sourceTree = "<group>"; };
+		E99258A01892DA33008DBD65 /* GameScene.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameScene.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,46 +138,26 @@
 		E992585C1892BBF8008DBD65 /* Game */ = {
 			isa = PBXGroup;
 			children = (
-				EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */,
+				E992589C1892D6FD008DBD65 /* Button.h */,
+				E992589D1892D6FD008DBD65 /* Button.m */,
+				E992589F1892DA22008DBD65 /* GameScene.h */,
 				E99258651892BBF8008DBD65 /* AppDelegate.h */,
 				E99258661892BBF8008DBD65 /* AppDelegate.m */,
-				EAA9EDF31893491200D198A5 /* tvStandImages.atlas */,
 				E99258681892BBF8008DBD65 /* Main_iPhone.storyboard */,
 				E992586B1892BBF8008DBD65 /* Main_iPad.storyboard */,
+				E99258A01892DA33008DBD65 /* GameScene.m */,
 				E992586E1892BBF8008DBD65 /* ViewController.h */,
 				E992586F1892BBF8008DBD65 /* ViewController.m */,
 				E99258711892BBF8008DBD65 /* MyScene.h */,
 				E99258721892BBF8008DBD65 /* MyScene.m */,
 				A7CE80441892C89B003E41BE /* Girl.h */,
-				EAA9EDFB1893575700D198A5 /* tvWalkImages.atlas */,
 				A7CE80451892C89B003E41BE /* Girl.m */,
-				E973BE281893635100758B87 /* SimplePhysicContactDelegate.h */,
-				A7CE804F18935603003E41BE /* SimplePhysic.h */,
-				A7CE805018935603003E41BE /* SimplePhysic.m */,
 				E99258741892BBF8008DBD65 /* Spaceship.png */,
-				A7CE8049189301EC003E41BE /* GameObject.h */,
-				E973BE2418934BB000758B87 /* GirlMovedDelegate.h */,
-				A7CE804A189301EC003E41BE /* GameObject.m */,
-				E99258A51892DD7C008DBD65 /* GameScene.h */,
-				E99258A61892DD7C008DBD65 /* GameScene.m */,
-				E99258A71892DD7C008DBD65 /* jump_button.png */,
-				E99258A81892DD7C008DBD65 /* right_button.png */,
-				E99258A91892DD7C008DBD65 /* left_button.png */,
-				A7CE80471892EC70003E41BE /* girl.png */,
+				E99258961892CBE7008DBD65 /* jump_button.png */,
+				E99258971892CBE7008DBD65 /* left_button.png */,
+				E99258981892CBE7008DBD65 /* right_button.png */,
 				E99258761892BBF8008DBD65 /* Images.xcassets */,
-				EAA9EDE11892CFAF00D198A5 /* Enemy.h */,
-				EAA9EDE21892CFAF00D198A5 /* Enemy.m */,
-				E99258B71892E3CA008DBD65 /* Button.h */,
-				E99258B81892E3CA008DBD65 /* Button.m */,
-				E99258BA1892F285008DBD65 /* Mask.h */,
-				E99258BB1892F3CC008DBD65 /* SceneDirector.h */,
-				E99258BC1892F3CC008DBD65 /* SceneDirector.m */,
-				E99258BE1892FA77008DBD65 /* MenuScene.h */,
-				E99258BF1892FA77008DBD65 /* MenuScene.m */,
-				E99258C418930C92008DBD65 /* bedRoom */,
 				E992585D1892BBF8008DBD65 /* Supporting Files */,
-				E99258C118930797008DBD65 /* BedroomBackground.h */,
-				E99258C218930797008DBD65 /* BedroomBackground.m */,
 			);
 			path = Game;
 			sourceTree = "<group>";
@@ -251,17 +189,6 @@
 				E99258861892BBF8008DBD65 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		E99258C418930C92008DBD65 /* bedRoom */ = {
-			isa = PBXGroup;
-			children = (
-				E99258C518930C92008DBD65 /* bedroom1@2x~ipad.png */,
-				E99258C618930C92008DBD65 /* bedroom2@2x~ipad.png */,
-				E99258C718930C92008DBD65 /* bedroom3@2x~ipad.png */,
-				E99258C818930C92008DBD65 /* bedroom4@2x~ipad.png */,
-			);
-			path = bedRoom;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -341,23 +268,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				E99258751892BBF8008DBD65 /* Spaceship.png in Resources */,
-				E99258AB1892DD7C008DBD65 /* jump_button.png in Resources */,
-				E99258991892CBE7008DBD65 /* (null) in Resources */,
-				E99258AD1892DD7C008DBD65 /* left_button.png in Resources */,
-				E99258C918930C92008DBD65 /* bedroom1@2x~ipad.png in Resources */,
-				EAA9EDFC1893575700D198A5 /* tvWalkImages.atlas in Resources */,
-				A7CE80481892EC70003E41BE /* girl.png in Resources */,
-				E99258CC18930C92008DBD65 /* bedroom4@2x~ipad.png in Resources */,
-				E99258CA18930C92008DBD65 /* bedroom2@2x~ipad.png in Resources */,
+				E99258991892CBE7008DBD65 /* jump_button.png in Resources */,
 				E99258771892BBF8008DBD65 /* Images.xcassets in Resources */,
 				E992586D1892BBF8008DBD65 /* Main_iPad.storyboard in Resources */,
-				E992589B1892CBE7008DBD65 /* (null) in Resources */,
-				E99258CB18930C92008DBD65 /* bedroom3@2x~ipad.png in Resources */,
-				E99258AC1892DD7C008DBD65 /* right_button.png in Resources */,
-				EAA9EDE71892E85E00D198A5 /* enemyImages.atlas in Resources */,
+				E992589B1892CBE7008DBD65 /* right_button.png in Resources */,
 				E992586A1892BBF8008DBD65 /* Main_iPhone.storyboard in Resources */,
-				E992589A1892CBE7008DBD65 /* (null) in Resources */,
-				EAA9EDF41893491200D198A5 /* tvStandImages.atlas in Resources */,
+				E992589A1892CBE7008DBD65 /* left_button.png in Resources */,
 				E99258611892BBF8008DBD65 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -377,20 +293,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EAA9EDE81892EBE700D198A5 /* Button.m in Sources */,
-				E99258B61892DFED008DBD65 /* Enemy.m in Sources */,
-				E99258BD1892F3CC008DBD65 /* SceneDirector.m in Sources */,
 				A7CE80461892C89B003E41BE /* Girl.m in Sources */,
-				A7CE805118935603003E41BE /* SimplePhysic.m in Sources */,
-				A7CE804B189301EC003E41BE /* GameObject.m in Sources */,
-				E99258AA1892DD7C008DBD65 /* GameScene.m in Sources */,
-				E992589E1892D6FD008DBD65 /* (null) in Sources */,
-				E99258C318930797008DBD65 /* BedroomBackground.m in Sources */,
+				E992589E1892D6FD008DBD65 /* Button.m in Sources */,
 				E99258731892BBF8008DBD65 /* MyScene.m in Sources */,
 				E99258701892BBF8008DBD65 /* ViewController.m in Sources */,
 				E99258671892BBF8008DBD65 /* AppDelegate.m in Sources */,
-				E99258C01892FA77008DBD65 /* MenuScene.m in Sources */,
-				E99258A11892DA33008DBD65 /* (null) in Sources */,
+				E99258A11892DA33008DBD65 /* GameScene.m in Sources */,
 				E99258631892BBF8008DBD65 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

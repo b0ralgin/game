@@ -7,266 +7,246 @@
 //
 
 #import "Girl.h"
-#import "Mask.h"
-#import <AudioToolbox/AudioToolbox.h>
-#import <AVFoundation/AVFoundation.h>
 
-static NSString* const girlDarkStand[] = {@"girl.png"};
-static NSString* const girlDarkMove[] = {@"girl.png"};
-static NSString* const girlDarkFly[] = {@"girl.png"};
-static NSString* const girlDarkFall[] = {@"girl.png"};
-static NSString* const girlLightStand[] = {@"girl.png"};
-static NSString* const girlLightMove[] = {@"girl.png"};
-static NSString* const girlLightFly[] = {@"girl.png"};
-static NSString* const girlLightFall[] = {@"girl.png"};
-
-static NSString* const activeWeapon[] = {@"girl.png"};
-
-static NSString* const darkStandAnimationName = @"Dark stand";
-static NSString* const darkMoveAnimationName = @"Dark stand";
-static NSString* const darkFlyAnimationName = @"Dark stand";
-static NSString* const darkFalLAnimationName = @"Dark stand";
-static NSString* const lightStandAnimationName = @"Dark stand";
-static NSString* const lightMoveAnimationName = @"Dark stand";
-static NSString* const lightFlyAnimationName = @"Dark stand";
-static NSString* const lightFallAnimationName = @"Dark stand";
-
-static CGPoint const weaponOffset = {60, -40};
+static NSString* const girlDarkStand[] = {@"Girl dark stand 1.png"};
+static NSString* const girlDarkMove[] = {@"Girl dark move 1.png"};
+static NSString* const girlDarkFly[] = {@"Girl dark fly 1.png"};
+static NSString* const girlDarkFall[] = {@"Girl dark fall 1.png"};
+static NSString* const girlLightStand[] = {@"Girl light stand 1.png"};
+static NSString* const girlLightMove[] = {@"Girl light move 1.png"};
+static NSString* const girlLightFly[] = {@"Girl light fly 1.png"};
+static NSString* const girlLightFall[] = {@"Girl light fall 1.png"};
 
 static NSTimeInterval const animationDelay = 0.05;
-static float const moveSpeed = 15000;
-static float const maxSpeed = 150;
-static float const jumpPower = 7500;
+static float const moveSpeed = 1;
+static float const jumpPower = 5;
 
-typedef enum {GROUND_STATE, FLY_STATE, FALL_STATE} GirlJumpStateType;
-typedef enum {STAND_STATE, MOVE_STATE} GirlMoveStateType;
-typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
+typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE, MOVING_FLY_STATE, MOVING_FALL_STATE} GirlStateType;
 
 @implementation Girl {
-    GameObject* weapon;
+    NSMutableArray* darkStand;
+    NSMutableArray* darkMove;
+    NSMutableArray* darkFly;
+    NSMutableArray* darkFall;
+    NSMutableArray* lightStand;
+    NSMutableArray* lightMove;
+    NSMutableArray* lightFly;
+    NSMutableArray* lightFall;
     
-    GirlJumpStateType jumpState;
-    GirlMoveStateType moveState;
-    GirlAttackStateType attackState;
+    SKSpriteNode* lightGirl;
     
-    uint32_t weaponCategoryMask;
-    
-    AVAudioRecorder *recorder;
-    BOOL allowAttack;
-    
-    float lastX;
+    GirlStateType curState;
 }
 
 - (instancetype)init {
     self = [super initWithImageNamed:girlDarkStand[0]];
     
     if (self != nil) {
-        self.size = CGSizeMake(150, 150);
+        curState = STAND_STATE;
         
-        jumpState = GROUND_STATE;
-        moveState = STAND_STATE;
-        attackState = PASSIVE_STATE;
-        
-        allowAttack = YES;
-        recorder = nil;
+        lightGirl = [SKSpriteNode spriteNodeWithImageNamed:girlLightStand[0]];
         
         [self initTextures];
-        [self initWeapon];
         
-        self.contactBitMask = kContactGirl;
-        self.collisionBitMask = kColisionGirl;
-        self.categoryBitMask = kColisionGirl;
-        self.dynamic = YES;
+        SKTexture* tex = [darkStand firstObject];
+        SKPhysicsBody* girlBody = [SKPhysicsBody bodyWithRectangleOfSize:tex.size];
+        self.physicsBody = girlBody;
+        girlBody.allowsRotation = NO;
+        girlBody.dynamic = YES;
         
         [self startAnimation];
-        [self startAudioRec];
-        
-        lastX=0;
     }
     
     return self;
 }
 
 - (void)initTextures {
-    NSMutableArray* animationList = [NSMutableArray new];
+    darkStand = [NSMutableArray new];
     for (ushort i = 0; i < 1; i++) {
-        [animationList addObject:[SKTexture textureWithImageNamed:girlDarkStand[i]]];
-        [self addAnimation:animationList ByName:darkStandAnimationName];
+        [darkStand addObject:[SKTexture textureWithImageNamed:girlDarkStand[i]]];
     }
     
-    animationList = [NSMutableArray new];
+    darkMove = [NSMutableArray new];
     for (ushort i = 0; i < 1; i++) {
-        [animationList addObject:[SKTexture textureWithImageNamed:girlDarkMove[i]]];
-        [self addAnimation:animationList ByName:darkMoveAnimationName];
+        [darkMove addObject:[SKTexture textureWithImageNamed:girlDarkMove[i]]];
     }
     
-    animationList = [NSMutableArray new];
+    darkFly = [NSMutableArray new];
     for (ushort i = 0; i < 1; i++) {
-        [animationList addObject:[SKTexture textureWithImageNamed:girlDarkFly[i]]];
-        [self addAnimation:animationList ByName:darkFlyAnimationName];
+        [darkFly addObject:[SKTexture textureWithImageNamed:girlDarkFly[i]]];
     }
     
-    animationList = [NSMutableArray new];
+    darkFall = [NSMutableArray new];
     for (ushort i = 0; i < 1; i++) {
-        [animationList addObject:[SKTexture textureWithImageNamed:girlDarkFall[i]]];
-        [self addAnimation:animationList ByName:darkFalLAnimationName];
+        [darkFall addObject:[SKTexture textureWithImageNamed:girlDarkFall[i]]];
     }
     
-    animationList = [NSMutableArray new];
+    lightStand = [NSMutableArray new];
     for (ushort i = 0; i < 1; i++) {
-        [animationList addObject:[SKTexture textureWithImageNamed:girlLightStand[i]]];
-        [self addAnimation:animationList ByName:lightStandAnimationName];
+        [lightStand addObject:[SKTexture textureWithImageNamed:girlLightStand[i]]];
     }
     
-    animationList = [NSMutableArray new];
+    lightMove = [NSMutableArray new];
     for (ushort i = 0; i < 1; i++) {
-        [animationList addObject:[SKTexture textureWithImageNamed:girlLightMove[i]]];
-        [self addAnimation:animationList ByName:lightMoveAnimationName];
+        [lightMove addObject:[SKTexture textureWithImageNamed:girlLightMove[i]]];
     }
     
-    animationList = [NSMutableArray new];
+    lightFly = [NSMutableArray new];
     for (ushort i = 0; i < 1; i++) {
-        [animationList addObject:[SKTexture textureWithImageNamed:girlLightFly[i]]];
-        [self addAnimation:animationList ByName:lightFlyAnimationName];
+        [lightFly addObject:[SKTexture textureWithImageNamed:girlLightFly[i]]];
     }
     
-    animationList = [NSMutableArray new];
+    lightFall = [NSMutableArray new];
     for (ushort i = 0; i < 1; i++) {
-        [animationList addObject:[SKTexture textureWithImageNamed:girlLightFall[i]]];
-        [self addAnimation:animationList ByName:lightFallAnimationName];
+        [lightFall addObject:[SKTexture textureWithImageNamed:girlLightFall[i]]];
     }
-}
-
-- (void)initWeapon {
-    weapon = [GameObject spriteNodeWithImageNamed:activeWeapon[0]];
-    weapon.size = CGSizeMake(100, 30);
-    weapon.dynamic = NO;
-    weapon.position = weaponOffset;
-    
-    [self addChild:weapon];
-    
-    NSMutableArray* weaponAnimationList = [NSMutableArray new];
-    for (ushort i = 0; i < 1; i++) {
-        [weaponAnimationList addObject:[SKTexture textureWithImageNamed:activeWeapon[i]]];
-    }
-    
-    SKAction* weaponAnimation = [SKAction animateWithTextures:weaponAnimationList timePerFrame:animationDelay];
-    weaponAnimation = [SKAction repeatActionForever:weaponAnimation];
-    [weapon runAction:weaponAnimation];
-    
-    attackState = ATTACK_STATE;
-    [self endAttack];
 }
 
 - (void)moveLeft {
-    moveState = MOVE_STATE;
+    switch (curState) {
+        case FALL_STATE:
+            curState = MOVING_FALL_STATE;
+            break;
+            
+        case FLY_STATE:
+            curState = MOVING_FLY_STATE;
+            break;
+            
+        case STAND_STATE:
+            curState = MOVE_STATE;
+            break;
+            
+        default:
+            break;
+    }
     
     self.xScale = -1;
     [self startAnimation];
 }
 
 - (void)moveRight {
-    moveState = MOVE_STATE;
+    switch (curState) {
+        case FALL_STATE:
+            curState = MOVING_FALL_STATE;
+            break;
+            
+        case FLY_STATE:
+            curState = MOVING_FLY_STATE;
+            break;
+            
+        case STAND_STATE:
+            curState = MOVE_STATE;
+            break;
+            
+        default:
+            break;
+    }
     
     self.xScale = 1;
     [self startAnimation];
 }
 
 - (void)stopMoving {
-    moveState = STAND_STATE;
+    switch (curState) {
+        case MOVING_FALL_STATE:
+            curState = FALL_STATE;
+            break;
+            
+        case MOVING_FLY_STATE:
+            curState = FLY_STATE;
+            break;
+            
+        case MOVE_STATE:
+            curState = STAND_STATE;
+            break;
+            
+        default:
+            break;
+    }
     
     [self startAnimation];
 }
 
 - (void)startAnimation {
-    switch (jumpState) {
+    NSArray* darkTexList = nil;
+    NSArray* lightTexList = nil;
+    
+    switch (curState) {
         case STAND_STATE:
-            if (moveState == STAND_STATE && attackState == PASSIVE_STATE) {
-                [self startAnimation:darkStandAnimationName];
-                [self startLightAnimation:lightStandAnimationName];
-            }
+            darkTexList = darkStand;
+            lightTexList = lightStand;
+            break;
             
-            if (moveState == MOVE_STATE && attackState == PASSIVE_STATE) {
-                [self startAnimation:darkMoveAnimationName];
-                [self startLightAnimation:lightMoveAnimationName];
-            }
-            
+        case MOVE_STATE:
+            darkTexList = darkMove;
+            lightTexList = lightMove;
             break;
             
         case FLY_STATE:
-            if (attackState == PASSIVE_STATE) {
-                [self startAnimation:darkFlyAnimationName];
-                [self startLightAnimation:lightFlyAnimationName];
-            }
-            
+        case MOVING_FLY_STATE:
+            darkTexList = darkFly;
+            lightTexList = lightFly;
             break;
             
         case FALL_STATE:
-            if (attackState == PASSIVE_STATE) {
-                [self startAnimation:darkFalLAnimationName];
-                [self startLightAnimation:lightFallAnimationName];
-            }
-            
+        case MOVING_FALL_STATE:
+            darkTexList = darkFall;
+            lightTexList = lightFall;
             break;
     }
+    
+    SKAction* darkAnimation = [SKAction animateWithTextures:darkTexList timePerFrame:animationDelay];
+    SKAction* lightAnimation = [SKAction animateWithTextures:lightTexList timePerFrame:animationDelay];
+    
+    darkAnimation = [SKAction repeatActionForever:darkAnimation];
+    lightAnimation = [SKAction repeatActionForever:lightAnimation];
+    
+    [self removeAllActions];
+    [self runAction:darkAnimation];
+    
+    [lightGirl removeAllActions];
+    [lightGirl runAction:lightAnimation];
 }
 
 - (void)update:(NSTimeInterval)dt {
-    if (moveState == MOVE_STATE) {
-        self.velocity = CGVectorMake(self.velocity.dx + dt*self.xScale*moveSpeed, self.velocity.dy);
+    if (curState == MOVE_STATE || curState == MOVING_FALL_STATE || curState == MOVING_FLY_STATE) {
+        [self.physicsBody applyImpulse:CGVectorMake(self.xScale * moveSpeed * dt, 0)];
     }
     
-    if (self.velocity.dx > maxSpeed) {
-        self.velocity = CGVectorMake(maxSpeed, self.velocity.dy);
-       
-    }
+    lightGirl.position = self.position;
     
-    if (self.velocity.dx < -maxSpeed) {
-        self.velocity = CGVectorMake(-maxSpeed, self.velocity.dy);
-        
-    }
-    
-    switch (jumpState) {
+    switch (curState) {
         case FALL_STATE:
-            if (self.velocity.dy == 0) {
-                jumpState = GROUND_STATE;
+            if (self.physicsBody.velocity.dy == 0) {
+                curState = STAND_STATE;
                 [self startAnimation];
             }
-            
-            if (self.velocity.dy > 0) {
-                self.velocity = CGVectorMake(self.velocity.dx, 0);
-            }
-            
             break;
             
-        case GROUND_STATE:
         case FLY_STATE:
-            if (self.velocity.dy < 0) {
-                jumpState = FALL_STATE;
+            if (self.physicsBody.velocity.dy <= 0) {
+                curState = FALL_STATE;
                 [self startAnimation];
             }
+            break;
             
+        case MOVING_FALL_STATE:
+            if (self.physicsBody.velocity.dy == 0) {
+                curState = MOVE_STATE;
+                [self startAnimation];
+            }
+            break;
+            
+        case MOVING_FLY_STATE:
+            if (self.physicsBody.velocity.dy <= 0) {
+                curState = MOVING_FALL_STATE;
+                [self startAnimation];
+            }
+            break;
+            
+        default:
             break;
     }
-    
-    if (recorder != nil) {
-        [recorder updateMeters];
-        
-        //double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
-        
-        double avaragePowerForChannel = pow(10, (0.05 * [recorder averagePowerForChannel:0]));
-        
-        if (avaragePowerForChannel > 0.045) {
-            [self beginAttack];
-        }
-        else {
-            [self endAttack];
-        }
-    }
-    
-   float currentX = self.position.x;
-    [_girlMovedDelegate girlMoveByX:currentX - lastX];
-    lastX = currentX;
 }
 
 - (void)jump {
@@ -274,103 +254,24 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         return;
     }
     
-    self.velocity = CGVectorMake(self.velocity.dx, self.velocity.dy + jumpPower);
-    jumpState = FLY_STATE;
+    [self.physicsBody applyImpulse:CGVectorMake(0, jumpPower)];
+    curState = (curState == STAND_STATE ? FLY_STATE : MOVING_FLY_STATE);
+}
+
+- (void)setAdditionalSpriteParent:(SKNode*)parentNode {
+    [lightGirl removeFromParent];
+    [parentNode addChild:lightGirl];
 }
 
 - (void)startOpenDoorAnimation {
     self.xScale = 1;
-    moveState = STAND_STATE;
+    curState = STAND_STATE;
     
     
 }
 
 - (BOOL)isStand {
-    return (self.velocity.dy == 0 && jumpState == GROUND_STATE);
-}
-
-- (void)setWeaponContactBitMask:(uint32_t)mask {
-    weapon.contactBitMask = mask;
-}
-
-- (void)setWeaponCategoryBitMask:(uint32_t)mask {
-    weaponCategoryMask = mask;
-}
-
-- (void)setWeaponCollisionBitMask:(uint32_t)mask {
-    weapon.collisionBitMask = mask;
-}
-
-- (void)beginAttack {
-    if (attackState == ATTACK_STATE || !allowAttack) {
-        return;
-    }
-    
-    attackState = ATTACK_STATE;
-    
-    weapon.categoryBitMask = weaponCategoryMask;
-    weapon.hidden = NO;
-    
-    [self startAnimation];
-}
-
-- (void)endAttack {
-    if (attackState == PASSIVE_STATE) {
-        return;
-    }
-    
-    attackState = PASSIVE_STATE;
-    
-    weapon.categoryBitMask = 0;
-    weapon.hidden = YES;
-    
-    [self startAnimation];
-}
-
-- (void)startAudioRec {
-    allowAttack = YES;
-    
-    AVAudioSession *audioSession = [AVAudioSession sharedInstance];
-    [audioSession setCategory:AVAudioSessionCategoryPlayAndRecord error:nil];
-    [audioSession setActive:YES error:nil];
-    
-    NSURL *url = [NSURL fileURLWithPath:@"/dev/null"];
-    
-	NSDictionary *settings = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [NSNumber numberWithFloat: 44100.0],                 AVSampleRateKey,
-							  [NSNumber numberWithInt: kAudioFormatAppleLossless], AVFormatIDKey,
-							  [NSNumber numberWithInt: 1],                         AVNumberOfChannelsKey,
-							  [NSNumber numberWithInt: AVAudioQualityMax],         AVEncoderAudioQualityKey,
-							  nil];
-    
-	NSError *error;
-    
-	recorder = [[AVAudioRecorder alloc] initWithURL:url settings:settings error:&error];
-    
-	if (recorder) {
-		[recorder prepareToRecord];
-		recorder.meteringEnabled = YES;
-		[recorder record];
-	}
-    else {
-        NSLog(@"audio error - %@", [error description]);
-    }
-}
-
-- (void)stopAttack {
-    [self endAttack];
-    allowAttack = NO;
-    [recorder stop];
-}
-
-- (void)resumeAttack {
-    allowAttack = YES;
-    [recorder record];
-}
-
-- (void)setXScale:(CGFloat)xScale {
-    lightCopy.xScale = xScale;
-    [super setXScale:xScale];
+    return (self.physicsBody.velocity.dy == 0 && (curState == STAND_STATE || curState == MOVE_STATE));
 }
 
 @end

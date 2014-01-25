@@ -8,12 +8,8 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "Girl.h"
-#import "Button.h"
-#import "Mask.h"
-#import "BedroomBackground.h"
-#import "SimplePhysic.h"
 
-@interface GameScene : SKScene<SKPhysicsContactDelegate,GirlMovedDelegate,SimplePhysicContactDelegate>{
+@interface GameScene : SKScene{
     
 }
 
