@@ -63,12 +63,18 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 -(void) initEnemy{
     Enemy *enemy = [[Enemy alloc] init:@"enemy" health:1 damage:1];
     [self addChild:enemy];
-    enemy.position = CGPointMake(CGRectGetMidX(self.frame),500);
+    enemy.position = CGPointMake(CGRectGetMidX(self.frame) + 200,10);
     [enemy move];
 }
 -(void) initBox {
-    SKSpriteNode* box = [[SKSpriteNode alloc] initWithImageNamed:@"left-button.png"];
-    //box.physicsBody.
+    SKSpriteNode* box = [[SKSpriteNode alloc] initWithImageNamed:@"left_button.png"];
+    box.position = CGPointMake(800, 40);
+    box.size = CGSizeMake(50, 50);
+    box.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:box.size];
+    box.physicsBody.dynamic = NO;
+    box.physicsBody.contactTestBitMask = kContactRoom;
+    [self addChild:box];
+    
 }
 
 -(void)initButtons{
@@ -106,12 +112,16 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     leftWall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:leftWall.size];
     leftWall.physicsBody.dynamic = NO;
     leftWall.position = CGPointMake(0,self.size.height/2);
+    leftWall.physicsBody.collisionBitMask = kColisionRoom;
+    leftWall.physicsBody.contactTestBitMask = kContactRoom;
     [self addChild:leftWall];
     
     SKSpriteNode *rightWall = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(4, self.size.height)];
     rightWall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rightWall.size];
     rightWall.physicsBody.dynamic = NO;
     rightWall.position = CGPointMake(self.size.width,self.size.height/2);
+    rightWall.physicsBody.collisionBitMask = kColisionRoom;
+    rightWall.physicsBody.contactTestBitMask = kContactRoom;
     [self addChild:rightWall];
 }
 
@@ -164,8 +174,18 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 
 - (void)didBeginContact:(SKPhysicsContact *)contact {
     NSLog(@"%d",(contact.bodyA.contactTestBitMask & contact.bodyB.contactTestBitMask));
-    if ((contact.bodyA.contactTestBitMask & contact.bodyB.contactTestBitMask)== 0b10001) {
+    if ((contact.bodyA.contactTestBitMask & contact.bodyB.contactTestBitMask)== 0b00001) {
         NSLog(@"damage");
+    }
+    
+    Enemy* node;
+    if ((contact.bodyA.contactTestBitMask & contact.bodyB.contactTestBitMask) ==0b10001) {
+        if (contact.bodyA.contactTestBitMask == 17) {
+            node = (Enemy*)contact.bodyA.node;
+        } else {
+            node = (Enemy*)contact.bodyB.node;
+        }
+    [node move];
     }
 }
 

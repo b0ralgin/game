@@ -37,8 +37,15 @@ const int kAnimationFrames=6;
     self = [super initWithTexture:firstFrame];
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
     self.physicsBody.dynamic = YES;
+    self.physicsBody.restitution =0;
+    self.physicsBody.friction =NO;
     self.physicsBody.contactTestBitMask = kContactEnemy;
+    self.physicsBody.collisionBitMask = kColisionEnemy;
+    self.physicsBody.categoryBitMask = kColisionEnemy;
+    
     self.physicsBody.usesPreciseCollisionDetection = YES;
+
+    _moveRigth = true;
     return self;
 }
 -(void) damage:(int)hit {
@@ -49,6 +56,11 @@ const int kAnimationFrames=6;
     }
 }
 -(void) move {
+    _moveRigth =!_moveRigth;
+    NSLog(@"moveR %d",_moveRigth);
+    [self removeAllActions];
+    //[self.physicsBody applyImpulse:CGVectorMake(,0)];
+    [self runAction:[SKAction repeatActionForever:[SKAction moveByX:(_moveRigth?1:-1)*5 y:0 duration:0.1]]];
     [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:actionFrames timePerFrame:0.5 resize:NO restore:YES]] withKey:@"walkingEnemy" ];
 }
 -(void) lightOn {
