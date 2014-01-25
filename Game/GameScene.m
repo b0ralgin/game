@@ -37,7 +37,8 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
         
         [self initRoomBound];
         [self initButtons];
-        [self initEnemy];
+      //  [self initEnemy];
+        [self initTvEnemy];
         [self initBox];
         [self initGirl];
         self.physicsWorld.contactDelegate = self;
@@ -61,10 +62,17 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 }
 
 -(void) initEnemy{
-    Enemy *enemy = [[Enemy alloc] init:@"enemy" health:1 damage:1];
+   /* Enemy *enemy = [[Enemy alloc] init:@"enemy" health:1 damage:1];
     [self addChild:enemy];
     enemy.position = CGPointMake(CGRectGetMidX(self.frame) + 200,10);
-    [enemy move];
+    [enemy move];*/
+}
+-(void) initTvEnemy {
+    Enemy* tvEnemy = [[Enemy alloc] init:@"tvStand" health:100 damage:5];
+    [self addChild:tvEnemy];
+    tvEnemy.position = CGPointMake(CGRectGetMidX(self.frame)+200,50);
+    [tvEnemy stand];
+    
 }
 -(void) initBox {
     SKSpriteNode* box = [[SKSpriteNode alloc] initWithImageNamed:@"left_button.png"];
