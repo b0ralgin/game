@@ -66,6 +66,7 @@
 		A7CE80471892EC70003E41BE /* girl.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = girl.png; sourceTree = "<group>"; };
 		A7CE8049189301EC003E41BE /* GameObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameObject.h; sourceTree = "<group>"; };
 		A7CE804A189301EC003E41BE /* GameObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameObject.m; sourceTree = "<group>"; };
+		E973BE2418934BB000758B87 /* GirlMovedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GirlMovedDelegate.h; sourceTree = "<group>"; };
 		E99258511892BBF8008DBD65 /* Game.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Game.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E99258541892BBF8008DBD65 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E99258561892BBF8008DBD65 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -108,7 +109,6 @@
 		E99258C618930C92008DBD65 /* bedroom2@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom2@2x~ipad.png"; sourceTree = "<group>"; };
 		E99258C718930C92008DBD65 /* bedroom3@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom3@2x~ipad.png"; sourceTree = "<group>"; };
 		E99258C818930C92008DBD65 /* bedroom4@2x~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bedroom4@2x~ipad.png"; sourceTree = "<group>"; };
-		E99258CD18931F6E008DBD65 /* GirlMovedDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = GirlMovedDelegate.h; path = ../GirlMovedDelegate.h; sourceTree = "<group>"; };
 		EAA9EDE11892CFAF00D198A5 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		EAA9EDE21892CFAF00D198A5 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = enemyImages.atlas; path = enemyImages/enemyImages.atlas; sourceTree = "<group>"; };
@@ -177,7 +177,7 @@
 				EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */,
 				E99258651892BBF8008DBD65 /* AppDelegate.h */,
 				E99258661892BBF8008DBD65 /* AppDelegate.m */,
-				E99258CD18931F6E008DBD65 /* GirlMovedDelegate.h */,
+				EAA9EDF31893491200D198A5 /* tvStandImages.atlas */,
 				E99258681892BBF8008DBD65 /* Main_iPhone.storyboard */,
 				E992586B1892BBF8008DBD65 /* Main_iPad.storyboard */,
 				E992586E1892BBF8008DBD65 /* ViewController.h */,
@@ -188,6 +188,7 @@
 				A7CE80451892C89B003E41BE /* Girl.m */,
 				E99258741892BBF8008DBD65 /* Spaceship.png */,
 				A7CE8049189301EC003E41BE /* GameObject.h */,
+				E973BE2418934BB000758B87 /* GirlMovedDelegate.h */,
 				A7CE804A189301EC003E41BE /* GameObject.m */,
 				E99258A51892DD7C008DBD65 /* GameScene.h */,
 				E99258A61892DD7C008DBD65 /* GameScene.m */,

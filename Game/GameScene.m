@@ -128,13 +128,17 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     SKSpriteNode *leftWall = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(4, background.backgroundSize.height)];
     leftWall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:leftWall.size];
     leftWall.physicsBody.dynamic = NO;
-    leftWall.position = CGPointMake(0,background.backgroundSize.height/2);
+    leftWall.position = CGPointMake(0,self.size.height/2);
+    leftWall.physicsBody.collisionBitMask = kColisionRoom;
+    leftWall.physicsBody.contactTestBitMask = kContactRoom;
     [self addChild:leftWall];
     
     SKSpriteNode *rightWall = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(4, background.backgroundSize.height)];
     rightWall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rightWall.size];
     rightWall.physicsBody.dynamic = NO;
-    rightWall.position = CGPointMake(background.backgroundSize.width,background.backgroundSize.height/2);
+    rightWall.position = CGPointMake(self.size.width,self.size.height/2);
+    rightWall.physicsBody.collisionBitMask = kColisionRoom;
+    rightWall.physicsBody.contactTestBitMask = kContactRoom;
     [self addChild:rightWall];
 }
 
