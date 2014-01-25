@@ -78,6 +78,8 @@ static float const gravity = 0.5;
         if (objI.dynamic) {
             objI.velocity = CGVectorMake(objI.velocity.dx, objI.velocity.dy + dt * gravity);
             objI.position = CGPointMake(objI.position.x + dt * objI.velocity.dx, objI.position.y + dt * objI.velocity.dy);
+            
+            NSLog(@"p - %f v - %f", objI.position.x, objI.velocity.dx);
         }
         
         for (uint j = i+1; j < nodeList.count; j++) {

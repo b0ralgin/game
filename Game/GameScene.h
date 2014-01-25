@@ -13,7 +13,7 @@
 #import "BedroomBackground.h"
 #import "SimplePhysic.h"
 
-@interface GameScene : SKScene<SKPhysicsContactDelegate,GirlMovedDelegate,SimplePhysicContactDelegate>{
+@interface GameScene : SKScene<GirlMovedDelegate,SimplePhysicContactDelegate>{
     
 }
 

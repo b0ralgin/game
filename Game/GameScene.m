@@ -34,7 +34,6 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 {
     if(( self = [super initWithSize:size] )){
         lastTime = 0;
-        self.physicsWorld.gravity = CGVectorMake(0, -5);
         
         _backWall = [SKCropNode new];
         [self addChild:_backWall];
@@ -46,7 +45,6 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
         [self initTvEnemy];
         [self initBox];
         [self initGirl];
-        self.physicsWorld.contactDelegate = self;
       //  self.position = CGPointMake(512, self.position.y);
     }
     return self;
@@ -81,7 +79,6 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     [self addChild:tvEnemy];
     tvEnemy.position = CGPointMake(CGRectGetMidX(self.frame)+200,50);
     [tvEnemy move];
-    
 }
 
 -(void) initBox {
@@ -95,7 +92,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 
 -(void)initButtons{
     _leftButton = [Button spriteNodeWithImageNamed:leftButtonFilename];
-      [self addChild:_leftButton];
+    [self addChild:_leftButton];
     _leftButton.position = CGPointMake(100, 100);
  
     _leftButton.tag = 1;
@@ -183,24 +180,10 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     float dt = (lastTime == 0)?0: currentTime - lastTime;
     lastTime =  currentTime;
     
-    [_girl update:currentTime];
-    
+    [_girl update:dt];
+    [[SimplePhysic sharedPhysic] update:dt];
     /* Called before each frame is rendered */
 }
-
--(void)girlMoveByX:(float)offsetX{
-    if(fabs(offsetX) > 0){
-        ;
-    }
-    //[self runAction:[SKAction moveByX:-offsetX y:0 duration:0]];
-    
-    //[_leftButton runAction:[SKAction moveByX:offsetX y:0 duration:0]];
-   // [_rightButton runAction:[SKAction moveByX:offsetX y:0 duration:0]];
-   // [_jumpButton runAction:[SKAction moveByX:offsetX y:0 duration:0]];
-    background.position = CGPointMake(background.position.x - offsetX, background.position.y);
-    [_girl runAction:[SKAction moveByX:offsetX y:0 duration:0]];
-}
-
 
 -(void)contact:(GameObject *)gameObjectA gameObjectB:(GameObject *)gameObjectB{
     

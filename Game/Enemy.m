@@ -26,7 +26,7 @@ const int kAnimationFrames = 6;
        NSMutableArray* frames = [NSMutableArray array];
     SKTextureAtlas* enemyAnimatedAtlas = [SKTextureAtlas atlasNamed:[[NSString alloc] initWithFormat:@"%@Images",name]];
     for (int i=1; i<=enemyAnimatedAtlas.textureNames.count; i++) {
-        NSLog(@"type %@ %d",name,i);
+        //NSLog(@"type %@ %d",name,i);
         NSString* textureName = [NSString stringWithFormat:@"%@%d",name,i];
         SKTexture *enemy = [enemyAnimatedAtlas textureNamed:textureName];
         [arrayOfTextures addObject:enemy];
@@ -76,7 +76,7 @@ const int kAnimationFrames = 6;
 
 -(void) move {
     _moveRigth =!_moveRigth;
-    NSLog(@"moveR %d",_moveRigth);
+    //NSLog(@"moveR %d",_moveRigth);
     [self removeAllActions];
     [self runAction:[SKAction repeatActionForever:[SKAction moveByX:(_moveRigth?1:-1)*5 y:0 duration:0.1]]];
     [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:walkFrames timePerFrame:0.1 resize:NO restore:YES]] withKey:@"walkingEnemy" ];

@@ -263,10 +263,6 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
             [self endAttack];
         }
     }
-    
-   float currentX = self.position.x;
-    [_girlMovedDelegate girlMoveByX:currentX - lastX];
-    lastX = currentX;
 }
 
 - (void)jump {
