@@ -73,6 +73,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     enemy.position = CGPointMake(CGRectGetMidX(self.frame) + 200,10);
     [enemy move];*/
 }
+
 -(void) initTvEnemy {
     Enemy* tvEnemy = [[Enemy alloc] init:@"tv" health:100 damage:5];
     [self addChild:tvEnemy];
@@ -80,15 +81,14 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     [tvEnemy move];
     
 }
+
 -(void) initBox {
-    SKSpriteNode* box = [[SKSpriteNode alloc] initWithImageNamed:@"left_button.png"];
+    GameObject* box = [[GameObject alloc] initWithImageNamed:@"left_button.png"];
     box.position = CGPointMake(800, 40);
     box.size = CGSizeMake(50, 50);
-    box.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:box.size];
-    box.physicsBody.dynamic = NO;
-    box.physicsBody.contactTestBitMask = kContactRoom;
+    box.dynamic = NO;
+    box.contactBitMask = kContactRoom;
     [self addChild:box];
-    
 }
 
 -(void)initButtons{
@@ -109,36 +109,29 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
      _rightButton.tag = 3;
 }
 
-
-
 -(void)initRoomBound{
-    
-     SKSpriteNode *floor = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(background.backgroundSize.width, 4)];
-    floor.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:floor.size];
-    floor.physicsBody.dynamic = NO;
+    GameObject *floor = [GameObject spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(background.backgroundSize.width, 4)];
+    floor.dynamic = NO;
     floor.position = CGPointMake(background.backgroundSize.width/2, 0);
     [self addChild:floor];
     
-    SKSpriteNode *ceiling = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(background.backgroundSize.width, 4)];
-    ceiling.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:ceiling.size];
-    ceiling.physicsBody.dynamic = NO;
+    GameObject *ceiling = [GameObject spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(background.backgroundSize.width, 4)];
+    ceiling.dynamic = NO;
     ceiling.position = CGPointMake(background.backgroundSize.width/2, background.backgroundSize.height);
     [self addChild:ceiling];
     
-    SKSpriteNode *leftWall = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(4, background.backgroundSize.height)];
-    leftWall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:leftWall.size];
-    leftWall.physicsBody.dynamic = NO;
+    GameObject *leftWall = [GameObject spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(4, background.backgroundSize.height)];
+    leftWall.dynamic = NO;
     leftWall.position = CGPointMake(0,self.size.height/2);
-    leftWall.physicsBody.collisionBitMask = kColisionRoom;
-    leftWall.physicsBody.contactTestBitMask = kContactRoom;
+    leftWall.collisionBitMask = kColisionRoom;
+    leftWall.contactBitMask = kContactRoom;
     [self addChild:leftWall];
     
-    SKSpriteNode *rightWall = [SKSpriteNode spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(4, background.backgroundSize.height)];
-    rightWall.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:rightWall.size];
-    rightWall.physicsBody.dynamic = NO;
+    GameObject *rightWall = [GameObject spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(4, background.backgroundSize.height)];
+    rightWall.dynamic = NO;
     rightWall.position = CGPointMake(self.size.width,self.size.height/2);
-    rightWall.physicsBody.collisionBitMask = kColisionRoom;
-    rightWall.physicsBody.contactTestBitMask = kContactRoom;
+    rightWall.collisionBitMask = kColisionRoom;
+    rightWall.contactBitMask = kContactRoom;
     [self addChild:rightWall];
 }
 
