@@ -58,7 +58,8 @@ const int kAnimationFrames=6;
     }
 }
 -(void) stand {
-   [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:standFrames timePerFrame:0.5 resize:NO restore:YES]] withKey:@"walkingEnemy" ];
+    [self removeAllActions];
+   [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:standFrames timePerFrame:0.1 resize:NO restore:YES]] withKey:@"walkingEnemy" ];
 }
 -(void) move {
     _moveRigth =!_moveRigth;

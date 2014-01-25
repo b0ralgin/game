@@ -216,7 +216,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
         } else {
             node = (Enemy*)contact.bodyB.node;
         }
-    [node move];
+    //[node move];
     }
 }
 
