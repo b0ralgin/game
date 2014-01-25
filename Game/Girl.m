@@ -55,6 +55,8 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     BOOL allowAttack;
     
     NSTimeInterval lastTime;
+    
+    float lastX;
 }
 
 - (instancetype)init {
@@ -85,6 +87,8 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         
         [self startAnimation];
         [self startAudioRec];
+        
+        lastX=0;
     }
     
     return self;
@@ -232,10 +236,12 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     
     if (self.physicsBody.velocity.dx > maxSpeed) {
         self.physicsBody.velocity = CGVectorMake(maxSpeed, self.physicsBody.velocity.dy);
+       
     }
     
     if (self.physicsBody.velocity.dx < -maxSpeed) {
         self.physicsBody.velocity = CGVectorMake(-maxSpeed, self.physicsBody.velocity.dy);
+        
     }
     
     switch (jumpState) {
@@ -274,6 +280,9 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
             [self endAttack];
         }
     }
+   float currentX = self.position.x;
+    [_girlMovedDelegate girlMoveByX:currentX - lastX];
+    lastX = currentX;
 }
 
 - (void)jump {
@@ -370,11 +379,11 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 }
 
 - (void)setPosition:(CGPoint)position {
-    float lastX = self.position.x;
-    weapon.position = CGPointMake(self.position.x + self.xScale * weaponOffset.dx, self.position.y + weaponOffset.dy);
+    //float lastX = self.position.x;
+    weapon.position = CGPointMake(self.position.x + self.xScale * weaponOffset.x, self.position.y + weaponOffset.y);
     [super setPosition:position];
-    float currentX = self.position.x;
-    [_girlMovedDelegate girlMoveByX:currentX - lastX];
+    //float currentX = self.position.x;
+   // [_girlMovedDelegate girlMoveByX:currentX - lastX];
 }
 
 @end

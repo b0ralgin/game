@@ -31,7 +31,8 @@
         skView.showsNodeCount = YES;
         
         // Create and configure the scene.
-        CGSize size = CGSizeMake(4096, 1536);
+        CGSize size = CGSizeMake(1024, 768);
+        CGSize sizeView =skView.bounds.size;
         SKScene * scene = [GameScene sceneWithSize:size];
         scene.scaleMode = SKSceneScaleModeAspectFill;
         
