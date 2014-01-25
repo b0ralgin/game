@@ -21,6 +21,8 @@ static NSTimeInterval const animationDelay = 0.05;
     if (self != nil) {
         lightCopy = [SKSpriteNode spriteNodeWithImageNamed:name];
         animationDictionary = [NSMutableDictionary new];
+        
+        self.velocity = CGVectorMake(0, 0);
     }
     
     return self;
@@ -76,10 +78,6 @@ static NSTimeInterval const animationDelay = 0.05;
 - (void)setPosition:(CGPoint)position {
     lightCopy.position = position;
     [super setPosition:position];
-}
-
-- (void)update:(NSTimeInterval)dt {
-    lightCopy.position = self.position;
 }
 
 @end

@@ -21,5 +21,6 @@
 - (void)setWeaponCollisionBitMask:(uint32_t)mask;
 - (void)stopAttack;
 - (void)resumeAttack;
+- (void)update:(NSTimeInterval)dt;
 
 @end

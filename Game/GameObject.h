@@ -18,6 +18,11 @@
 - (void)addAnimation:(NSArray*)animationList ByName:(NSString*)animationName;
 - (void)startAnimation:(NSString*)animationName;
 - (void)startLightAnimation:(NSString*)animationName;
-- (void)update:(NSTimeInterval)dt;
+
+@property (assign, nonatomic) uint32_t contactBitMask;
+@property (assign, nonatomic) uint32_t collisionBitMask;
+@property (assign, nonatomic) uint32_t categoryBitMask;
+@property (assign, nonatomic) BOOL dynamic;
+@property (assign, nonatomic) CGVector velocity;
 
 @end
