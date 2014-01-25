@@ -8,10 +8,11 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "GameObject.h"
-
+#import "SimplePhysicContactDelegate.h"
 @interface SimplePhysic : NSObject
 
 + (instancetype)sharedPhysic;
+@property (weak, nonatomic) id <SimplePhysicContactDelegate> contactDelegate;
 
 - (void)setRootNode:(SKNode*)root;
 - (void)refreshNodeList;

@@ -17,6 +17,7 @@ static float const gravity = 0.5;
     SKNode* rootNode;
     NSMutableArray* nodeList;
 }
+@synthesize contactDelegate = _contactDelegate;
 
 + (instancetype)sharedPhysic {
     if (instance == nil) {
@@ -125,7 +126,7 @@ static float const gravity = 0.5;
 }
 
 - (void)contactMessage:(GameObject*)obj1 And:(GameObject*)obj2 {
-    
+    [_contactDelegate contact:obj1 gameObjectB:obj2];
 }
 
 - (void)moveObj:(GameObject*)obj WithOffset:(CGVector)offset {

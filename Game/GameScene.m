@@ -196,6 +196,12 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     [_girl runAction:[SKAction moveByX:offsetX y:0 duration:0]];
 }
 
+
+-(void)contact:(GameObject *)gameObjectA gameObjectB:(GameObject *)gameObjectB{
+    
+}
+
+
 - (void)didBeginContact:(SKPhysicsContact *)contact {
     NSLog(@"%d",(contact.bodyA.contactTestBitMask & contact.bodyB.contactTestBitMask));
     if ((contact.bodyA.contactTestBitMask & contact.bodyB.contactTestBitMask)== 0b00001) {
