@@ -54,8 +54,6 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     AVAudioRecorder *recorder;
     BOOL allowAttack;
     
-    NSTimeInterval lastTime;
-    
     float lastX;
 }
 
@@ -71,7 +69,6 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         
         allowAttack = YES;
         recorder = nil;
-        lastTime = 0;
         
         [self initTextures];
         [self initWeapon];
@@ -215,44 +212,36 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 }
 
 - (void)update:(NSTimeInterval)dt {
-    if (lastTime == 0) {
-        lastTime = dt;
-        return;
-    }
-    
-    NSTimeInterval time = dt - lastTime;
-    lastTime = dt;
-    
     if (moveState == MOVE_STATE) {
-        [self.physicsBody applyImpulse:CGVectorMake(self.xScale * moveSpeed * time, 0)];
+        self.velocity = CGVectorMake(self.velocity.dx + dt*self.xScale*moveSpeed, self.velocity.dy);
     }
     
-    if (self.physicsBody.velocity.dx > maxSpeed) {
-        self.physicsBody.velocity = CGVectorMake(maxSpeed, self.physicsBody.velocity.dy);
+    if (self.velocity.dx > maxSpeed) {
+        self.velocity = CGVectorMake(maxSpeed, self.velocity.dy);
        
     }
     
-    if (self.physicsBody.velocity.dx < -maxSpeed) {
-        self.physicsBody.velocity = CGVectorMake(-maxSpeed, self.physicsBody.velocity.dy);
+    if (self.velocity.dx < -maxSpeed) {
+        self.velocity = CGVectorMake(-maxSpeed, self.velocity.dy);
         
     }
     
     switch (jumpState) {
         case FALL_STATE:
-            if (self.physicsBody.velocity.dy == 0) {
+            if (self.velocity.dy == 0) {
                 jumpState = GROUND_STATE;
                 [self startAnimation];
             }
             
-            if (self.physicsBody.velocity.dy > 0) {
-                self.physicsBody.velocity = CGVectorMake(self.physicsBody.velocity.dx, 0);
+            if (self.velocity.dy > 0) {
+                self.velocity = CGVectorMake(self.velocity.dx, 0);
             }
             
             break;
             
         case GROUND_STATE:
         case FLY_STATE:
-            if (self.physicsBody.velocity.dy < 0) {
+            if (self.velocity.dy < 0) {
                 jumpState = FALL_STATE;
                 [self startAnimation];
             }
@@ -285,7 +274,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         return;
     }
     
-    [self.physicsBody applyImpulse:CGVectorMake(0, jumpPower)];
+    self.velocity = CGVectorMake(self.velocity.dx, self.velocity.dy + jumpPower);
     jumpState = FLY_STATE;
 }
 
