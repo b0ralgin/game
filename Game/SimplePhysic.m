@@ -10,7 +10,7 @@
 
 static SimplePhysic* instance = nil;
 
-static float const gravity = 0.5;
+static float const gravity = -1500;
 
 @implementation SimplePhysic
 {
@@ -32,6 +32,7 @@ static float const gravity = 0.5;
     
     if (self != nil) {
         rootNode = nil;
+        nodeList = [NSMutableArray new];
     }
     
     return self;
@@ -58,28 +59,31 @@ static float const gravity = 0.5;
             }
         }
         
-        for (uint i = prevLength; i < nodeList.count; i++) {
-            id element = nodeList[i];
-            if (![[element class] isSubclassOfClass:[GameObject class]] && [element class] != [GameObject class]) {
-                [nodeList removeObjectAtIndex:i];
-                i--;
-            }
-        }
-        
         flag = (prevLength > position);
         position = prevLength;
+    }
+    
+    for (uint i = 0; i < nodeList.count; i++) {
+        id element = nodeList[i];
+        if (![[element class] isSubclassOfClass:[GameObject class]] && [element class] != [GameObject class]) {
+            [nodeList removeObjectAtIndex:i];
+            i--;
+        }
     }
 }
 
 - (void)update:(NSTimeInterval)dt {
+    if (dt > 0.04) {
+        dt = 0.04;
+    }
+    
     for (uint i = 0; i < nodeList.count; i++) {
         GameObject* objI = nodeList[i];
         
         if (objI.dynamic) {
             objI.velocity = CGVectorMake(objI.velocity.dx, objI.velocity.dy + dt * gravity);
             objI.position = CGPointMake(objI.position.x + dt * objI.velocity.dx, objI.position.y + dt * objI.velocity.dy);
-            
-            NSLog(@"p - %f v - %f", objI.position.x, objI.velocity.dx);
+            objI.velocity = CGVectorMake(0.5*objI.velocity.dx, 0.8*objI.velocity.dy);
         }
         
         for (uint j = i+1; j < nodeList.count; j++) {
@@ -94,12 +98,16 @@ static float const gravity = 0.5;
             
             obj1Rect.origin = [objI convertPoint:objI.position toNode:rootNode];
             obj1Rect.size = objI.size;
+            obj1Rect.origin.x = obj1Rect.origin.x / [[UIScreen mainScreen] scale] - 0.5*obj1Rect.size.width;
+            obj1Rect.origin.y = obj1Rect.origin.y / [[UIScreen mainScreen] scale] - 0.5*obj1Rect.size.height;
             
             obj2Rect.origin = [objJ convertPoint:objJ.position toNode:rootNode];
             obj2Rect.size = objJ.size;
+            obj2Rect.origin = CGPointMake(obj2Rect.origin.x / [[UIScreen mainScreen] scale], obj2Rect.origin.y / [[UIScreen mainScreen] scale]);
+            NSLog(@"%f %f %f %f", obj2Rect.origin.x, obj2Rect.origin.y, obj2Rect.size.width, obj2Rect.size.height);
             
-            CGRect unionRect = CGRectUnion(obj1Rect, obj2Rect);
-            if (unionRect.size.width > obj1Rect.size.width + obj2Rect.size.width && unionRect.size.height > obj1Rect.size.height + obj2Rect.size.height) {
+            CGRect intersection = CGRectIntersection(obj1Rect, obj2Rect);
+            if (CGRectIsEmpty(intersection)) {
                 continue;
             }
             
@@ -117,8 +125,16 @@ static float const gravity = 0.5;
                 }
                 
                 CGVector objOffset;
-                objOffset.dx = obj1Rect.origin.x + 0.5*obj1Rect.size.width - obj2Rect.origin.x - 0.5*obj2Rect.size.width;
-                objOffset.dy = obj1Rect.origin.y + 0.5*obj1Rect.size.height - obj2Rect.origin.y - 0.5*obj2Rect.size.height;
+                objOffset.dx = (obj1Rect.origin.x < obj2Rect.origin.x ? obj1Rect.origin.x + obj1Rect.size.width - obj2Rect.origin.x : obj1Rect.origin.x - obj2Rect.size.width - obj2Rect.origin.x);
+                objOffset.dy = (obj1Rect.origin.y < obj2Rect.origin.y ? obj1Rect.origin.y + obj1Rect.size.height - obj2Rect.origin.y : obj1Rect.origin.y - obj2Rect.size.height - obj2Rect.origin.y);
+                
+                if (intersection.size.width >= MIN(obj1Rect.size.width, obj2Rect.size.width)) {
+                    objOffset.dx = 0;
+                }
+                
+                if (intersection.size.height >= MIN(obj1Rect.size.height, obj2Rect.size.height)) {
+                    objOffset.dy = 0;
+                }
                 
                 [self moveObj:objI WithOffset:CGVectorMake( objOffset.dx / dynObj,  objOffset.dy / dynObj)];
                 [self moveObj:objJ WithOffset:CGVectorMake(-objOffset.dx / dynObj, -objOffset.dy / dynObj)];

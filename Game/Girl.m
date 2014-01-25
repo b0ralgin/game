@@ -61,6 +61,8 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     self = [super initWithImageNamed:girlDarkStand[0]];
     
     if (self != nil) {
+        self.name = @"Girl";
+        
         self.size = CGSizeMake(150, 150);
         
         jumpState = GROUND_STATE;

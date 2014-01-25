@@ -33,6 +33,8 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 -(instancetype)initWithSize:(CGSize)size
 {
     if(( self = [super initWithSize:size] )){
+        [[SimplePhysic sharedPhysic] setRootNode:self];
+        
         lastTime = 0;
         
         _backWall = [SKCropNode new];
@@ -46,6 +48,8 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
         [self initBox];
         [self initGirl];
       //  self.position = CGPointMake(512, self.position.y);
+        
+        [[SimplePhysic sharedPhysic] refreshNodeList];
     }
     return self;
 }
@@ -109,19 +113,26 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 }
 
 -(void)initRoomBound{
-    GameObject *floor = [GameObject spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(background.backgroundSize.width, 4)];
+    GameObject *floor = [GameObject spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(background.backgroundSize.width, 100)];
     floor.dynamic = NO;
-    floor.position = CGPointMake(background.backgroundSize.width/2, 0);
+    floor.position = CGPointMake(background.backgroundSize.width/2, 4-floor.size.height/2);
+    floor.categoryBitMask = kColisionRoom;
+    floor.collisionBitMask = kColisionRoom;
+    floor.contactBitMask = kContactRoom;
     [self addChild:floor];
     
     GameObject *ceiling = [GameObject spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(background.backgroundSize.width, 4)];
     ceiling.dynamic = NO;
     ceiling.position = CGPointMake(background.backgroundSize.width/2, background.backgroundSize.height);
+    ceiling.categoryBitMask = kColisionRoom;
+    ceiling.collisionBitMask = kColisionRoom;
+    ceiling.contactBitMask = kContactRoom;
     [self addChild:ceiling];
     
     GameObject *leftWall = [GameObject spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(4, background.backgroundSize.height)];
     leftWall.dynamic = NO;
     leftWall.position = CGPointMake(0,self.size.height/2);
+    leftWall.categoryBitMask = kColisionRoom;
     leftWall.collisionBitMask = kColisionRoom;
     leftWall.contactBitMask = kContactRoom;
     [self addChild:leftWall];
@@ -129,6 +140,7 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     GameObject *rightWall = [GameObject spriteNodeWithColor:[UIColor colorWithRed:1 green:0 blue:0 alpha:1] size:CGSizeMake(4, background.backgroundSize.height)];
     rightWall.dynamic = NO;
     rightWall.position = CGPointMake(self.size.width,self.size.height/2);
+    rightWall.categoryBitMask = kColisionRoom;
     rightWall.collisionBitMask = kColisionRoom;
     rightWall.contactBitMask = kContactRoom;
     [self addChild:rightWall];
