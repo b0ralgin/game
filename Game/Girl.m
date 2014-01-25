@@ -55,6 +55,8 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     BOOL allowAttack;
     
     NSTimeInterval lastTime;
+    
+    float lastX;
 }
 
 - (instancetype)init {
@@ -87,6 +89,8 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         
         [self startAnimation];
         [self startAudioRec];
+        
+        lastX=0;
     }
     
     return self;
@@ -234,10 +238,12 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     
     if (self.physicsBody.velocity.dx > maxSpeed) {
         self.physicsBody.velocity = CGVectorMake(maxSpeed, self.physicsBody.velocity.dy);
+       
     }
     
     if (self.physicsBody.velocity.dx < -maxSpeed) {
         self.physicsBody.velocity = CGVectorMake(-maxSpeed, self.physicsBody.velocity.dy);
+        
     }
     
     switch (jumpState) {
@@ -245,6 +251,10 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
             if (self.physicsBody.velocity.dy == 0) {
                 jumpState = GROUND_STATE;
                 [self startAnimation];
+            }
+            
+            if (self.physicsBody.velocity.dy > 0) {
+                self.physicsBody.velocity = CGVectorMake(self.physicsBody.velocity.dx, 0);
             }
             
             break;
@@ -264,9 +274,6 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         
         //double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
         
-        //double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
-        //float lowPassResults = peakPowerForChannel;
-        
         double avaragePowerForChannel = pow(10, (0.05 * [recorder averagePowerForChannel:0]));
         
         if (avaragePowerForChannel > 0.045) {
@@ -276,6 +283,9 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
             [self endAttack];
         }
     }
+   float currentX = self.position.x;
+    [_girlMovedDelegate girlMoveByX:currentX - lastX];
+    lastX = currentX;
 }
 
 - (void)jump {
@@ -366,9 +376,28 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     }
 }
 
+- (void)stopAttack {
+    [self endAttack];
+    allowAttack = NO;
+    [recorder stop];
+}
+
+- (void)resumeAttack {
+    allowAttack = YES;
+    [recorder record];
+}
+
 - (void)setXScale:(CGFloat)xScale {
     lightCopy.xScale = xScale;
     [super setXScale:xScale];
+}
+
+- (void)setPosition:(CGPoint)position {
+    //float lastX = self.position.x;
+    weapon.position = CGPointMake(self.position.x + self.xScale * weaponOffset.x, self.position.y + weaponOffset.y);
+    [super setPosition:position];
+    //float currentX = self.position.x;
+   // [_girlMovedDelegate girlMoveByX:currentX - lastX];
 }
 
 @end

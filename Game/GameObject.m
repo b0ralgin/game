@@ -78,4 +78,8 @@ static NSTimeInterval const animationDelay = 0.05;
     [super setPosition:position];
 }
 
+- (void)update:(NSTimeInterval)dt {
+    lightCopy.position = self.position;
+}
+
 @end

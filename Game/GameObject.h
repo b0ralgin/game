@@ -18,5 +18,6 @@
 - (void)addAnimation:(NSArray*)animationList ByName:(NSString*)animationName;
 - (void)startAnimation:(NSString*)animationName;
 - (void)startLightAnimation:(NSString*)animationName;
+- (void)update:(NSTimeInterval)dt;
 
 @end
