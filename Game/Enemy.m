@@ -12,31 +12,39 @@ const int kAnimationFrames=6;
 @implementation Enemy
 {
     int _health,_damage, _speed;
-    NSMutableArray* frames;
-    NSMutableArray* actionFrames;
+    NSMutableArray* walkFrames;
     NSMutableArray* standFrames;
+    NSMutableArray* actionFrames;
     SKTexture* deadFrame;
     SKTexture* ligthFrame;
     NSArray* enemyFrames;
 }
-- (id)init:(NSString *)type health:(int)health damage:(int)damage {
-    frames = [NSMutableArray array];
-    actionFrames = [[NSMutableArray alloc] init];
-    SKTextureAtlas* enemyAnimatedAtlas = [SKTextureAtlas atlasNamed:[[NSString alloc] initWithFormat:@"%@Images",type]];
+-(void) loadTextures:(NSString*) name array:(NSMutableArray*) arrayOfTextures {
+       NSMutableArray* frames = [NSMutableArray array];
+    SKTextureAtlas* enemyAnimatedAtlas = [SKTextureAtlas atlasNamed:[[NSString alloc] initWithFormat:@"%@Images",name]];
     for (int i=1; i<=enemyAnimatedAtlas.textureNames.count; i++) {
-        NSLog(@"%@%d",type,i);
-        NSString* textureName = [NSString stringWithFormat:@"%@%d",type,i];
+        NSLog(@"type %@ %d",name,i);
+        NSString* textureName = [NSString stringWithFormat:@"%@%d",name,i];
         SKTexture *enemy = [enemyAnimatedAtlas textureNamed:textureName];
-        [frames addObject:enemy];
+        [arrayOfTextures addObject:enemy];
     }
+}
+
+- (id)init:(NSString *)type health:(int)health damage:(int)damage {
+
+    actionFrames = [[NSMutableArray alloc] init];
+    standFrames = [[NSMutableArray alloc] init];
+    walkFrames = [[NSMutableArray alloc] init];
+    
+    [self loadTextures:[[NSString alloc] initWithFormat:@"%@Stand",type] array:standFrames];
+    [self loadTextures:[[NSString alloc] initWithFormat:@"%@Walk",type]  array:walkFrames];
     /*for (int i=0; i<=kAnimationFrames-3; i++) {
         [actionFrames addObject:frames[i]];
     }
     deadFrame = frames[kAnimationFrames-2];
     ligthFrame = frames[kAnimationFrames-1];
     SKTexture* firstFrame = frames[0];*/
-    standFrames = frames;
-    self = [super initWithTexture:frames[0]];
+    self = [super initWithTexture:standFrames[0]];
     self.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
     self.physicsBody.dynamic = YES;
     self.physicsBody.restitution =0;
@@ -59,7 +67,7 @@ const int kAnimationFrames=6;
 }
 -(void) stand {
     [self removeAllActions];
-   [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:standFrames timePerFrame:0.1 resize:NO restore:YES]] withKey:@"walkingEnemy" ];
+   [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:standFrames timePerFrame:0.5 resize:NO restore:YES]] withKey:@"walkingEnemy" ];
 }
 -(void) move {
     _moveRigth =!_moveRigth;
@@ -67,7 +75,7 @@ const int kAnimationFrames=6;
     [self removeAllActions];
     //[self.physicsBody applyImpulse:CGVectorMake(,0)];
     [self runAction:[SKAction repeatActionForever:[SKAction moveByX:(_moveRigth?1:-1)*5 y:0 duration:0.1]]];
-    [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:actionFrames timePerFrame:0.5 resize:NO restore:YES]] withKey:@"walkingEnemy" ];
+    [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:walkFrames timePerFrame:0.5 resize:NO restore:YES]] withKey:@"walkingEnemy" ];
 }
 -(void) lightOn {
     [self removeAllActions];

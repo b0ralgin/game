@@ -74,10 +74,10 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     [enemy move];*/
 }
 -(void) initTvEnemy {
-    Enemy* tvEnemy = [[Enemy alloc] init:@"tvStand" health:100 damage:5];
+    Enemy* tvEnemy = [[Enemy alloc] init:@"tv" health:100 damage:5];
     [self addChild:tvEnemy];
     tvEnemy.position = CGPointMake(CGRectGetMidX(self.frame)+200,50);
-    [tvEnemy stand];
+    [tvEnemy move];
     
 }
 -(void) initBox {
