@@ -75,7 +75,7 @@ const int kAnimationFrames=6;
     [self removeAllActions];
     //[self.physicsBody applyImpulse:CGVectorMake(,0)];
     [self runAction:[SKAction repeatActionForever:[SKAction moveByX:(_moveRigth?1:-1)*5 y:0 duration:0.1]]];
-    [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:walkFrames timePerFrame:0.5 resize:NO restore:YES]] withKey:@"walkingEnemy" ];
+    [self runAction:[SKAction repeatActionForever:[SKAction animateWithTextures:walkFrames timePerFrame:0.1 resize:NO restore:YES]] withKey:@"walkingEnemy" ];
 }
 -(void) lightOn {
     [self removeAllActions];
