@@ -75,8 +75,8 @@ static float const gravity = 0.5;
         GameObject* objI = nodeList[i];
         
         if (objI.dynamic) {
-            objI.velocity = CGVectorMake(objI.velocity.dx, objI.velocity.dy + gravity);
-            objI.position = CGPointMake(objI.position.x + objI.velocity.dx, objI.position.y + objI.velocity.dy);
+            objI.velocity = CGVectorMake(objI.velocity.dx, objI.velocity.dy + dt * gravity);
+            objI.position = CGPointMake(objI.position.x + dt * objI.velocity.dx, objI.position.y + dt * objI.velocity.dy);
         }
         
         for (uint j = i+1; j < nodeList.count; j++) {
@@ -122,6 +122,10 @@ static float const gravity = 0.5;
             }
         }
     }
+}
+
+- (void)contactMessage:(GameObject*)obj1 And:(GameObject*)obj2 {
+    
 }
 
 - (void)moveObj:(GameObject*)obj WithOffset:(CGVector)offset {
