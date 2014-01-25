@@ -48,6 +48,7 @@
 		EAA9EDE71892E85E00D198A5 /* enemyImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */; };
 		EAA9EDE81892EBE700D198A5 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258B81892E3CA008DBD65 /* Button.m */; };
 		EAA9EDF41893491200D198A5 /* tvStandImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EAA9EDF31893491200D198A5 /* tvStandImages.atlas */; };
+		EAA9EDFC1893575700D198A5 /* tvWalkImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EAA9EDFB1893575700D198A5 /* tvWalkImages.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		EAA9EDE21892CFAF00D198A5 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = enemyImages.atlas; path = enemyImages/enemyImages.atlas; sourceTree = "<group>"; };
 		EAA9EDF31893491200D198A5 /* tvStandImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = tvStandImages.atlas; sourceTree = "<group>"; };
+		EAA9EDFB1893575700D198A5 /* tvWalkImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = tvWalkImages.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +186,7 @@
 				E99258711892BBF8008DBD65 /* MyScene.h */,
 				E99258721892BBF8008DBD65 /* MyScene.m */,
 				A7CE80441892C89B003E41BE /* Girl.h */,
+				EAA9EDFB1893575700D198A5 /* tvWalkImages.atlas */,
 				A7CE80451892C89B003E41BE /* Girl.m */,
 				E99258741892BBF8008DBD65 /* Spaceship.png */,
 				A7CE8049189301EC003E41BE /* GameObject.h */,
@@ -333,6 +336,7 @@
 				E99258991892CBE7008DBD65 /* (null) in Resources */,
 				E99258AD1892DD7C008DBD65 /* left_button.png in Resources */,
 				E99258C918930C92008DBD65 /* bedroom1@2x~ipad.png in Resources */,
+				EAA9EDFC1893575700D198A5 /* tvWalkImages.atlas in Resources */,
 				A7CE80481892EC70003E41BE /* girl.png in Resources */,
 				E99258CC18930C92008DBD65 /* bedroom4@2x~ipad.png in Resources */,
 				E99258CA18930C92008DBD65 /* bedroom2@2x~ipad.png in Resources */,
