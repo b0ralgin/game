@@ -47,6 +47,7 @@
 		E99258CC18930C92008DBD65 /* bedroom4@2x~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E99258C818930C92008DBD65 /* bedroom4@2x~ipad.png */; };
 		EAA9EDE71892E85E00D198A5 /* enemyImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */; };
 		EAA9EDE81892EBE700D198A5 /* Button.m in Sources */ = {isa = PBXBuildFile; fileRef = E99258B81892E3CA008DBD65 /* Button.m */; };
+		EAA9EDF41893491200D198A5 /* tvStandImages.atlas in Resources */ = {isa = PBXBuildFile; fileRef = EAA9EDF31893491200D198A5 /* tvStandImages.atlas */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,7 @@
 		EAA9EDE11892CFAF00D198A5 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		EAA9EDE21892CFAF00D198A5 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		EAA9EDE61892E85E00D198A5 /* enemyImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; name = enemyImages.atlas; path = enemyImages/enemyImages.atlas; sourceTree = "<group>"; };
+		EAA9EDF31893491200D198A5 /* tvStandImages.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = tvStandImages.atlas; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,8 +196,8 @@
 				E99258A91892DD7C008DBD65 /* left_button.png */,
 				A7CE80471892EC70003E41BE /* girl.png */,
 				E99258761892BBF8008DBD65 /* Images.xcassets */,
-				EAA9EDE11892CFAF00D198A5 /* Enemy.h */,
 				EAA9EDE21892CFAF00D198A5 /* Enemy.m */,
+				EAA9EDE11892CFAF00D198A5 /* Enemy.h */,
 				E99258B71892E3CA008DBD65 /* Button.h */,
 				E99258B81892E3CA008DBD65 /* Button.m */,
 				E99258BA1892F285008DBD65 /* Mask.h */,
@@ -343,6 +345,7 @@
 				EAA9EDE71892E85E00D198A5 /* enemyImages.atlas in Resources */,
 				E992586A1892BBF8008DBD65 /* Main_iPhone.storyboard in Resources */,
 				E992589A1892CBE7008DBD65 /* (null) in Resources */,
+				EAA9EDF41893491200D198A5 /* tvStandImages.atlas in Resources */,
 				E99258611892BBF8008DBD65 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

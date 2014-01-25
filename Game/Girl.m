@@ -79,6 +79,8 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         SKPhysicsBody* girlBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
         self.physicsBody = girlBody;
         self.physicsBody.contactTestBitMask = kContactGirl;
+        self.physicsBody.collisionBitMask = kColisionGirl;
+        self.physicsBody.categoryBitMask = kColisionGirl;
         girlBody.allowsRotation = NO;
         girlBody.dynamic = YES;
         girlBody.friction = 1.0;
