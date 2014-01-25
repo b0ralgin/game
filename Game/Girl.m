@@ -43,7 +43,7 @@ typedef enum {STAND_STATE, MOVE_STATE} GirlMoveStateType;
 typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 
 @implementation Girl {
-    SKSpriteNode* weapon;
+    GameObject* weapon;
     
     GirlJumpStateType jumpState;
     GirlMoveStateType moveState;
@@ -76,16 +76,10 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
         [self initTextures];
         [self initWeapon];
         
-        SKPhysicsBody* girlBody = [SKPhysicsBody bodyWithRectangleOfSize:self.size];
-        self.physicsBody = girlBody;
-        self.physicsBody.contactTestBitMask = kContactGirl;
-        self.physicsBody.collisionBitMask = kColisionGirl;
-        self.physicsBody.categoryBitMask = kColisionGirl;
-        girlBody.allowsRotation = NO;
-        girlBody.dynamic = YES;
-        girlBody.friction = 1.0;
-        girlBody.restitution = 0.0;
-        girlBody.mass = 30;
+        self.contactBitMask = kContactGirl;
+        self.collisionBitMask = kColisionGirl;
+        self.categoryBitMask = kColisionGirl;
+        self.dynamic = YES;
         
         [self startAnimation];
         [self startAudioRec];
@@ -147,10 +141,9 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 }
 
 - (void)initWeapon {
-    weapon = [SKSpriteNode spriteNodeWithImageNamed:activeWeapon[0]];
+    weapon = [GameObject spriteNodeWithImageNamed:activeWeapon[0]];
     weapon.size = CGSizeMake(100, 30);
-    weapon.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:weapon.size];
-    weapon.physicsBody.dynamic = NO;
+    weapon.dynamic = NO;
     weapon.position = weaponOffset;
     
     [self addChild:weapon];
@@ -230,8 +223,6 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     NSTimeInterval time = dt - lastTime;
     lastTime = dt;
     
-    weapon.position = weaponOffset;
-    
     if (moveState == MOVE_STATE) {
         [self.physicsBody applyImpulse:CGVectorMake(self.xScale * moveSpeed * time, 0)];
     }
@@ -283,6 +274,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
             [self endAttack];
         }
     }
+    
    float currentX = self.position.x;
     [_girlMovedDelegate girlMoveByX:currentX - lastX];
     lastX = currentX;
@@ -305,11 +297,11 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 }
 
 - (BOOL)isStand {
-    return (self.physicsBody.velocity.dy == 0 && jumpState == GROUND_STATE);
+    return (self.velocity.dy == 0 && jumpState == GROUND_STATE);
 }
 
 - (void)setWeaponContactBitMask:(uint32_t)mask {
-    weapon.physicsBody.contactTestBitMask = mask;
+    weapon.contactBitMask = mask;
 }
 
 - (void)setWeaponCategoryBitMask:(uint32_t)mask {
@@ -317,7 +309,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 }
 
 - (void)setWeaponCollisionBitMask:(uint32_t)mask {
-    weapon.physicsBody.collisionBitMask = mask;
+    weapon.collisionBitMask = mask;
 }
 
 - (void)beginAttack {
@@ -327,7 +319,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     
     attackState = ATTACK_STATE;
     
-    weapon.physicsBody.categoryBitMask = weaponCategoryMask;
+    weapon.categoryBitMask = weaponCategoryMask;
     weapon.hidden = NO;
     
     [self startAnimation];
@@ -340,7 +332,7 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
     
     attackState = PASSIVE_STATE;
     
-    weapon.physicsBody.categoryBitMask = 0;
+    weapon.categoryBitMask = 0;
     weapon.hidden = YES;
     
     [self startAnimation];
@@ -390,14 +382,6 @@ typedef enum {ATTACK_STATE, PASSIVE_STATE} GirlAttackStateType;
 - (void)setXScale:(CGFloat)xScale {
     lightCopy.xScale = xScale;
     [super setXScale:xScale];
-}
-
-- (void)setPosition:(CGPoint)position {
-    //float lastX = self.position.x;
-    weapon.position = CGPointMake(self.position.x + self.xScale * weaponOffset.x, self.position.y + weaponOffset.y);
-    [super setPosition:position];
-    //float currentX = self.position.x;
-   // [_girlMovedDelegate girlMoveByX:currentX - lastX];
 }
 
 @end
