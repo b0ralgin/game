@@ -11,8 +11,9 @@
 #import "Button.h"
 #import "Mask.h"
 #import "BedroomBackground.h"
+#import "SimplePhysic.h"
 
-@interface GameScene : SKScene<SKPhysicsContactDelegate,GirlMovedDelegate>{
+@interface GameScene : SKScene<SKPhysicsContactDelegate,GirlMovedDelegate,SimplePhysicContactDelegate>{
     
 }
 
