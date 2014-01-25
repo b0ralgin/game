@@ -42,7 +42,17 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE, MOVING_FLY_STATE, 
     self = [super initWithImageNamed:girlDarkStand[0]];
     
     if (self != nil) {
+<<<<<<< HEAD
         curState = STAND_STATE;
+=======
+        self.name = @"Girl";
+        
+        self.size = CGSizeMake(150, 150);
+        
+        jumpState = GROUND_STATE;
+        moveState = STAND_STATE;
+        attackState = PASSIVE_STATE;
+>>>>>>> f13aeffbcf580d1386c449556944c943d2892c41
         
         lightGirl = [SKSpriteNode spriteNodeWithImageNamed:girlLightStand[0]];
         
@@ -247,6 +257,24 @@ typedef enum {STAND_STATE, MOVE_STATE, FLY_STATE, FALL_STATE, MOVING_FLY_STATE, 
         default:
             break;
     }
+<<<<<<< HEAD
+=======
+    
+    if (recorder != nil) {
+        [recorder updateMeters];
+        
+        //double peakPowerForChannel = pow(10, (0.05 * [recorder peakPowerForChannel:0]));
+        
+        double avaragePowerForChannel = pow(10, (0.05 * [recorder averagePowerForChannel:0]));
+        
+        if (avaragePowerForChannel > 0.045) {
+            [self beginAttack];
+        }
+        else {
+            [self endAttack];
+        }
+    }
+>>>>>>> f13aeffbcf580d1386c449556944c943d2892c41
 }
 
 - (void)jump {

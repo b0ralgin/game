@@ -9,7 +9,11 @@
 #import <SpriteKit/SpriteKit.h>
 #import "Girl.h"
 
+<<<<<<< HEAD
 @interface GameScene : SKScene{
+=======
+@interface GameScene : SKScene<GirlMovedDelegate,SimplePhysicContactDelegate>{
+>>>>>>> f13aeffbcf580d1386c449556944c943d2892c41
     
 }
 
