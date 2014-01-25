@@ -26,12 +26,14 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
     BOOL _isLightOn;
     
     BedroomBackground *background;
+
+    float lastTime;
 }
 
 -(instancetype)initWithSize:(CGSize)size
 {
     if(( self = [super initWithSize:size] )){
-        
+        lastTime = 0;
         self.physicsWorld.gravity = CGVectorMake(0, -5);
         
         _backWall = [SKCropNode new];
@@ -178,6 +180,9 @@ static NSString *const jumpButtonFilename = @"jump_button.png";
 
 
 -(void)update:(CFTimeInterval)currentTime {
+    float dt = (lastTime == 0)?0: currentTime - lastTime;
+    lastTime =  currentTime;
+    
     [_girl update:currentTime];
     
     /* Called before each frame is rendered */
