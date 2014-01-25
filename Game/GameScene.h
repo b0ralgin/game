@@ -12,7 +12,7 @@
 #import "Mask.h"
 #import "BedroomBackground.h"
 
-@interface GameScene : SKScene{
+@interface GameScene : SKScene<SKPhysicsContactDelegate,GirlMovedDelegate>{
     
 }
 

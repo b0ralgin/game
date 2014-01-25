@@ -1,5 +1,5 @@
 //
-//  BedroomBackground.h
+//  testClass.h
 //  Game
 //
 //  Created by Akira Yamaoka on 25.01.14.
@@ -8,6 +8,6 @@
 
 #import <SpriteKit/SpriteKit.h>
 
-@interface BedroomBackground : SKNode
-@property CGSize backgroundSize;
+@interface testClass : SKPhysicsBody
+
 @end

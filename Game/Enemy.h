@@ -13,9 +13,11 @@
 }
 @property (assign,nonatomic) int damage;
 @property (assign,nonatomic) int speed;
+@property (assign,nonatomic) bool moveRigth;
 -(void) lightOn;
 -(id) init:(NSString*) type health:(int) health damage:(int) damage;
 -(void) damage:(int) hit;
 -(void) move;
+-(void) stand;
 
 @end

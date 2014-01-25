@@ -8,9 +8,9 @@
 
 #import <SpriteKit/SpriteKit.h>
 #import "GameObject.h"
-
+#import "GirlMovedDelegate.h"
 @interface Girl : GameObject
-
+@property id <GirlMovedDelegate> girlMovedDelegate;
 - (void)moveLeft;
 - (void)moveRight;
 - (void)stopMoving;
